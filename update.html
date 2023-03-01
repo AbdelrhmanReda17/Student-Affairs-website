@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Update Student Data</title>
+	</head>
+	<body>
+		<!--Header for logo and title of page-->
+		<header>
+			<img src="insert src here" alt="Student Affairs Website Logo" />
+			<h1>Update Student Data</h1>
+		</header>
 
+		<!--Navigation bar to navigate to other pages-->
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="Register.html">Register</a></li>
+				<li><a href="ViewAllStudents.html">View All Students</a></li>
+				<li><a href="department.html">Departments</a></li>
+			</ul>
+		</nav>
+		<!--Main content of the page-->
+		<main>
+			<!--Searching for students-->
+			<input type="search" placeholder="Search for a student" />
+			<input type="submit" value="Search" />
+
+			<!--Showing Data -->
+			<ul title="Found Student" border="2" style="list-style-type: none">
+				<caption>
+					<strong>Student Data</strong>
+				</caption>
+
+				<li>
+					<label><b>Name: </b></label>
+					<label id="Sname">Soda</label>
+					<button type="button">Edit</button>
+				</li>
+
+				<li>
+					<label><b>ID: </b></label>
+					<label id="Sid">20210563</label>
+					<button type="button">Edit</button>
+				</li>
+
+				<li>
+					<label><b>GPA: </b></label>
+					<label id="Sgpa">3.63</label>
+					<button type="button">Edit</button>
+				</li>
+
+				<li>
+					<label><b>Level: </b></label>
+					<label id="Slevel">2</label>
+					<button type="button">Edit</button>
+				</li>
+
+				<li>
+					<label><b>Gender: </b></label>
+					<label id="Sgender">Male</label>
+					<button type="button">Edit</button>
+				</li>
+
+				<li>
+					<label><b>Email: </b></label>
+					<label id="email">email@gmail.com</label>
+					<button type="button">Edit</button>
+				</li>
+
+				<li>
+					<label><b>Phone number: </b></label>
+					<label id="Sphonenumber">+2010</label>
+					<button type="button">Edit</button>
+				</li>
+                
+				<li>
+					<label><b>Department: </b></label>
+					<label id="Sdepartment">General</label>
+				</li>
+			</ul>
+		</main>
+	</body>
+</html>
