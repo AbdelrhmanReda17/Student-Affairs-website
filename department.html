@@ -1,50 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>departments</title>
-</head>
-<body>
-    <!--Header for logo and title of page-->
-    <header>
-        <img src="insert src here" alt="Student Affairs Website Logo"/>
-        <h1>Departments</h1>
-    </header>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>departments</title>
+	</head>
+	<body>
+		<!--Header for logo and title of page-->
+		<header>
+			<img src="insert src here" alt="Student Affairs Website Logo" />
+			<h1>Departments</h1>
+		</header>
 
-    <!--Navigation bar to navigate to other pages-->
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="Register.html">Register</a></li>
-            <li><a href="update.html">Update</a></li>
-            <li><a href="Search.html">Search</a></li>
-            <li><a href="department.html">Departments</a></li>
-        </ul>
-    </nav>
-    <!--Main content of the page-->
-    <main>
-        <!--Searching for students-->
-        <input type="search" placeholder="Search for students">
-        <input type="submit" value="Search">
+		<!--Navigation bar to navigate to other pages-->
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="Register.html">Register</a></li>
+				<li><a href="update.html">Update</a></li>
+				<li><a href="Search.html">Search</a></li>
+				<li><a href="department.html">Departments</a></li>
+			</ul>
+		</nav>
+		<!--Main content of the page-->
+		<main>
+			<!--Searching for students-->
+			<input type="search" placeholder="Search for students" />
+			<input type="submit" value="Search" />
 
-        <!--Showing Data -->
-        <table title="Found Students" border="2">
-            <caption><strong>Students Data</strong></caption>
-            <thead background-color="Black">
-                <tr>
-                    <th>Student Name</th>
-                    <th>Student ID</th>
-                    <th>Available Departments</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!--Data fields-->
-            </tbody>
-
-        </table>
-    </main>
-
-</body>
+			<!--Showing Data -->
+			<table title="Found Students" border="2">
+				<caption>
+					<strong>Students Data</strong>
+				</caption>
+				<thead background-color="Black">
+					<tr>
+						<th>Student Name</th>
+						<th>Student ID</th>
+						<th>Available Departments</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--Data fields-->
+					<!--THIS IS JUST A TEST-->
+					<tr style="text-align: center">
+						<td>Soda</td>
+						<td>20210563</td>
+						<!--Depends on GPA-->
+						<td style="text-align: right">
+							<label style="text-align: left">
+								Choose a department
+							</label>
+							<select style="text-align: center">
+								<option value="IT">IT</option>
+								<option value="CS">CS</option>
+								<option value="IS">IS</option>
+								<option value="AI">AI</option>
+								<option value="DS">DS</option>
+							</select>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</main>
+	</body>
 </html>
