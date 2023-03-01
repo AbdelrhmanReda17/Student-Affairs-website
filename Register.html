@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Home Page</title>
+	</head>
 
+	<body>
+			<!--Header for logo and title of page-->
+			<header>
+				<img src="Logo.bmp" alt="Student Affairs Website Logo" />
+				<h1>Departments</h1>
+			</header>
+			<!--Navigation bar to navigate to other pages-->
+			<nav>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="ViewAllStudents.html">View All Students Page</a></li>
+					<li><a href="update.html">Update</a></li>
+					<li><a href="Profile.html">Profile</a></li>
+					<li><a href="department.html">Departments</a></li>
+				</ul>
+			</nav>
+	</body>
+    <br>
+        <!--Register a New Student-->
+        <h2>Register a New Student </h2>
+        <form action="index.html">
+                        <!--Student name-->
+            <label for="Sname">Student name:</label><br>
+            <input type="text" id="Sname" value="" ><br>                                  
+                        <!--ID-->            
+            <label for="Sid">ID :</label><br>
+            <input type="number" id="Sid" min = 20210000 max = 20210999 maxlength= 8 minlength= 8 value="" ><br>
+                        <!--GPA-->
+            <label for="Sgpa">GPA :</label><br>
+            <input type="number" id="Sgpa" min = 0 max = 4 step="0.1"  value="" ><br>
+                        <!--Date-->
+            <label for="Sdate">Date :</label><br>
+            <input type="date" id="Sdate"  min="2000-00-00" max="2005-00-00"><br>
+                        <!--Phone Number-->
+            <label for="Sphone">Phone Number :</label><br>
+            <input type="number" id="Sphone"  maxlength="12" minlength="11"  value=""><br>
+                        <!--E-Mail-->
+            <label for="Semail">E-Mail :</label><br>
+            <input type="text" id="Semail" value=""><br>
+                        <!--Department-->
+            <label for="Sdepartment">Department :</label><br>
+            <input type="text" id="Sdepartment" disabled value="Not Assigned Yet"><br>
+                        <!--Level-->
+            <label for="Sname"> Level :</label> &nbsp &nbsp
+            <select style="text-align: center">
+                <option value="1"> 1 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+                <option value="4"> 4 </option>
+            </select><br>
+                        <!--Gender-->
+            <label for="Sgender"> Gender :</label> &nbsp 
+            <input type="radio" id="smale" name = "Sgender" value="Male">
+            <label for="smale">Male</label>
+            <input type="radio" id="sfemale"  name = "Sgender" value="Female">
+            <label for="sfemale">Female</label><br><br>
+                        <!--Submit Button-->
+            <input  type="submit" value="Submit" onclick>
+                        <!--Reset Button-->
+            <input type="reset">
+        </form> 
+    </main>
+</html>
