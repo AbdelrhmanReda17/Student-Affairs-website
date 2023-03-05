@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <title> Active Students</title>
+</head>
+<style>
+	  body {
+            background-image: url('simple.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+	
+		.logo{
+			float: left;
+			width: 100px;
+			height: 100px;
+		}
+		.header{
+			text-align: left;
+			margin-top: 6%;
+			
+		}
+		
+		li{
+			display: inline;
+			margin: 2% 2% 2% 2%;
+			font-size: larger;
+		}
+		.log{
+			float: right;
+			margin-top: 0%;
+		}
+		.txt{
+			padding-top: 1.5%;
+		}
+
+</style>
+<body>
+	<nav>
+		<img src="Logo.png" alt="Student Affairs Website Logo" class="logo"/>
+		<div class="txt">
+		<li><a href="index.html">Home</a></li>
+		<li><a href="ViewAllStudents.html">View All Students Page</a></li>
+		<li><a href="update.html">Update</a></li>
+		<li><a href="AddStudent.html">Add Student</a></li>
+		<li><a href="department.html">Departments</a></li>
+		<li class ="log"><a href="login.html">Login</a></li>
+		</div>
+	</ul>
+</nav>
+	<br>
+	<header>
+		<h1 class="header"> Active Students</h1>	
+	</header>
+	<br>
+	<br>
+         <!--Searching for students-->
+			<div style="margin-left: 2%">
+				<input type="search" placeholder="Search for students" />
+				<input type="submit" value="Search" />
+				<br><br>
+			</div>
+		<table title="Students Table" border="2" style="text-align: center" >
+				<tr>
+					<th>Student ID</th>
+					<th>Student Name</th>
+					<th>Gender</th>
+					<th>GPA</th>
+					<th>Level</th>
+					<th>Email</th>
+					<th>Phone number</th>
+					<th>Departments</th>
+				</tr>
+			<tbody>
+				<!--Data fields-->
+				<!--THIS IS JUST A TEST-->
+				<tr>
+					<td>20202020</td>
+					<td>xxxxx</td>
+					<td>Female</td>
+					<td>4</td>
+					<td>2</td>
+					<td>xxxx@gmail.com</td>
+					<td>010000000</td>
+					<td>IS</td>
+				</tr>
+                <tr>
+					<td>20202021</td>
+					<td>xxxxx</td>
+					<td>male</td>
+					<td>3.5</td>
+					<td>2</td>
+					<td>xxxx@gmail.com</td>
+					<td>010000000</td>
+					<td>IT</td>
+				</tr>
+			</tbody>
+		</table>
+	
+	<br>
+</body>
