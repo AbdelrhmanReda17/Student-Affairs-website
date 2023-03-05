@@ -70,28 +70,28 @@
         <form action="index.html" class="Registeration">
                         <!--Student name-->
             <label for="Sname">Student name:</label><br>
-            <input type="text" id="Sname" value="" ><br>                                  
+            <input type="text" id="Sname" value="" required><br>                                  
                         <!--ID-->            
             <label for="Sid">ID :</label><br>
-            <input type="number" id="Sid" min = 20210000 max = 20210999 maxlength= 8 minlength= 8 value="" ><br>
+            <input type="number" id="Sid" min = 20210000 max = 20210999 maxlength= 8 minlength= 8 value="" required ><br>
                         <!--GPA-->
             <label for="Sgpa">GPA :</label><br>
-            <input type="number" id="Sgpa" min = 0 max = 4 step="0.1"  value="" ><br>
+            <input type="number" id="Sgpa" min = 0 max = 4 step="0.1"  value=""required ><br>
                         <!--Date-->
             <label for="Sdate">Date :</label><br>
-            <input type="date" id="Sdate"  min="2000-00-00" max="2005-00-00"><br>
+            <input type="date" id="Sdate"  min="2000-00-00" max="2005-00-00" required><br>
                         <!--Phone Number-->
             <label for="Sphone">Phone Number :</label><br>
-            <input type="number" id="Sphone"  maxlength="12" minlength="11"  value=""><br>
+            <input type="number" id="Sphone"  maxlength="12" minlength="11"  value="" required><br>
                         <!--E-Mail-->
             <label for="Semail">E-Mail :</label><br>
-            <input type="text" id="Semail" value=""><br>
+            <input type="email" id="Semail" value=""><br>
                         <!--Department-->
             <label for="Sdepartment">Department :</label><br>
-            <input type="text" id="Sdepartment" disabled value="Not Assigned Yet"><br>
+            <input type="text" id="Sdepartment" disabled value="Not Assigned Yet" ><br>
                         <!--Level-->
             <label for="Sname"> Level :</label> &nbsp &nbsp
-            <select style="text-align: center">
+            <select style="text-align: center" required> 
                 <option value="1"> 1 </option>
                 <option value="2"> 2 </option>
                 <option value="3"> 3 </option>
@@ -99,9 +99,9 @@
             </select><br>
                         <!--Gender-->
             <label for="Sgender"> Gender :</label> &nbsp 
-            <input type="radio" id="smale" name = "Sgender" value="Male">
+            <input type="radio" id="smale" name = "Sgender" value="Male" required>
             <label for="smale">Male</label>
-            <input type="radio" id="sfemale"  name = "Sgender" value="Female">
+            <input type="radio" id="sfemale"  name = "Sgender" value="Female" required>
             <label for="sfemale">Female</label><br><br>
                         <!-- Status-->
             <label >Status</label><br>
