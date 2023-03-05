@@ -6,30 +6,69 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>departments</title>
 	</head>
+	<style>
+		body {
+            background-image: url('simple.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+		.logo{
+			float: left;
+			width: 100px;
+			height: 100px;
+		}
+		.header{
+			text-align: left;
+			margin-top: 6%;
+			
+		}
+		nav li{
+			display: inline;
+			margin: 2%;
+			font-size: large;
+		}
+		.log{
+			float: right;
+			margin-top: 0%;
+		}
+		.txt{
+			padding-top: 1.5%;
+		}
+
+	</style>
 	<body>
 		<!--Header for logo and title of page-->
+		<nav>
+			<img src="Logo.png" alt="Student Affairs Website Logo" class="logo"/>
+			<div class="txt">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="ViewAllStudents.html">View All Students Page</a></li>
+			<li><a href="update.html">Update</a></li>
+			<li><a href="AddStudent.html">Add Student</a></li>
+			<li><a href="department.html">Departments</a></li>
+			<li class ="log"><a href="login.html">Login</a></li>
+			</div>
+		</ul>
+	</nav>
 		<header>
-			<img src="insert src here" alt="Student Affairs Website Logo" />
-			<h1>Departments</h1>
+			<h1 class="header">Departments</h1>
 		</header>
 
 		<!--Navigation bar to navigate to other pages-->
-		<nav>
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="Register.html">Register</a></li>
-				<li><a href="update.html">Update</a></li>
-				<li><a href="ViewAllStudents.html">View All Students</a></li>
-			</ul>
-		</nav>
+		<br>
+		
+		<br>
 		<!--Main content of the page-->
 		<main>
 			<!--Searching for students-->
+			<div style="margin-left: 2%">
 			<input type="search" placeholder="Search for students" />
 			<input type="submit" value="Search" />
-
+		</div>
+			
 			<!--Showing Data -->
-			<table title="Found Students" border="2">
+			<table title="Found Students" border="2" style="margin-top: 2%">
 				<caption>
 					<strong>Student Data</strong>
 				</caption>
