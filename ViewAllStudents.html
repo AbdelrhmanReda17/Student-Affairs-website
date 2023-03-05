@@ -1,35 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>View All Students</title>
 	</head>
+	<style>
+		body {
+            background-image: url('simple.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+		nav li{
+			display: inline;
+			margin: 2%;
+			font-size: large;
+		}
+		.log{
+			float: right;
+			margin-top: 0%;
+		}
+		.txt{
+			padding-top: 1.5%;
+		}
+
+		.logo{
+			float: left;
+			width: 100px;
+			height: 100px;
+		}
+		.header{
+			text-align: left;
+			margin-top: 6%;
+			
+		}
+	</style>
 	<body>
 		<!--Header for logo and title of page-->
-		<header>
-			<img src="insert src here" alt="Student Affairs Website Logo" />
-			<h1>View All Students</h1>
-		</header>
-
-		<!--Navigation bar to navigate to other pages-->
 		<nav>
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="Register.html">Register</a></li>
-				<li><a href="update.html">Update</a></li>
-				<li><a href="department.html">Departments</a></li>
-			</ul>
-		</nav>
+			<img src="Logo.png" alt="Student Affairs Website Logo" class="logo"/>
+			<div class="txt">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="ViewAllStudents.html">View All Students Page</a></li>
+			<li><a href="update.html">Update</a></li>
+			<li><a href="AddStudent.html">Add Student</a></li>
+			<li><a href="department.html">Departments</a></li>
+			<li class ="log"><a href="login.html">Login</a></li>
+			</div>
+		</ul>
+	</nav>
+		<header>
+			<h1 class="header">View All Students</h1>
+		</header>
+		<br>
+		<!--Navigation bar to navigate to other pages-->
+		
+		<br>
 	</body>
 
 	<body>
+		<button type="button">view active students!</button>
 		<header>
-			<h1>Currently enrolled students</h1>
+			<h2>Currently enrolled students</h2>
 		</header>
+		   <!--Searching for students-->
+		   <div style="margin-left: 2%">
+			<input type="search" placeholder="Search for students" />
+			<input type="submit" value="Search" />
+			<br><br>
+		</div>
 
-		<table title="Students Table" border="2" style="text-align: center">
+		<table title="Students Table" border="2" style="text-align: center" >
 			<caption>
 				<strong>Students Data</strong>
 			</caption>
@@ -44,6 +88,7 @@
 					<th>Email</th>
 					<th>Phone number</th>
 					<th>Departments</th>
+					<th>Status</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -58,6 +103,12 @@
 					<td>email@gmail.com</td>
 					<td>+2010</td>
 					<td>General</td>
+					<td>
+						<select style="text-align: center">
+							<option value="A">Active</option>
+							<option value="I">Inactive</option>
+						</select>
+					</td>
 				</tr>
 			</tbody>
 		</table>
