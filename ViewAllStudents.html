@@ -1,116 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="ViewAllStudents.css">
+    <title>Student Affairs</title>
+    </head>
+    <body>
+        <nav> 
+            <ul class = "container">
+                <li> <a href="index.html"> Home</a> </li>
+                <li> <a href="AddStudent.html" > Register a Student </a> </li>
+                <li class = "selected"> <a href="ViewAllStudents.html" > View All Students </a> </li>
+                <li> <a href="update.html" > Update a Student </a> </li>
+                <li> <a href="department.html"> Department </a> </li>
+            </ul>
+        </nav>
+        <h1 class="header">View All Students</h1>
+        <button type="button">view active students!</button>
+		<h2>Currently enrolled students</h2>
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>View All Students</title>
-	</head>
-	<style>
-		body {
-            background-image: url('simple.jpg');
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-		nav li{
-			display: inline;
-			margin: 2%;
-			font-size: large;
-		}
-		.log{
-			float: right;
-			margin-top: 0%;
-		}
-		.txt{
-			padding-top: 1.5%;
-		}
+		    <div>
+			    <input type="search" class="search" placeholder="Search for students"/>
+			    <input type="submit" class="searchbtn" value="Search" />
+		    </div>
 
-		.logo{
-			float: left;
-			width: 100px;
-			height: 100px;
-		}
-		.header{
-			text-align: left;
-			margin-top: 6%;
-			
-		}
-	</style>
-	<body>
-		<!--Header for logo and title of page-->
-		<nav>
-			<img src="Logo.png" alt="Student Affairs Website Logo" class="logo"/>
-			<div class="txt">
-			<li><a href="index.html">Home</a></li>
-			<li><a href="ViewAllStudents.html">View All Students Page</a></li>
-			<li><a href="update.html">Update</a></li>
-			<li><a href="AddStudent.html">Add Student</a></li>
-			<li><a href="department.html">Departments</a></li>
-			<li class ="log"><a href="login.html">Login</a></li>
-			</div>
-		</ul>
-	</nav>
-		<header>
-			<h1 class="header">View All Students</h1>
-		</header>
-		<br>
-		<!--Navigation bar to navigate to other pages-->
-		
-		<br>
-	</body>
-
-	<body>
-		<button type="button">view active students!</button>
-		<header>
-			<h2>Currently enrolled students</h2>
-		</header>
-		   <!--Searching for students-->
-		   <div style="margin-left: 2%">
-			<input type="search" placeholder="Search for students" />
-			<input type="submit" value="Search" />
-			<br><br>
-		</div>
-
-		<table title="Students Table" border="2" style="text-align: center" >
-			<caption>
-				<strong>Students Data</strong>
-			</caption>
-			<!--Shows All -->
-			<thead background-color="Black">
-				<tr>
-					<th>Student ID</th>
-					<th>Student Name</th>
-					<th>Gender</th>
-					<th>GPA</th>
-					<th>Level</th>
-					<th>Email</th>
-					<th>Phone number</th>
-					<th>Departments</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				<!--Data fields-->
-				<!--THIS IS JUST A TEST-->
-				<tr>
-					<td>20210563</td>
-					<td>Soda</td>
-					<td>Male</td>
-					<td>3.63</td>
-					<td>2</td>
-					<td>email@gmail.com</td>
-					<td>+2010</td>
-					<td>General</td>
-					<td>
-						<select style="text-align: center">
-							<option value="A">Active</option>
-							<option value="I">Inactive</option>
-						</select>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</body>
+            <footer class= "ft"> 
+                <div class="logo"> <p> <img src="Logo.png" alt="LOGO"> </p></div> 
+                <div class="items"> <p> © 2023 University Name. All rights reserved. </p>
+                    <p> Contact Us:</p>
+                    <p> Address: University Address, City, State, Zip Code</p>
+                    <p> Phone: +1 (XXX) XXX-XXXX</p>
+                    <p> Email: info@universityname.edu</p>
+                    <p> Privacy Policy | Terms of Use | Accessibility Statement </p>
+                    <p> We are a world-class university dedicated to providing an exceptional education to our students.</p> </div> 
+            </footer>
+        </body>
 </html>

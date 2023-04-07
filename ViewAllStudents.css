@@ -1,0 +1,39 @@
+div input.search{
+    outline-offset: 0px;
+    padding: 5px;
+    border-radius: 57px;
+    border: 2px solid transparent;
+    position: relative;
+}
+div input.search::after{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #23475F;
+}
+div input.search:focus{
+    outline-offset: 0px;
+    outline:0px;
+    border-color: #23475F;
+}
+div input.searchbtn {
+    background-image: linear-gradient(to right, #23475F 0%, #A0E4FA  51%, #23475F  100%);
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #fdf9f9;
+    border-radius: 10px;
+    border-color: transparent;
+}
+
+div input.searchbtn:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+ 

@@ -1,91 +1,38 @@
-<DOCTYPE html>
-    <html>
-
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home Page</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="common.css">
+    <title>Student Affairs</title>
     </head>
-    <style>
-        body {
-            background-image: url('simple.jpg');
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-
-        .meeting {
-            float: right;
-            margin-top: 5%;
-            margin-right: 17%;
-          
-        }
-
-        .image img {
-            height: 300px;
-            width: 250px;
-        }
-        li{
-			display: inline;
-			margin: 2% 2% 2% 2%;
-			font-size: larger;
-		}
-		.log{
-			float: right;
-			margin-top: 0%;
-		}
-		.txt{
-			padding-top: 1.5%;
-		}
-        .logo{
-			float: left;
-			width: 100px;
-			height: 100px;
-	}
-    .p{
-        text-align: center;
-        font-size: larger;
-        padding-top: 15%;
-    }
-
-    </style>
-         <nav>
-            <img src="Logo.png" alt="Student Affairs Website Logo" class="logo"/>
-            <div class="txt">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="ViewAllStudents.html">View All Students Page</a></li>
-            <li><a href="update.html">Update</a></li>
-            <li><a href="AddStudent.html">Add Student</a></li>
-            <li><a href="department.html">Departments</a></li>
-            <li class ="log"><a href="login.html">Login</a></li>
-            </div>
-        </ul>
-    </nav>
-    <header>
-        <h1 style="display: flex;
-        margin-top: 3%;
-        margin-left:2%;
-        justify-content: left;
-        color: black;">
-            welcome,
-        </h1>
-        <hr>
-    </header>
     <body>
-        <div class="image">
-            <img src="homephoto.jpg" alt="meeting-photo" class="meeting">
-            <p class="p">The President of the University announces that a meeting will <br>be held for all employees next Monday at 8 am to discuss
-                <br> the plan of the new year , It will be in the main meeting room</p>    
-        </div>
-        <div class="head">
-            <header>
-                <!-- <img src="Logo.bmp" alt="Student Affairs Website Logo" /> -->
-            </header>
-            <!--Navigation bar to navigate to other pages-->
-           
-        </div>
-    </body>
+        <nav> 
+            <ul class = "container">
+                <li class = "selected"> <a href="index.html"> Home</a> </li>
+                <li> <a href="AddStudent.html" > Register a Student </a> </li>
+                <li> <a href="ViewAllStudents.html" > View All Students </a> </li>
+                <li> <a href="update.html" > Update a Student </a> </li>
+                <li> <a href="department.html"> Department </a> </li>
+            </ul>
+        </nav>
 
-    </html>
-</DOCTYPE>
+        <footer class= "ft"> 
+            <div class="logo"> 
+                <p> <img src="Logo.png" alt="LOGO"> </p>
+            </div> 
+
+            <div class="items"> 
+                <p> © 2023 University Name. All rights reserved. </p>
+                <p> Contact Us:</p>
+                <p> Address: University Address, City, State, Zip Code</p>
+                <p> Phone: +1 (XXX) XXX-XXXX</p>
+                <p> Email: info@universityname.edu</p>
+                <p> Privacy Policy | Terms of Use | Accessibility Statement </p>
+                <p> We are a world-class university dedicated to providing an exceptional education to our students.</p> 
+            </div> 
+        </footer>
+    </body>
+</html>
