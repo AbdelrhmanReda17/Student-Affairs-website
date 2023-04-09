@@ -74,6 +74,12 @@ div.mainbody div input {
     transition-duration: 0.3s;
 
 }
+
+.mainbody input[type=date] {
+    max-width: 300px;
+    min-width: 197px;
+}
+
 .mainbody input[type=button]:hover {
     box-shadow: 0 0 15px rgb(0, 0, 0);
     transform: scale(1.1);
