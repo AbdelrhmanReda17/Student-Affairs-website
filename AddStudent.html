@@ -6,8 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="master.css">
     <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="AddStudent.css">
+    <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
     <title>Student Affairs</title>
     </head>
+    <script src="AddStudent.js"></script>
     <body>
         <nav> 
             <ul class = "container">
@@ -18,15 +21,99 @@
                 <li> <a href="department.html" > Department </a> </li>
             </ul>
         </nav>
-        <footer class= "ft"> 
-            <div class="logo"> <p> <img src="Logo.png" alt="LOGO"> </p></div> 
-            <div class="items"> <p> © 2023 University Name. All rights reserved. </p>
-                <p> Contact Us:</p>
-                <p> Address: University Address, City, State, Zip Code</p>
-                <p> Phone: +1 (XXX) XXX-XXXX</p>
-                <p> Email: info@universityname.edu</p>
-                <p> Privacy Policy | Terms of Use | Accessibility Statement </p>
-                <p> We are a world-class university dedicated to providing an exceptional education to our students.</p> </div> 
-        </footer>
-    </body>
+    <div id = "form-div">
+        <h2 id="form-title">Add Student information </h2>
+        <form action = "index.html" class="Registeration" id = "form">
+                        <!--Student name-->
+            <!-- <label for="Sname">Student name:</label> -->
+            <div id ="user" class="input-container">
+                <i class="fa fa-user icon" style="color: #22475e ;"></i>
+                <input class="input-field" type="text" id="Sname" placeholder="Student Name">  
+            </div>                               
+                        <!--ID-->            
+            <!-- <label for="Sid">ID :</label> -->
+            <div class="input-container">
+                <i class="fa-solid fa-id-card-clip icon" style="color: #22475e ;"></i>
+                <input class="input-field" type="text" id="Sid" placeholder="Student ID">
+            </div>
+                        <!--GPA-->
+            <!-- <label for="Sgpa">GPA :</label> -->
+        
+            <div class="input-container">
+                <i class="fa-solid fa-percent icon" style="color: #22475e ;"></i>
+                <input class="input-field" type="text" id="Sgpa" placeholder="Student GPA">
+            </div>
+                        <!--Phone Number-->
+            <!-- <label for="Sphone">Phone Number :</label> -->
+            
+            <div class="input-container">
+                <i class="fa fa-phone icon" style="color: #22475e ;"></i>
+                <input class="input-field" type="text" id="Sphone" placeholder="Phone Number">
+            </div>
+                        <!--E-Mail-->
+            <!-- <label for="Semail">E-Mail :</label> -->
+        
+            <div class="input-container">
+                <i class="fa fa-envelope icon" style="color: #22475e ;"></i>
+                <input type="text" class="input-field" id="Semail" placeholder="E-mail">
+            </div>
+                        <!--Department-->
+            <!-- <label for="Sdepartment">Department :</label> -->
+            
+            <div class="input-container">
+                <i class="fa-solid fa-diagram-project icon" style="color: #22475e ;"></i>
+                <input type="text" class="input-field" id="Sdepartment" placeholder="Student department">
+            </div>
+            <div class ="checked-inputs">
+                        <!--Date-->
+            <label for="Sdate">Date of Birth :</label>
+            <input type="date" id="Sdate" placeholder="Student Birthday">
+        </div>
+
+        <div class ="checked-inputs" id="level">
+                        <!--Level-->
+            <label for="Sname"> Level :</label> 
+            <select id="Levels"> 
+                <option value="1"> level 1 </option>
+                <option value="2"> level 2 </option>
+                <option value="3"> level 3 </option>
+                <option value="4"> level 4 </option>
+            </select>
+            </div>
+                        <!-- Gender -->
+            <div class ="input-field" >
+            <label for="Sgender"> Gender :</label>
+            <input type="radio" id="smale" name = "Sgender" value="Male">
+            <label for="smale">Male</label>
+            <input type="radio" id="sfemale"  name = "Sgender" value="Female" >
+            <label for="sfemale">Female</label>
+            </div>
+                    <!-- Status-->
+            <div class ="input-field">
+            <label for="sstate"> status :</label>
+            <input type="radio" id="activee"  name = "sstate" value="Active" >
+            <label for="activee">Active</label>
+            <input type="radio" id="inactive" name = "sstate" value="inactive">
+            <label for="inactive" >inactive</label>
+            <br><br>
+            </div>
+            <div class ="buttons">
+                        <!--Submit Button-->
+            <input  type="submit" value="Submit" onclick>
+                        <!--Reset Button-->
+            <input type="reset">
+            </div>
+        </form> 
+    </div>
+    <footer class= "ft"> 
+        <div class="logo"> <p> <img src="Logo.png" alt="LOGO"> </p></div> 
+        <div class="items"> <p> Â© 2023 University Name. All rights reserved. </p>
+            <p> Contact Us:</p>
+            <p> Address: University Address, City, State, Zip Code</p>
+            <p> Phone: +1 (XXX) XXX-XXXX</p>
+            <p> Email: info@universityname.edu</p>
+            <p> Privacy Policy | Terms of Use | Accessibility Statement </p>
+            <p> We are a world-class university dedicated to providing an exceptional education to our students.</p> </div> 
+    </footer>
+    </bbody>
 </html>
