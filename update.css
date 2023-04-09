@@ -5,11 +5,11 @@
     font-weight: bold;
     font-style:inherit;
 }
-body{
+/*body{
     margin: auto;
-    /*background: linear-gradient(135deg,#71b7e6,#9b59b6);*/
+    /*background: linear-gradient(135deg,#71b7e6,#9b59b6);
     background: linear-gradient(to right,#A0E4FA,#23475F);
-}
+}*/
 .mainbody{
     background-color: aquamarine;
     margin-left: 37%;
