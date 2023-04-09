@@ -1,0 +1,45 @@
+div.mainbody{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div.mainbody div{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.mainbody div input{
+    text-align: center;
+    outline-style: none;
+    max-width: 300px;
+    min-width: 10px;
+    border-top:0px;
+    border-right: 0px;
+    border-left: 0px;
+    margin:20px;
+}
+
+.mainbody input[type=button] {
+    margin: 18px 32px;
+    padding: 15px 15px;
+    color:white;
+    border: none;
+    background-color: #23475F;
+}
+
+div.mainbody div input:disabled {
+    border: none;
+    background-color: white;
+}
+
+div.mainbody div input:focus::placeholder {
+    color: transparent;
+}
+
+form{
+    text-align: center;
+}
