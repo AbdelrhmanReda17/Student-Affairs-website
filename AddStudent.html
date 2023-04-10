@@ -31,7 +31,7 @@
                 </div>                               
 
                 <div id ="id" class="ipt-container">
-                    <input class="input-field" type="number" id="Sid" placeholder="Student ID" required>  
+                    <input class="input-field" type="number" id="Sid" min="20200000" max="20210000" placeholder="Student ID" required>  
                     <i class="fa-solid fa-id-card-clip  icon"></i>
                 </div> 
             </div>
@@ -50,7 +50,7 @@
             <div class = "input-container">
                 <!--Student name-->
                 <div id ="national id" class="ipt-container">
-                    <input class="input-field" type="number" id="Snational-id" step="0" minlength="11" maxlength="12" placeholder="Student National ID" required>  
+                    <input class="input-field" type="number" id="Snational-id" minlength="11" maxlength="12" placeholder="Student National ID" required>  
                     <i class="fa-solid fa-id-card  icon"></i>
                 </div>                               
 
@@ -98,10 +98,10 @@
             </div>
             <div class = "radio-container">
                 <div class="Radiobutton">
-                    <input type="radio" id="female" name = "Sgender" value="2">
+                    <input type="radio" id="female" name = "Sgender" value="Female">
                     <label for="female">Female</label>
 
-                    <input type="radio" id="male" name = "Sgender" value="1">
+                    <input type="radio" id="male" name = "Sgender" value="Male">
                     <label for="male">Male</label>
                     <i class="fa-solid fa-venus-double icon"></i>
                 </div>
@@ -119,7 +119,7 @@
             <div class = "radio-container">
                 <div class ="buttons">
                     <input type="reset">
-                    <input  type="submit" value="Submit" >
+                    <input type="submit"  class="submit" value="Submit">
                 </div>
             </div>
         </form> 
