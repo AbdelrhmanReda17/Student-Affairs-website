@@ -27,16 +27,15 @@
 		</ul>
 	</nav>
 
-
-	
 	<div class="mainbody">
 		<form id="Sform">
 			<div class="icon">
 
 			</div>
+			
 			<div class="Stfname">
 				<label for="Stname" class="Stname_label">Student Name:</label>
-				<input type="text" class="Stname_btn" placeholder="Student Name" name="Stname" id="Stname"/>
+				<input type="text" class="Stname_btn" placeholder="Student Name" name="Stname" id="Stname" disabled/>
 			</div>
 
 			<div class="StID">
@@ -49,45 +48,37 @@
 				<input type="email" class="StEmail_btn" placeholder="email@gmail.com" name="StEmail" id="Semail"
 					disabled />
 			</div>
+
 			<div class="Stnumber">
 				<label for="Snumber" class="Stnumber_label">Phone number:</label>
 				<input type="tel" class="StEmail_btn" placeholder="+20" name="StEmail" id="Snumber"
 					disabled />
 			</div>
+
 			<div class="Stbirthdate">
 				<label for="Sbirthdate" class="Stbirthdate">Date of Birth:</label>
 				<input type="date" class="Stbirthdate" placeholder="" name="Stbirthdate" id="Sbirthdate"
 					disabled />
 			</div>
+
 			<div class="Stgender">
 				<label class="Stgender_label">Gender:</label>
+
 				<div class="StMale">
 					<input type="radio" class="StMale_btn" placeholder="Male" name="StMale" id="SMale" disabled />
 					<label for="SMale" class="StMale_label">Male</label>
 				</div>
+
 				<div class="StFemale">
-					<input type="radio" class="StFemale_btn" placeholder="Female" name="StFemale" id="SFemale"
-						disabled />
+					<input type="radio" class="StFemale_btn" placeholder="Female" name="StFemale" id="SFemale" disabled />
 					<label for="SFemale" class="StFemale_label">Female</label>
 				</div>
 			</div>
 
-			<!-- <br />
-				<label for="SID">ID:</label>
-				<input type="number" id="SID" disabled />
-				<br />
-				<label for="Semail">Email:</label>
-				<input type="email" id="Semail" disabled />
-				<br />
-				<label for="Sphone">Phone Number:</label>
-				<input type="number" id="Sphone" disabled />
-				<br />
-				<label for="Saddress">Address:</label>
-				<input type="text" id="Saddress" disabled />
-				<br /> -->
 			<div class="button">
-				<div class="backbutton"><input type="button" value="Go back" onclick=OnEditClicked() /></div>
 				<div class="savebutton"><input type="button" value="Save Changes" onclick=OnEditClicked() /></div>
+				<div class="Edit"><input type="button" value="Edit Student" onclick=OnEditClicked() /></div>
+				<div class="backbutton"><input type="button" value="Go back" onclick=OnEditClicked() /></div>
 			</div>
 		</form>
 	</div>
