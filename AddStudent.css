@@ -1,4 +1,5 @@
   * {box-sizing: border-box;}
+  
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -49,11 +50,13 @@ input::-webkit-inner-spin-button {
   border: 1px solid #95999c;
 }
 .input-container .ipt-container input:focus{
+  box-shadow: 1px 1px 4px 1px #23475F;
   outline-width: 0px;
   border: 2px solid #23475f;
 }
 
 .input-container :focus-within .icon {
+  box-shadow: 1px 1px 4px 1px #23475F;
   border: 1px solid #23475f;
   transition: 0.5ms;
   color: white;
@@ -123,6 +126,7 @@ LEVEL
 }
 
 .radio-container .Radiobutton input[type="radio"]:checked + label {
+  box-shadow: 1px 1px 4px 1px #23475F;
   background-color: #23475F;
   color: #fff;
   border-color: #23475F;
