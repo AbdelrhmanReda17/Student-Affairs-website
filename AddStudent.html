@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="AddStudent.css">
     <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
+    <script src="AddStudent.js"></script>
     <title>Student Affairs</title>
     </head>
-    <script src="AddStudent.js"></script>
     <body>
         <nav> 
             <ul class = "container">
@@ -22,92 +22,111 @@
             </ul>
         </nav>
     <div id = "form-div">
-        <h2 id="form-title">Add Student information </h2>
-        <form action = "index.html" class="Registeration" id = "form">
-                        <!--Student name-->
-            <!-- <label for="Sname">Student name:</label> -->
-            <div id ="user" class="input-container">
-                <i class="fa fa-user icon" style="color: #22475e ;"></i>
-                <input class="input-field" type="text" id="Sname" placeholder="Student Name">  
-            </div>                               
-                        <!--ID-->            
-            <!-- <label for="Sid">ID :</label> -->
-            <div class="input-container">
-                <i class="fa-solid fa-id-card-clip icon" style="color: #22475e ;"></i>
-                <input class="input-field" type="text" id="Sid" placeholder="Student ID">
-            </div>
-                        <!--GPA-->
-            <!-- <label for="Sgpa">GPA :</label> -->
-        
-            <div class="input-container">
-                <i class="fa-solid fa-percent icon" style="color: #22475e ;"></i>
-                <input class="input-field" type="text" id="Sgpa" placeholder="Student GPA">
-            </div>
-                        <!--Phone Number-->
-            <!-- <label for="Sphone">Phone Number :</label> -->
-            
-            <div class="input-container">
-                <i class="fa fa-phone icon" style="color: #22475e ;"></i>
-                <input class="input-field" type="text" id="Sphone" placeholder="Phone Number">
-            </div>
-                        <!--E-Mail-->
-            <!-- <label for="Semail">E-Mail :</label> -->
-        
-            <div class="input-container">
-                <i class="fa fa-envelope icon" style="color: #22475e ;"></i>
-                <input type="text" class="input-field" id="Semail" placeholder="E-mail">
-            </div>
-                        <!--Department-->
-            <!-- <label for="Sdepartment">Department :</label> -->
-            
-            <div class="input-container">
-                <i class="fa-solid fa-diagram-project icon" style="color: #22475e ;"></i>
-                <input type="text" class="input-field" id="Sdepartment" placeholder="Student department">
-            </div>
-            <div class ="checked-inputs">
-                        <!--Date-->
-            <label for="Sdate">Date of Birth :</label>
-            <input type="date" id="Sdate" placeholder="Student Birthday">
-        </div>
+        <form  id = "form">
+            <div class = "input-container">
+                    <!--Student name-->
+                <div id ="user" class="ipt-container">
+                    <input class="input-field" type="text" id="Sname" placeholder="Student Name" required>  
+                    <i class="fa fa-user icon" ></i>
+                </div>                               
 
-        <div class ="checked-inputs" id="level">
-                        <!--Level-->
-            <label for="Sname"> Level :</label> 
-            <select id="Levels"> 
-                <option value="1"> level 1 </option>
-                <option value="2"> level 2 </option>
-                <option value="3"> level 3 </option>
-                <option value="4"> level 4 </option>
-            </select>
+                <div id ="id" class="ipt-container">
+                    <input class="input-field" type="number" id="Sid" placeholder="Student ID" required>  
+                    <i class="fa-solid fa-id-card-clip  icon"></i>
+                </div> 
             </div>
-                        <!-- Gender -->
-            <div class ="input-field" >
-            <label for="Sgender"> Gender :</label>
-            <input type="radio" id="smale" name = "Sgender" value="Male">
-            <label for="smale">Male</label>
-            <input type="radio" id="sfemale"  name = "Sgender" value="Female" >
-            <label for="sfemale">Female</label>
+            <div class = "input-container">
+                <!--Student name-->
+                <div id ="email" class="ipt-container">
+                    <input class="input-field" type="email" id="Semail" placeholder="Student Email" required>  
+                    <i class="fa-solid fa-envelope icon"></i>
+                </div>                               
+
+                <div id ="gpa" class="ipt-container">
+                    <input class="input-field" type="number" id="Sgpa" min="0.0" max="4.0" step="0.1" placeholder="Student GPA" required>  
+                    <i class="fa-solid fa-percent icon"></i>
+                </div> 
             </div>
-                    <!-- Status-->
-            <div class ="input-field">
-            <label for="sstate"> status :</label>
-            <input type="radio" id="activee"  name = "sstate" value="Active" >
-            <label for="activee">Active</label>
-            <input type="radio" id="inactive" name = "sstate" value="inactive">
-            <label for="inactive" >inactive</label>
-            <br><br>
+            <div class = "input-container">
+                <!--Student name-->
+                <div id ="national id" class="ipt-container">
+                    <input class="input-field" type="number" id="Snational-id" step="0" minlength="11" maxlength="12" placeholder="Student National ID" required>  
+                    <i class="fa-solid fa-id-card  icon"></i>
+                </div>                               
+
+                <div id ="address" class="ipt-container">
+                    <input class="input-field" type="text" id="Saddress"  placeholder="Student Address" required>  
+                    <i class="fa-sharp fa-solid fa-location-dot icon"></i>
+                 </div> 
             </div>
-            <div class ="buttons">
-                        <!--Submit Button-->
-            <input  type="submit" value="Submit" onclick>
-                        <!--Reset Button-->
-            <input type="reset">
+
+            <div class = "input-container">
+                <!--Student name-->
+                <div id ="phone" class="ipt-container">
+                    <input class="input-field" type="tel" id="Sphone" minlength="11" maxlength="13"  placeholder="Student Phone Number" required >  
+                    <i class="fa-solid fa-phone icon"></i>
+                </div>                               
+
+                <div id ="department" class="ipt-container">
+                    <input class="input-field" type="text" id="Sdepartment"  placeholder="Student Department" disabled>  
+                    <i class="fas fa-sitemap icon"></i>
+                 </div> 
+            </div>
+
+            <div class = "input-container">
+                <!--Student name-->
+                <div id ="date" class="ipt-container">
+                    <input class="input-field" type="date" id="Sdate" required>  
+                </div>                               
+            </div>
+            
+            <div class = "radio-container">
+                    <div class="Radiobutton">
+                        <input type="radio" id="slevel4"  name = "Slevel" value="4">
+                        <label for="slevel4">level 3</label>
+
+                        <input type="radio" id="slevel3" name = "Slevel" value="3" >
+                        <label for="slevel3">level 3</label>
+
+                        <input type="radio" id="slevel2" name = "Slevel" value="2" >
+                        <label for="slevel2">level 2</label>
+
+                        <input type="radio" id="slevel1" name = "Slevel" value="1" >
+                        <label for="slevel1">level 1</label>
+                        <i class="fa-solid fa-ranking-star icon"></i>
+                    </div>
+            </div>
+            <div class = "radio-container">
+                <div class="Radiobutton">
+                    <input type="radio" id="female" name = "Sgender" value="2">
+                    <label for="female">Female</label>
+
+                    <input type="radio" id="male" name = "Sgender" value="1">
+                    <label for="male">Male</label>
+                    <i class="fa-solid fa-venus-double icon"></i>
+                </div>
+            </div>
+            <div class = "radio-container">
+                <div class="Radiobutton">
+                    <input type="radio" id="active" name = "Sstatus" value="Inactive">
+                    <label for="active">Inactive</label>
+
+                    <input type="radio" id="inactive" name = "Sstatus" value="Active">
+                    <label for="inactive">Active</label>
+                </div>
+            </div>
+
+            <div class = "radio-container">
+                <div class ="buttons">
+                    <input type="reset">
+                    <input  type="submit" value="Submit" >
+                </div>
             </div>
         </form> 
     </div>
     <footer class= "ft"> 
         <div class="logo"> <p> <img src="Logo.png" alt="LOGO"> </p></div> 
-        <div class="items"> <p> Â© 2023 University Name. All rights reserved. </p>
+        <div class="items"> <p> © 2023 University Name. All rights reserved. </p>
             <p> Contact Us:</p>
             <p> Address: University Address, City, State, Zip Code</p>
             <p> Phone: +1 (XXX) XXX-XXXX</p>

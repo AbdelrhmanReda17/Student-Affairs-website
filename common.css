@@ -21,6 +21,7 @@ nav>ul{
     list-style-type: none;
     display: grid;
     grid-auto-flow: column;
+    align-items: center;
 }
 nav>ul>li{
     padding: 10px;
