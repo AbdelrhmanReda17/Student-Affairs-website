@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="master.css" />
 	<link rel="stylesheet" href="common.css" />
 	<link rel="stylesheet" href="update.css" />
+	<script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
 	<title>Student Affairs</title>
 </head>
 
@@ -28,52 +29,102 @@
 	</nav>
 
 	<div class="mainbody">
-		<form id="Sform">
-			<div class="icon">
+		<div class="profile-picture">
 
+		</div>
+
+		<form id="form">
+			<div class="input-container">
+				<div id="Stfname" class="ipt-container">
+					<input type="text" class="Stname_btn" placeholder="Student Name" name="Stname" id="Stname" disabled />
+					<i class="fa fa-user icon"></i>
+				</div>
+
+				<div id="StID" class="ipt-container">
+					<input type="number" class="StID_btn" placeholder="00000000" name="StID" id="SID" disabled />
+					<i class="fa-solid fa-id-card-clip  icon"></i>
+				</div>
 			</div>
+
+			<div class="input-container">
+				<div id="StEmail" class="ipt-container">
+					<input type="email" class="StEmail_btn" placeholder="email@gmail.com" name="StEmail" id="Semail" disabled />
+					<i class="fa-solid fa-envelope icon"></i>
+				</div>
+
+				<div id ="gpa" class="ipt-container">
+                    <input class="input-field" type="number" id="Sgpa" min="0.0" max="4.0" step="0.1" placeholder="Student GPA" required disabled>  
+                    <i class="fa-solid fa-percent icon"></i>
+                </div> 
+			</div>
+
+			<div class = "input-container">
+                <div id ="national id" class="ipt-container">
+                    <input class="input-field" type="number" id="Snational-id" minlength="11" maxlength="12" placeholder="Student National ID" required disabled>  
+                    <i class="fa-solid fa-id-card  icon"></i>
+                </div>                               
+
+                <div id ="address" class="ipt-container">
+                    <input class="input-field" type="text" id="Saddress"  placeholder="Student Address" required disabled>  
+                    <i class="fa-sharp fa-solid fa-location-dot icon"></i>
+                 </div> 
+            </div>
+
+			<div class = "input-container">
+                <div id ="phone" class="ipt-container">
+                    <input class="input-field" type="tel" id="Sphone" minlength="11" maxlength="13"  placeholder="Student Phone Number" required disabled>  
+                    <i class="fa-solid fa-phone icon"></i>
+                </div>                               
+
+                <div id ="department" class="ipt-container">
+                    <input class="input-field" type="text" id="Sdepartment"  placeholder="Student Department" disabled>  
+                    <i class="fas fa-sitemap icon"></i>
+                 </div> 
+            </div>
+
+			<div class = "input-container">
+                <div id ="date" class="ipt-container">
+                    <input class="input-field" type="date" id="Sdate" min="2000-12-31" mx="2004-12-31" placeholder="0000-00-00" required disabled>  
+                </div>                               
+            </div>
+
+			<div class = "radio-container">
+				<div class="Radiobutton">
+					<input type="radio" id="slevel4"  name = "Slevel" value="4" disabled>
+					<label for="slevel4">level 3</label>
+
+					<input type="radio" id="slevel3" name = "Slevel" value="3" disabled>
+					<label for="slevel3">level 3</label>
+
+					<input type="radio" id="slevel2" name = "Slevel" value="2" disabled>
+					<label for="slevel2">level 2</label>
+
+					<input type="radio" id="slevel1" name = "Slevel" value="1" disabled>
+					<label for="slevel1">level 1</label>
+					<i class="fa-solid fa-ranking-star icon"></i>
+				</div>
+            </div>
 			
-			<div class="Stfname">
-				<label for="Stname" class="Stname_label">Student Name:</label>
-				<input type="text" class="Stname_btn" placeholder="Student Name" name="Stname" id="Stname" disabled/>
-			</div>
+            <div class = "radio-container">
+                <div class="Radiobutton">
+                    <input type="radio" id="female" name = "Sgender" value="Female" disabled>
+                    <label for="female">Female</label>
 
-			<div class="StID">
-				<label for="SID" class="StID_label">ID:</label>
-				<input type="number" class="StID_btn" placeholder="00000000" name="StID" id="SID" disabled />
-			</div>
+                    <input type="radio" id="male" name = "Sgender" value="Male" disabled>
+                    <label for="male">Male</label>
+                    <i class="fa-solid fa-venus-double icon"></i>
+                </div>
+            </div>
 
-			<div class="StEmail">
-				<label for="Semail" class="StEmail_label">Email Address:</label>
-				<input type="email" class="StEmail_btn" placeholder="email@gmail.com" name="StEmail" id="Semail"
-					disabled />
-			</div>
+            <div class = "radio-container">
+                <div class="Radiobutton">
+                    <input type="radio" id="active" name = "Sstatus" value="Inactive" disabled>
+                    <label for="active">Inactive</label>
 
-			<div class="Stnumber">
-				<label for="Snumber" class="Stnumber_label">Phone number:</label>
-				<input type="tel" class="StEmail_btn" placeholder="+20" name="StEmail" id="Snumber"
-					disabled />
-			</div>
-
-			<div class="Stbirthdate">
-				<label for="Sbirthdate" class="Stbirthdate">Date of Birth:</label>
-				<input type="date" class="Stbirthdate" placeholder="" name="Stbirthdate" id="Sbirthdate"
-					disabled />
-			</div>
-
-			<div class="Stgender">
-				<label class="Stgender_label">Gender:</label>
-
-				<div class="StMale">
-					<input type="radio" class="StMale_btn" placeholder="Male" name="StMale" id="SMale" disabled />
-					<label for="SMale" class="StMale_label">Male</label>
-				</div>
-
-				<div class="StFemale">
-					<input type="radio" class="StFemale_btn" placeholder="Female" name="StFemale" id="SFemale" disabled />
-					<label for="SFemale" class="StFemale_label">Female</label>
-				</div>
-			</div>
+                    <input type="radio" id="inactive" name = "Sstatus" value="Active" disabled>
+                    <label for="inactive">Active</label>
+                </div>
+            </div>
 
 			<div class="button">
 				<div class="savebutton"><input type="button" value="Save Changes" onclick=OnEditClicked() /></div>
