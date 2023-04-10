@@ -1,12 +1,10 @@
-/*body{
-    margin: auto;
-    /*background: linear-gradient(135deg,#71b7e6,#9b59b6);
-    background: linear-gradient(to right,#A0E4FA,#23475F);
-}*/
 .mainbody{
     background-color: #23475F;
-    margin-left: 33%;
-    margin-right: 33%;
+    min-width: 550px;
+    max-width: 720px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 2%;
     margin-bottom: 6%;
     border-radius: 10%;
@@ -14,11 +12,14 @@
     -webkit-transition-duration: box-shadow , transform;
     transition-duration: 0.3s;
 }
+
 .mainbody:hover{
     box-shadow: 0 0 15px rgb(0, 0, 0);
 }
+
 .icon {
-    margin-left: 23%;
+    margin: auto;
+    margin-bottom: 20px;
     height: 200px;
     width: 200px;
     border: 0px solid;
@@ -51,38 +52,33 @@ div.mainbody div input {
     border-left: 0px;
     margin: 20px;
 }
-.Stbirthdate input{
-    align-self: center;
-    align-items: center;
-    border-top: 0px;
-    border-right: 0px;
-    border-left: 0px;
-    margin: 5px;
+
+.mainbody div[class=Edit] {
+    display: none;
+    
 }
-.mainbody label{
-    color: #ffffff;
-    font-size: 24px;
-}
+
 .mainbody input[type=button] {
     margin: 50px 32px 0px;
     padding: 15px 15px;
     color:rgb(255, 255, 255);
+    font-size: 18px;
     border: none;
-    background-color: #23475F;
+    background-color: #3772a3;
     border-radius: 20px 20px;
     -webkit-transition-duration: box-shadow , transform;
     transition-duration: 0.3s;
+}
 
+.mainbody input[type=button]:hover {
+    box-shadow: 0 0 15px black;
+    transform: scale(1.1);
+    background-color: #4889be;
 }
 
 .mainbody input[type=date] {
     max-width: 300px;
     min-width: 197px;
-}
-
-.mainbody input[type=button]:hover {
-    box-shadow: 0 0 15px rgb(0, 0, 0);
-    transform: scale(1.1);
 }
 
 
@@ -93,6 +89,11 @@ div.mainbody div input:disabled {
 
 div.mainbody div input:focus::placeholder {
     color: transparent;
+}
+
+.mainbody label{
+    color: #ffffff;
+    font-size: 24px;
 }
 
 form {
