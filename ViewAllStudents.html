@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="master.css">
     <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="ViewAllStudents.css">
+    <link rel="stylesheet" href="all.min.css">
     <title>Student Affairs</title>
     </head>
     <body>
@@ -19,14 +20,80 @@
                 <li> <a href="department.html"> Department </a> </li>
             </ul>
         </nav>
-        <h1 class="header">View All Students</h1>
-        <button type="button">view active students!</button>
-		<h2>Currently enrolled students</h2>
+    
+        <div class="search">
+            <div class="searchBar">
+                <input type="text" class="search" placeholder="Search for students" size="50" id="searchBar"/>
+                <!-- <input type="submit" class="btn" value="Search" onclick="tableSearch()"/> -->
+                <button onclick="tableSearch()" class="btn searchBtn"><img src="searchIcon.png" class="searchIcon" alt=""></button>
+            </div>
+            <input type="checkbox" class="checkbox" id="setActive" name="setActive" value="setActive"/>
+            <label class="activeLbl" for="setActive"><img src="active.png" alt="" class="activeImg"></label><br>
+        </div>
+        
+    
+		<div class="content">
+            <table class="allTable">
+                <tr>
+                    <th>Name</th>
+                    <th>ID</th>
+                    <th>GPA</th>
+                    <th>Level</th>
+                    <th>Phone</th>
+                    <th>Active Status</th>
+                </tr>
+                <tr>
+                    <td>Hossam Ahmed Fouad</td>
+                    <td>20210124</td>
+                    <td>4.0</td>
+                    <td>2</td>
+                    <td>+20xxxxxxxxxx</td>
+                    <td>ACTIVE</td>
+                </tr>
+                <tr>
+                    <td>ِAbdelrahman Reda</td>
+                    <td>20210225</td>
+                    <td>4.0</td>
+                    <td>2</td>
+                    <td>+20xxxxxxxxxx</td>
+                    <td>INACTIVE</td>
+                </tr>
+                <tr>
+                    <td>Hoda Samir</td>
+                    <td>20210443</td>
+                    <td>4.0</td>
+                    <td>2</td>
+                    <td>+20xxxxxxxxxx</td>
+                    <td>ACTIVE</td>
+                </tr>
+                <tr>
+                    <td>Maya Hesham</td>
+                    <td>20211073</td> 
+                    <td>4.0</td> 
+                    <td>2</td>
+                    <td>+20xxxxxxxxxx</td>
+                    <td>ACTIVE</td>
+                </tr>
+                <tr>
+                    <td>Mahmoud Adel</td>
+                    <td>20210563</td>
+                    <td>4.0</td>
+                    <td>2</td>
+                    <td>+20xxxxxxxxxx</td>
+                    <td>INACTIVE</td>
+                </tr>
+                <tr>
+                    <td>Nour Eldeen</td>
+                    <td>20210431</td>
+                    <td>4.0</td>
+                    <td>2</td>
+                    <td>+20xxxxxxxxxx</td>
+                    <td>ACTIVE</td>
+                </tr>
+            </table>
 
-		    <div>
-			    <input type="search" class="search" placeholder="Search for students"/>
-			    <input type="submit" class="searchbtn" value="Search" />
-		    </div>
+        </div>
+
 
             <footer class= "ft"> 
                 <div class="logo"> <p> <img src="Logo.png" alt="LOGO"> </p></div> 
@@ -38,5 +105,6 @@
                     <p> Privacy Policy | Terms of Use | Accessibility Statement </p>
                     <p> We are a world-class university dedicated to providing an exceptional education to our students.</p> </div> 
             </footer>
+            <script src="ViewAllStudents.js"></script>
         </body>
 </html>

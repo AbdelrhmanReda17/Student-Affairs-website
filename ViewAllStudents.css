@@ -15,25 +15,110 @@ div input.search::after{
 div input.search:focus{
     outline-offset: 0px;
     outline:0px;
-    border-color: #23475F;
+    border-color:transparent;
 }
-div input.searchbtn {
-    background-image: linear-gradient(to right, #23475F 0%, #A0E4FA  51%, #23475F  100%);
-    margin: 5px;
-    padding: 5px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    box-shadow: 0 0 20px #fdf9f9;
-    border-radius: 10px;
-    border-color: transparent;
-}
+
 
 div input.searchbtn:hover {
     background-position: right center;
     color: #fff;
     text-decoration: none;
 }
+
+.search{
+    display: flex;
+    justify-content: center;
+    padding: 90px;
+    
+}
+
+.allTable{
+    width: 100%;
+    background-color: #fdfbf9bf;
+    text-align: center;
+}
+
+tr{
+    height: 50px;
+}
+
+th{
+    background-color: #f0f0f0bf ;
+}
  
+.searchBar{
+    background-color: #f0f0f0bf;
+    display: flex;
+}
+
+.btn{
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+   background-origin: border-box;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 0px 10px;
+
+
+}
+.btn:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+  }
+
+.activeLbl{
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    font-size: 15px;
+    vertical-align: center;
+    color: #fff;
+    background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+    border-radius: 25px;
+    border: none;
+    padding: 10px;
+}
+.checkbox{
+    width: 25px;
+    height: 25px;
+    vertical-align: center;
+    margin:  5px;
+}
+
+.content{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.searchIcon{
+    width: 40px;
+    height: 40px;
+}
+
+.searchBar input{
+    background-color: transparent;
+    width: 100%;
+}
+.searchBar{
+    border-radius: 25px;
+}
+
+.searchBtn{
+    border-radius: 25px;
+    margin-left: 25px;
+}
+
+.activeImg{
+    margin-top: 2px;
+    width: 25px;
+    height: 20px;
+}
+
+.ft{
+    padding-top: 50px;
+}
