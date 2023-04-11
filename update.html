@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="master.css" />
 	<link rel="stylesheet" href="common.css" />
 	<link rel="stylesheet" href="update.css" />
+	<script src="update.js"></script>
 	<script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
 	<title>Student Affairs</title>
 </head>
@@ -127,9 +128,9 @@
             </div>
 
 			<div class="button">
-				<div class="savebutton"><input type="button" value="Save Changes" onclick=OnEditClicked() /></div>
-				<div class="Edit"><input type="button" value="Edit Student" onclick=OnEditClicked() /></div>
-				<div class="backbutton"><input type="button" value="Go back" onclick=OnEditClicked() /></div>
+				<div id="savebutton"><input type="button" value="Save Changes" onclick=OnSaveClicked() /></div>
+				<div id="Edit"><input type="button" value="Edit Student" onclick=OnEditClicked() /></div>
+				<div id="backbutton"><input type="button" value="Go back" onclick=OnCancelClicked() /></div>
 			</div>
 		</form>
 	</div>
