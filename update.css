@@ -1,225 +1,240 @@
-* {box-sizing: border-box;}
-  
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+* {
+	box-sizing: border-box;
 }
 
-.mainbody{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.mainbody {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 .profile-picture {
-    margin: auto;
-    margin-bottom: 20px;
-    height: 200px;
-    width: 200px;
-    border: 0px solid;
-    border-radius: 50%;
-    background-image: url("profile-icon.png");
-    background-size: 100% 100%;
+	margin-right: 80px;
+	height: 200px;
+	width: 200px;
+	min-width: 200px;
+	border: 0px solid;
+	border-radius: 50%;
+	background-image: url("profile-icon.png");
+	background-size: 100% 100%;
 }
 
-.mainbody div[class=button] {
-    margin-bottom: 50px;
+.mainbody div[class="savebutton"],
+.mainbody div[class="backbutton"] {
+	display: none;
 }
 
-.mainbody div[class=savebutton], .mainbody div[class=backbutton] {
-    display: none;
+.mainbody input[type="button"] {
+	margin: 50px 32px 0px;
+	padding: 15px 15px;
+	min-width: 131px;
+	color: white;
+	font-size: 18px;
+	border: none;
+	background-color: #23475f;
+	border-radius: 20px 20px;
+	-webkit-transition-duration: box-shadow, transform;
+	transition-duration: 0.3s;
 }
 
-.mainbody input[type=button] {
-    margin: 50px 32px 0px;
-    padding: 15px 15px;
-    min-width: 131px;
-    color:white;
-    font-size: 18px;
-    border: none;
-    background-color: #3772a3;
-    border-radius: 20px 20px;
-    -webkit-transition-duration: box-shadow , transform;
-    transition-duration: 0.3s;
+.mainbody input[type="button"]:hover {
+	box-shadow: 0 0 15px black;
+	transform: scale(1.1);
+	background-color: #4889be;
 }
 
-.mainbody input[type=button]:hover {
-    box-shadow: 0 0 15px black;
-    transform: scale(1.1);
-    background-color: #4889be;
+#form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
-#form{
-    width:20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;  
+.input-container {
+	display: flex;
+	flex-direction: row;
 }
 
-.input-container{
-  display: flex;
-  flex-direction:row;
-}
-
-.input-container:first-child{
-  margin-top: 100px;
+.input-container:first-child {
+	margin-top: 50px;
 }
 
 .input-container .ipt-container {
-  display: flex;
-  margin-bottom: 40px;
-  margin-left: 50px;
-  margin-right: 50px;
-  flex-direction: row-reverse;
+	display: flex;
+	margin-bottom: 40px;
+	margin-left: 50px;
+	margin-right: 50px;
+	flex-direction: row-reverse;
 }
-.input-container i{ 
-   border: 1px solid #95999c;
-   border-right: 0px;
+.input-container i {
+	border: 1px solid #95999c;
+	border-right: 0px;
 
-  color: #23475f;
-}
-
-.input-container input{
-  max-width: 226px;
-  min-width: 234px;
-  border: 1px solid #95999c;
+	color: #23475f;
 }
 
-.input-container .ipt-container input:focus{
-  box-shadow: 1px 1px 4px 1px #23475F;
-  outline-width: 0px;
-  border: 2px solid #23475f;
+.input-container input {
+	max-width: 226px;
+	min-width: 234px;
+	border: 1px solid #95999c;
+}
+
+.input-container .ipt-container input:focus {
+	box-shadow: 1px 1px 4px 1px #23475f;
+	outline-width: 0px;
+	border: 2px solid #23475f;
 }
 
 .input-container :focus-within .icon {
-  box-shadow: 1px 1px 4px 1px #23475F;
-  border: 1px solid #23475f;
-  transition: 0.5ms;
-  color: white;
-  background-color: #23475f;
+	box-shadow: 1px 1px 4px 1px #23475f;
+	border: 1px solid #23475f;
+	transition: 0.5ms;
+	color: white;
+	background-color: #23475f;
 }
 
-/*
-Date Format
-*/
-.input-container .ipt-container input[type="date"]{
-  padding: 5px;
-  color: #23475f;
+/*Date Format*/
+.input-container .ipt-container input[type="date"] {
+	padding: 5px;
+	color: #23475f;
 }
 
-::-webkit-calendar-picker-indicator{
-  background-color: #ffffff;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 3px;
+::-webkit-calendar-picker-indicator {
+	background-color: #ffffff;
+	padding: 5px;
+	cursor: pointer;
+	border-radius: 3px;
 }
 
 .input-container .ipt-container input[type="date"] {
-  position: relative;
-  align-items: center;
+	position: relative;
+	align-items: center;
 }
 
-.input-container .ipt-container input[type="date"]::-webkit-calendar-picker-indicator {
-  color: transparent;
-  background: none;
-  z-index: 1;
+.input-container
+	.ipt-container
+	input[type="date"]::-webkit-calendar-picker-indicator {
+	color: transparent;
+	background: none;
+	z-index: 1;
 }
 
 .input-container .ipt-container input[type="date"]:before {
-  color: #23475f;
-  background: none;
-  display: block;
-  font-family: 'FontAwesome';
-  width: 15px;
-  height: 20px;
-  position: absolute;
-  top: 10px;
-  right: 6px;
-  content: '\f073';
+	color: #23475f;
+	background: none;
+	display: block;
+	font-family: "FontAwesome";
+	width: 15px;
+	height: 20px;
+	position: absolute;
+	top: 10px;
+	right: 6px;
+	content: "\f073";
 }
 
-/*
-LEVEL
-*/
-.radio-container{
-  display: flex;
-  flex-direction:row;
+/*LEVEL*/
+.radio-container {
+	display: flex;
+	flex-direction: row;
 }
 
 .radio-container > div {
-  display: flex;
-  flex-direction:row-reverse;
-  margin-bottom: 40px;
+	display: flex;
+	flex-direction: row-reverse;
+	margin-bottom: 40px;
 }
 
 .radio-container .Radiobutton [type="radio"] {
-  display: none;
+	display: none;
 }
 
 .radio-container .Radiobutton input[type="radio"] + label {
-  display: inline-block;
-  width: 10%;
-  text-align: center;
-  border: 1px solid #95999c;
+	display: inline-block;
+	width: 10%;
+	text-align: center;
+	border: 1px solid #95999c;
 }
 
 .radio-container .Radiobutton input[type="radio"] + label i {
-  padding-right: 0.4em;
+	padding-right: 0.4em;
 }
 
 .radio-container .Radiobutton input[type="radio"]:checked + label {
-  box-shadow: 1px 1px 4px 1px #23475F;
-  background-color: #23475F;
-  color: #fff;
-  border-color: #23475F;
+	box-shadow: 1px 1px 4px 1px #23475f;
+	background-color: #23475f;
+	color: #fff;
+	border-color: #23475f;
 }
 
 .radio-container div label {
-  text-align: center;
-  max-width: 226px;
-  min-width: 63px;
-  border: 1px solid #95999c;
-  padding: 3%;
+	text-align: center;
+	max-width: 226px;
+	min-width: 63px;
+	border: 1px solid #95999c;
+	padding: 3%;
+}
+
+.radio-container div label {
+  background-color: #efefef4d;
 }
 
 .icon {
-  min-width: 30px;
-  padding: 3%;
-  background: white;
-  border-style: groove;
-  border-right:none;
-  border: 1px solid #95999c;
-  border-right: 0px;
-  color: #23475f;
-  text-align: center;
+	min-width: 30px;
+	padding: 3%;
+	background: white;
+	border-style: groove;
+	border-right: none;
+	border: 1px solid #95999c;
+	border-right: 0px;
+	color: #23475f;
+	text-align: center;
 }
 
-input[type="submit"] , input[type="reset"]{
-  margin: 4px;
-  padding: 17px 39px;
-  color:rgb(255, 255, 255);
-  border: none;
-  background-color: #23475F;
-  border-radius: 20px 20px;
-  cursor: pointer;
-  -webkit-transition-duration: box-shadow , transform;
-  transition-duration: 0.3s;
+input[type="submit"],
+input[type="reset"] {
+	margin: 4px;
+	padding: 17px 39px;
+	color: white;
+	border: none;
+	background-color: #23475f;
+	border-radius: 20px 20px;
+	cursor: pointer;
+	-webkit-transition-duration: box-shadow, transform;
+	transition-duration: 0.3s;
 }
 
-input[type="submit"]:hover, input[type="reset"]:hover{
-  box-shadow: 0 0 15px rgb(0, 0, 0);
-  transform: scale(1.1);
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+	box-shadow: 0 0 15px black;
+	transform: scale(1.1);
 }
 
-@media (max-width:768px) {
-  .input-container{
-    display: flex;
-    flex-direction: column;
-  }
-}
+@media (max-width: 768px) {
+	.input-container {
+		display: flex;
+		flex-direction: column;
+	}
 
+	.input-container:first-child {
+		margin-top: 50px;
+	}
+
+	.mainbody,
+	.profile-picture {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-right: 0px;
+	}
+}
 
 /* .mainbody:hover{
     box-shadow: 0 0 15px rgb(0, 0, 0);
