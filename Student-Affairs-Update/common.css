@@ -1,0 +1,77 @@
+nav {
+    border-radius: 12px;
+    margin: 15px;
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-columns:  1fr 1fr;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+}
+
+nav>div>ul>li{
+    text-decoration: none;
+    margin-right: 15px;
+    list-style: none;
+}
+
+nav>div>ul{
+    display: grid;
+    grid-template-columns:  repeat(5 ,1fr);
+    text-align: center;
+}
+nav>div>ul li>a{
+    transition: font 129ms ease-out, letter-spacing 129ms ease-out;
+    color: #00539F;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    -webkit-transition: font 129ms ease-out, letter-spacing 129ms ease-out;
+    -moz-transition: font 129ms ease-out, letter-spacing 129ms ease-out;
+    -ms-transition: font 129ms ease-out, letter-spacing 129ms ease-out;
+    -o-transition: font 129ms ease-out, letter-spacing 129ms ease-out;
+}
+nav>div>ul>li>a::after{
+        position: absolute;
+        content: "";
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        margin-top: 3px;
+        background-image: linear-gradient(to right bottom, #ffffff, #ffffff, #9ea2ce, #6579b6, #00539f);  
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.5s;
+}
+nav>div>ul li.selected{
+    font-size: 15px;
+    font-weight: bold;
+}
+nav div>ul li:not(.selected)>a:hover{
+    letter-spacing: 1px;
+    color: #00539F;
+    font-size: 15px;
+    font-weight: 400;
+}
+nav>div>ul>li:not(.selected)>a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+nav :first-child img {
+    align-content: center;
+    height: 150px;
+    width: 350px;
+}
+@media (max-width:751px) {
+    nav {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+    nav > div.img{
+        text-align:center;
+    }
+}

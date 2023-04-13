@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="common.css">
+    <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="AddStudent.css">
+    <script src="AddStudent.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav> 
+        <div class="img"> <img src="Logo.png" alt="XLogo"></div>
+        <div>
+            <ul>
+                <li class = " list"> <a href="index.html"> Home</a> </li>
+                <li class="selected list"> <a href="AddStudent.html " > Add a Student </a> </li>
+                <li class="list"> <a href="ViewAllStudents.html " > View All Students </a> </li>
+                <li class="list"> <a href="ViewinActive.html " > View InActive Students </a> </li>
+                <li class=" list"> <a href="department.html "> View Active Students </a> </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+    <form id="form">
+            <div class="img" > 
+                <img id="output" src="male.png" alt="AR"> 
+                <input type="file" placeholder="IMG" accept="image/*" name="image" id="file" onchange="loadFile(event)">
+
+            </div>
+
+            <div class="Inputs-container" >
+                <div class ="info">
+                        <p for="page info"> Register A Student into System </p>
+                </div>
+
+                <div class="calender-container">
+                    <div id="date" class="ipt-container ">
+                        <input style="width: 80%;"  class="input-field" type="date" id="Sdate" min="2000-12-31" mx="2004-12-31" placeholder="0000-00-00" required="">  
+                    </div>                               
+                </div>
+                <div class="input-container">
+
+                    <div id="user" class="ipt-container">
+                        <i class="fa fa-user fa-2xl icon" aria-hidden="true"></i>
+                        <input class="input-field" type="text" id="Sname" placeholder="Student Name" required="">  
+                    </div>                               
+
+                    <div id="id" class="ipt-container">
+                        <i class="fa-solid fa-id-card-clip fa-2xl icon"></i>
+                        <input class="input-field" type="number" id="Sid" min="20200000" max="20220000" placeholder="Student ID" required="">  
+                    </div> 
+                </div>
+                <div class="input-container">
+                    <!--Student name-->
+                    <div id="email" class="ipt-container">
+                        <i class="fa-solid fa-envelope  fa-2xl icon"></i>
+                        <input class="input-field" type="email" id="Semail" placeholder="Student Email" required="">  
+                    </div>                               
+    
+                    <div id="gpa" class="ipt-container">
+                        <i class="fa-solid fa-percent fa-2xl icon"></i>
+                        <input class="input-field" type="number" id="Sgpa" min="1" max="4" placeholder="Student GPA" required="">  
+                    </div> 
+                </div>
+                <div class="input-container">
+                    <!--Student name-->
+                    <div id="national id" class="ipt-container">
+                        <i class="fa-solid fa-id-card fa-2xl icon"></i>
+    
+                        <input class="input-field" type="number" id="Snational-id" minlength="11" maxlength="12" placeholder="Student National ID" required="">  
+                    </div>                               
+    
+                    <div id="address" class="ipt-container">
+                        <i class="fa-sharp fa-solid fa-location-dot fa-2xl icon"></i>
+                        <input class="input-field" type="text" id="Saddress" placeholder="Student Address" required="">  
+                     </div> 
+                </div>
+                <div class="input-container">
+                    <!--Student name-->
+                    <div id="phone" class="ipt-container">
+                        <i class="fa-solid fa-phone fa-2xl icon"></i>
+                        <input class="input-field" type="tel" id="Sphone" minlength="11" maxlength="13"  placeholder="Student Phone Number" required="">  
+                    </div>                               
+    
+                    <div id="department" class="ipt-container">
+                        <i class="fas fa-sitemap fa-2xl icon" aria-hidden="true"></i>
+                        <input class="input-field" type="text" id="Sdepartment" placeholder="Department  : General" disabled="">  
+                     </div> 
+                </div>
+            </div>
+            <div class="Radios-container" >
+                
+                    <div class="info">  Select The Level </div>
+                    <div class="Radiobutton">
+                        <input type="radio" id="slevel1" name="Slevel" value="1">
+                        <label for="slevel1" class = "a">level 1</label>
+
+                        <input type="radio" id="slevel2" name="Slevel" value="2">
+                        <label for="slevel2">level 2</label>
+
+                        <input type="radio" id="slevel3" name="Slevel" value="3">
+                        <label for="slevel3" >level 3</label>
+
+                        <input type="radio" id="slevel4" name="Slevel" value="4">
+                        <label for="slevel4" class="b">level 4</label>
+                    </div>
+
+
+                     <div class="info">  Select The Status </div>
+                    <div class="Radiobutton">
+                        <input type="radio" id="inactive" name="Sstatus" value="Active">
+                        <label for="inactive" class="a">Active</label>
+
+                        <input type="radio" id="active" name="Sstatus" value="Inactive">
+                        <label for="active" class="b">Inactive</label>
+                    </div>
+
+
+                    <div class="info">  Select The Gender </div>
+                    <div class="Radiobutton">
+                        <input type="radio" id="male" name="Sgender" value="Male">
+                        <label for="male" class="a">Male</label>
+
+                        <input type="radio" id="female" name="Sgender" value="Female">
+                        <label for="female" class="b">Female</label>
+                    </div> 
+            </div>
+
+            <div class="input-container butn">
+                <input type="reset">
+                <input type="submit" class="submit" value="Submit">
+        </div>
+            </div>
+    </form>
+
+    </div>
+</body>
+</html>

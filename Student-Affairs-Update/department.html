@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="ViewAllStudents.css">
+    <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
+    <script src="department.js"></script>
+    <title>Student Affairs</title>
+    </head>
+    <body>
+        <nav> 
+            <div class="img"> <img src="Logo.png" alt="XLogo"></div>
+            <div>
+                <ul>
+                    <li class = " list"> <a href="index.html"> Home</a> </li>
+                    <li class="list"> <a href="AddStudent.html " > Add a Student </a> </li>
+                    <li class=" list"> <a href="ViewAllStudents.html " > View All Students </a> </li>
+                    <li class="list"> <a href="ViewinActive.html " > View InActive Students </a> </li>
+                    <li class="selected list"> <a href="department.html "> View Active Students </a> </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="main-body">
+                <div class="header">
+                    <h2>Currently enrolled students</h2>
+                </div>
+                <div class="conatiner">
+                    <form class="Search-bar">
+                        <input id="searchBar" autocomplete="off" type="text" placeholder="Search for students"/>
+                        <button  type="button" onclick="tableSearch()" class="Button" > <i class="fa fa-search fa-2xl"></i> </button>
+                    </form>
+                </div>
+                <div class="radio-container">
+                    <form class="check-act">
+                            <div class="Radiobutton">
+                                <input type="radio" id="Default" name = "Ssearch" value="Default" checked>
+                                <label class="A" for="Default">Default</label>
+                                <input type="radio" id="active" name = "Ssearch" value="Active">
+                                <label class="B" for="active">Active</label>
+                            </div>
+                    </form>
+                </div>
+        </div>
+        <div name="tab">
+            <table id="table">
+                <tr>
+                  <div name="th">
+                  <th>Name</th>
+                  <th id="ID">ID</th>
+                  <th>GPA</th>
+                  <th>Level</th>
+                  <th>Active Status</th>
+                  <th></th>
+                </div>
+                </tr>
+                <tr>
+                  <td>Ahmed Mohammed</td>
+                  <td>20210213</td>
+                  <td>3.12</td>
+                  <td>3</td>
+                  <td>INACTIVE</td>
+                  <td>
+                    <a href="departmentprofile.html">
+                        <i class="fa-regular fa-pen-to-square" onclick></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                    <td>Mostafa Mohammed</td>
+                    <td>20210256</td>
+                    <td>2.99</td>
+                    <td>3</td>
+                    <td>ACTIVE</td>
+                    <td>
+                        <a href="departmentprofile.html">
+                            <i class="fa-regular fa-pen-to-square" onclick></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nada yasser</td>
+                    <td>20210420</td>
+                    <td>3.76</td>
+                    <td>3</td>
+                    <td>ACTIVE</td>
+                    <td>
+                        <a href="departmentprofile.html">
+                            <i class="fa-regular fa-pen-to-square" onclick></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Merna youssef</td>
+                    <td>20210325</td>
+                    <td>3.2</td>
+                    <td>4</td>
+                    <td>ACTIVE</td>
+                    <td>
+                        <a href="departmentprofile.html">
+                            <i class="fa-regular fa-pen-to-square" onclick></i>
+                        </a>
+                    </td>
+                </tr>
+              </table>
+        </div>      
+        </body>
+</html>
