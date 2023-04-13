@@ -1,0 +1,184 @@
+div.main-body{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-items: start;
+    align-items: start;
+    justify-content: center;
+    margin-bottom: 6%;
+}
+div.main-body >div h2{
+    letter-spacing: 6.5px;
+    color: #00539F;
+    font-weight: 600;
+}
+
+div.main-body div.header{
+    justify-self: center;
+}
+.conatiner{
+    width: 100%;
+    min-width: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Search-bar{
+    height: 69px;
+    width: 100%;
+    max-width: 700px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    display: flex;
+    align-items: center;
+    border-radius: 60px;
+    padding: 0px 8px;
+}
+.Search-bar input{
+    background:transparent;
+    flex:1;
+    border: 0px;
+    outline: none;
+    padding: 24px 20px;
+    font-size: 20px;
+    color: #00539F
+}
+.Search-bar:hover{
+    border: 2px solid #00539F;
+}
+.Search-bar input::placeholder{
+    color:#cac7ff;
+}
+.Search-bar button i{
+    color: aliceblue;
+}
+
+.Search-bar button{
+    border: 0px; 
+    border-radius: 50px;
+    height: 60px;
+    width: 60px;
+    background-color: #00539F;
+    cursor: pointer;
+}
+
+.radio-container{
+    margin-top: 30px;
+    justify-self: center;
+  }
+  .radio-container > div {
+    margin-bottom: 40px;
+    margin-right: 100px;
+  }
+  .radio-container .Radiobutton{
+    display: flex;
+    flex-direction: row;
+  }
+  .radio-container .Radiobutton [type="radio"] {
+    display: none;
+  }
+  
+  .radio-container .Radiobutton input[type="radio"] + label {
+    display: inline-block;
+    width: 10%;
+    text-align: center;
+    border: 1px solid #95999c;
+    }
+    .radio-container .Radiobutton input[type="radio"] + label.A{
+        border-radius: 12px 0px 0px 12px;
+
+    }
+    .radio-container .Radiobutton input[type="radio"] + label.C{
+        border-radius: 0px 12px 12px 0px;
+    }
+  .radio-container .Radiobutton input[type="radio"] + label i {
+    padding-right: 0.4em;
+  }
+  
+  .radio-container .Radiobutton input[type="radio"]:checked + label {
+    box-shadow: 1px 1px 4px 1px #00539F;
+    background-color: #00539F;
+    color: #fff;
+    border-color: #00539F;
+  }
+  
+.radio-container div label {
+    text-align: center;
+    max-width: 226px;
+    min-width: 63px;
+    border: 1px solid #95999c;
+    padding: 3%;
+}
+
+.square{
+    height: 20px;
+    width: 20px;;
+}
+table{
+    text-align: center;
+    border-collapse: separate;
+    margin:3% 7% 5% 7%;
+    width: 86%;
+    border-spacing: 0px 1px;
+    margin-top: 30px;
+    border-top: 0px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+    background-color: #ffffff;
+}
+td {
+    font-weight: 400;
+    font-family: Arial;
+}
+th {
+    transition: font 300ms ease-out 388ms, letter-spacing 300ms ease-out 388ms;
+    height: 40px;
+    background-color: #00539F;
+    color: #FFFFFF;
+    padding-top: 1.2%;
+    padding-bottom: 1.2%;
+    -webkit-transition: font 300ms ease-out 388ms, letter-spacing 300ms ease-out 388ms;
+    -moz-transition: font 300ms ease-out 388ms, letter-spacing 300ms ease-out 388ms;
+    -ms-transition: font 300ms ease-out 388ms, letter-spacing 300ms ease-out 388ms;
+    -o-transition: font 300ms ease-out 388ms, letter-spacing 300ms ease-out 388ms;
+}
+th:first-child{
+    border-radius: 12px 0px 0px 0px;
+}
+th:last-child{
+    border-radius: 0px 12px 0px 0px;
+}
+
+#ID,#GPA{
+    letter-spacing: 0.07em;
+  }
+
+.tab {
+    display: grid;
+    grid-template-columns: 35% 20% 15% 15% 15%;
+    grid-row-gap: 10px;
+}
+td{
+    background-color: #F6F6F6;
+    padding-top: 1.5% ;
+    padding-bottom: 1.5%;
+}
+i{
+    color:#23475F;
+}
+.icon {
+    margin-left:10px ;
+    padding: 10px;
+    background: white;
+    border-width: 0.5px;
+    border:none;
+    color:  #23475F;
+    min-width: auto;
+    padding: 2%;
+    text-align: center;
+}
+@media (max-width:751px){
+    .Search-bar{
+        height: 70px;
+        max-width: 450px;
+    }
+}
