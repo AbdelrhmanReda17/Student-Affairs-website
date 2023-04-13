@@ -174,16 +174,16 @@ input::-webkit-inner-spin-button {
 	border-color: #23475f;
 }
 
+.radio-container .Radiobutton input[type="radio"]:disabled + label {
+  	background-color: #efefef4d;
+}
+
 .radio-container div label {
 	text-align: center;
 	max-width: 226px;
 	min-width: 63px;
 	border: 1px solid #95999c;
 	padding: 3%;
-}
-
-.radio-container div label {
-  background-color: #efefef4d;
 }
 
 .icon {

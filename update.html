@@ -37,19 +37,19 @@
 		<form id="form">
 			<div class="input-container">
 				<div id="Stfname" class="ipt-container">
-					<input type="text" class="Stname_btn" placeholder="Student Name" name="Stname" id="Stname" disabled />
+					<input type="text" class="Stname_btn" placeholder="Student Name" name="Stname" id="Stname" required disabled />
 					<i class="fa fa-user icon"></i>
 				</div>
 
 				<div id="StID" class="ipt-container">
-					<input type="number" class="StID_btn" placeholder="Student ID" name="StID" id="SID" disabled />
+					<input type="number" class="StID_btn" placeholder="Student ID" name="StID" id="SID" min="20200000" max="20220000" required disabled />
 					<i class="fa-solid fa-id-card-clip  icon"></i>
 				</div>
 			</div>
 
 			<div class="input-container">
 				<div id="StEmail" class="ipt-container">
-					<input type="email" class="StEmail_btn" placeholder="Student Email" name="StEmail" id="Semail" disabled />
+					<input type="email" class="StEmail_btn" placeholder="Student Email" name="StEmail" id="Semail" required disabled />
 					<i class="fa-solid fa-envelope icon"></i>
 				</div>
 
@@ -128,7 +128,7 @@
             </div>
 
 			<div class="button">
-				<div id="savebutton"><input type="button" value="Save Changes" onclick=OnSaveClicked() /></div>
+				<div id="savebutton"><input type="submit" value="Save Changes" onclick=OnSaveClicked() /></div>
 				<div id="Edit"><input type="button" value="Edit Student" onclick=OnEditClicked() /></div>
 				<div id="backbutton"><input type="button" value="Go back" onclick=OnCancelClicked() /></div>
 			</div>
