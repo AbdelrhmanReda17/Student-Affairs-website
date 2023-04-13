@@ -55,9 +55,11 @@ function OnEditClicked() {
     const editButton = document.getElementById("Edit");
     const saveButton = document.getElementById("savebutton");
     const goBackButton = document.getElementById("backbutton");
+	const Changephotobtn = document.getElementById("changephoto");
     editButton.style.display = "none";
-    saveButton.style.display = "contents";
-	goBackButton.style.display = "contents";
+    saveButton.style.display = "initial";
+	goBackButton.style.display = "initial";
+	Changephotobtn.style.display ="initial";
     var inputs = document.getElementsByTagName("input");
     for (var i = 0; i < inputs.length; i++) {
         if (inputs[i] == document.getElementById("Sdepartment") || inputs[i].type == "button") continue;

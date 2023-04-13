@@ -4,12 +4,14 @@ div.main-body{
     justify-items: start;
     align-items: start;
     justify-content: center;
+    margin-bottom: 6%;
 }
 div.main-body >div h2{
     letter-spacing: 6.5px;
     color: #00539F;
     font-weight: 600;
 }
+
 div.main-body div.header{
     justify-self: center;
 }
@@ -59,17 +61,52 @@ div.main-body div.header{
     cursor: pointer;
 }
 
-form .SelectStatue{
-    border: 1px solid #00539F;
-    outline: 0;
-    border-radius: 12px;
-    background: rgb(255, 255, 255);
+.radio-container{
+    margin-top: 30px;
+    justify-self: center;
+  }
+  .radio-container > div {
+    margin-bottom: 40px;
+    margin-right: 100px;
+  }
+  .radio-container .Radiobutton{
+    display: flex;
+    flex-direction: row;
+  }
+  .radio-container .Radiobutton [type="radio"] {
+    display: none;
+  }
+  
+  .radio-container .Radiobutton input[type="radio"] + label {
+    display: inline-block;
+    width: 10%;
     text-align: center;
-    transition-duration: 0.2s;
-}
-form .SelectStatue:hover , form .SelectStatue:focus{
-    box-shadow: #00539F 0px 3px 8px;
-    scale: 1.1;
+    border: 1px solid #95999c;
+    }
+    .radio-container .Radiobutton input[type="radio"] + label.A{
+        border-radius: 12px 0px 0px 12px;
+
+    }
+    .radio-container .Radiobutton input[type="radio"] + label.C{
+        border-radius: 0px 12px 12px 0px;
+    }
+  .radio-container .Radiobutton input[type="radio"] + label i {
+    padding-right: 0.4em;
+  }
+  
+  .radio-container .Radiobutton input[type="radio"]:checked + label {
+    box-shadow: 1px 1px 4px 1px #00539F;
+    background-color: #00539F;
+    color: #fff;
+    border-color: #00539F;
+  }
+  
+.radio-container div label {
+    text-align: center;
+    max-width: 226px;
+    min-width: 63px;
+    border: 1px solid #95999c;
+    padding: 3%;
 }
 
 .square{

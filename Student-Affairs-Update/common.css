@@ -10,7 +10,6 @@ nav {
 
 nav>div>ul>li{
     text-decoration: none;
-    margin-right: 15px;
     list-style: none;
 }
 
@@ -22,14 +21,10 @@ nav>div>ul{
 nav>div>ul li>a{
     transition: font 129ms ease-out, letter-spacing 129ms ease-out;
     color: #00539F;
-    font-size: 15px;
+    font-size: 14px;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
     position: relative;
-    -webkit-transition: font 129ms ease-out, letter-spacing 129ms ease-out;
-    -moz-transition: font 129ms ease-out, letter-spacing 129ms ease-out;
-    -ms-transition: font 129ms ease-out, letter-spacing 129ms ease-out;
-    -o-transition: font 129ms ease-out, letter-spacing 129ms ease-out;
 }
 nav>div>ul>li>a::after{
         position: absolute;
@@ -45,13 +40,13 @@ nav>div>ul>li>a::after{
         transition: transform 0.5s;
 }
 nav>div>ul li.selected{
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
 }
 nav div>ul li:not(.selected)>a:hover{
     letter-spacing: 1px;
     color: #00539F;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
 }
 nav>div>ul>li:not(.selected)>a:hover::after {
@@ -63,7 +58,7 @@ nav :first-child img {
     height: 150px;
     width: 350px;
 }
-@media (max-width:751px) {
+@media (max-width:800px) {
     nav {
         display: grid;
         grid-template-columns: 1fr;
