@@ -37,10 +37,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         gender,
         output
     };
-    console.log(formData);
+    const dataContainer = JSON.stringify(formData);
+    console.log(dataContainer);
     studentForm.reset();
     });
 });
+
 
 // Image upload
 const loadFile = function(event) {

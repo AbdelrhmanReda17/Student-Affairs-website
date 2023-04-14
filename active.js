@@ -25,5 +25,5 @@ function tableSearch() {
 
 function goToPage(url) {
     window.location.href = url;
-  }
+}
   
