@@ -1,12 +1,41 @@
-function OnSaveClicked() {
+window.onload = function() {
+	const urlParams = new URLSearchParams(window.location.search);
+	const myParam = urlParams.get('id');
+	console.log(myParam);
+	let stds = JSON.parse(localStorage.getItem("Students")) || [];  
+	for (var i = 0; i < stds.length; i++) {
+	  if (myParam == stds[i].id) {
+
+		console.log(stds[i].photosrc)
+		document.getElementById("Sname").value = stds[i].name;
+		document.getElementById("Sid").value = stds[i].id;
+		document.getElementById("Semail").value = stds[i].email;
+		document.getElementById("Sgpa").value = stds[i].gpa;
+		document.getElementById("Snational-id").value = stds[i].nationalId;
+		document.getElementById("Saddress").value = stds[i].address;
+		document.getElementById("Sphone").value = stds[i].phone;
+		document.getElementById("Sdepartment").value = stds[i].department;
+		document.getElementById("Sdate").value = stds[i].date;
+		document.querySelector('input[name="Slevel"][value="' + stds[i].level + '"]').checked = true;
+		document.querySelector('input[name="Sgender"][value="' + stds[i].gender + '"]').checked = true;
+		document.querySelector('input[name="Sstatus"][value="' + stds[i].status + '"]').checked = true;
+		break;
+	  }
+	}
+};
+  function OnSaveClicked() {
+	const urlParams = new URLSearchParams(window.location.search);
+	const myParam = urlParams.get('id');
 	// Get the studentForm element
 	const studentForm = document.getElementById("form");
-
+  
 	// Add an event listener for the form submit
 	studentForm.addEventListener("submit", function (event) {
+		event.preventDefault(); // prevent default form submission
+
 		// Get the form values
-		const name = document.getElementById("Stname").value;
-		const id = document.getElementById("SID").value;
+		const name = document.getElementById("Sname").value;
+		const id = document.getElementById("Sid").value;
 		const email = document.getElementById("Semail").value;
 		const gpa = document.getElementById("Sgpa").value;
 		const nationalId = document.getElementById("Snational-id").value;
@@ -14,15 +43,9 @@ function OnSaveClicked() {
 		const phone = document.getElementById("Sphone").value;
 		const department = document.getElementById("Sdepartment").value;
 		const date = document.getElementById("Sdate").value;
-		const level = document.querySelector(
-			'input[name="Slevel"]:checked'
-		).value;
-		const gender = document.querySelector(
-			'input[name="Sgender"]:checked'
-		).value;
-		const status = document.querySelector(
-			'input[name="Sstatus"]:checked'
-		).value;
+		const level = document.querySelector('input[name="Slevel"]:checked').value;
+		const gender = document.querySelector('input[name="Sgender"]:checked').value;
+		const status = document.querySelector('input[name="Sstatus"]:checked').value;
 
 		// Create an object with the form data
 		const formData = {
@@ -39,13 +62,22 @@ function OnSaveClicked() {
 			status,
 			gender,
 		};
-		console.log(formData);
+		
+		let stds = JSON.parse(localStorage.getItem("Students"));
+		for (var i = 0; i < stds.length; i++) {
+			if (myParam == stds[i].id ) {
+				stds[i] = formData; 
+				break; 
+			}
+		}
+		let Students = JSON.stringify(stds);
+		localStorage.setItem("Students", Students); 
+		window.location.href = "update.html?id=" + formData.id;
 	});
-	if (studentForm.checkValidity()) {
-		alert("Information Saved Successfully!");
-	}
 }
 
+
+  
 function OnCancelClicked() {
 	alert("Changes Discarded!");
 	location.reload();

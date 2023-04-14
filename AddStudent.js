@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const level = document.querySelector('input[name="Slevel"]:checked').value;
     const gender = document.querySelector('input[name="Sgender"]:checked').value;
     const status = document.querySelector('input[name="Sstatus"]:checked').value;
-    const output = document.getElementById('output');
+    const photosrc = document.getElementById('output').src;
 
     // Create an object with the form data
     const formData = {
@@ -35,10 +35,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         level,
         status,
         gender,
-        output
+        photosrc
     };
-    const dataContainer = JSON.stringify(formData);
-    console.log(dataContainer);
+
+    let stds =  JSON.parse(localStorage.getItem("Students"));
+    stds.push(formData)
+    let studentsdata = JSON.stringify(stds);
+    localStorage.setItem("Students" , studentsdata);
     studentForm.reset();
     });
 });
@@ -48,4 +51,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
 const loadFile = function(event) {
     const output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
-  };
+};

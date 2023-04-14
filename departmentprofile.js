@@ -9,8 +9,33 @@ window.onload = function() {
     }
   };
 
-
-  document.addEventListener("DOMContentLoaded", () => {
+window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('id');
+    let stds = JSON.parse(localStorage.getItem("Students")) || [];  
+    for (var i = 0; i < stds.length; i++) {
+      if (myParam == stds[i].id) {
+  
+      //document.getElementById("output").setAttribute("src" , stds[i].photosrc);
+      console.log(stds[i].photosrc)
+      document.getElementById("Sname").value = stds[i].name;
+      document.getElementById("Sid").value = stds[i].id;
+      document.getElementById("Semail").value = stds[i].email;
+      document.getElementById("Sgpa").value = stds[i].gpa;
+      document.getElementById("Snational-id").value = stds[i].nationalId;
+      document.getElementById("Saddress").value = stds[i].address;
+      document.getElementById("Sphone").value = stds[i].phone;
+      document.getElementById("Sdate").value = stds[i].date;
+      document.getElementById("Slevel").value = stds[i].level;
+      const department = stds[i]?.department; // use optional chaining to avoid errors if stds[i] is undefined or doesn't have a department property
+      const input = document.querySelector('input[name="Sdep"][value="' + department + '"]');
+        if (input) {
+          input.checked = true; // use checked property instead of selected for radio buttons
+        }
+      }
+    }
+};
+document.addEventListener("DOMContentLoaded", () => {
 
 
     const selectElement = document.getElementById("Sdep");

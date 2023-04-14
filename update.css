@@ -132,6 +132,10 @@ input::-webkit-inner-spin-button {
 .butn .a , .btn{
     display: none;
 }
+
+.butn .b{
+    margin-right: 25px;
+}
 .butn input:hover{
 
     box-shadow: 1px 1px 4px 1px #00539F;
