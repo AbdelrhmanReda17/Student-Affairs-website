@@ -13,7 +13,8 @@ function tableSearch(){
         }else{
             tdName = tr[i].getElementsByTagName("td")[0];
             tdID = tr[i].getElementsByTagName("td")[1];
-                if(tdName.innerText.toUpperCase().indexOf(filter.toUpperCase()) <=-1 && tdID.innerText.toUpperCase().indexOf(filter.toUpperCase()) <=-1){
+            tdDepartment = tr[i].getElementsByTagName("td")[3]
+                if(tdName.innerText.toUpperCase().indexOf(filter.toUpperCase()) <=-1 && tdID.innerText.toUpperCase().indexOf(filter.toUpperCase()) <=-1 && tdDepartment.innerText.toUpperCase().indexOf(filter.toUpperCase()) <=-1 ){
                     tr[i].style.display = "none";
                 }else{
                     tr[i].style.display = "";
@@ -36,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
           if (result.isConfirmed) {
             const selectedOption = selectElement.value;
             const StudentInfo = selectElement.parentNode.parentNode.parentNode;
-            console.log( StudentInfo, selectedOption);
           }
         });
       });
