@@ -88,7 +88,17 @@ window.onload = function() {
 			}
 			let Students = JSON.stringify(stds);
 			localStorage.setItem("Students", Students); 
+			Swal.fire({
+                icon: 'success',
+                title: 'Student Added Successfully!',
+                showConfirmButton: false,
+                // timer:  600000
+            });
+			setTimeout(function() {
+				Swal.close(); 
+			}, 60000); 
 			window.location.href = "update.html?id=" + formData.id;
+			
 		}
 	});
 }
@@ -96,9 +106,22 @@ window.onload = function() {
 
   
 function OnCancelClicked() {
-	alert("Changes Discarded!");
-	location.reload();
-}
+	Swal.fire({
+        title: 'Changes Will Discard !!',
+        text: "Are you sure you want to Go Back",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#00539F',
+        cancelButtonColor: '#00539F',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            location.reload();
+        }
+    });
+};
+
 
 function OnEditClicked() {
     const editButton = document.getElementById("Edit");
@@ -117,18 +140,3 @@ function OnEditClicked() {
     }
 }
 
-// ------NOT NEEDED RIGHT NOW!------
-// function DisableEdits() {
-//     var editButton = document.getElementById("Edit");
-// 	var saveButton = document.getElementById("savebutton");
-// 	var goBackButton = document.getElementById("backbutton");
-// 	editButton.style.display = "contents";
-// 	saveButton.style.display = "none";
-//     goBackButton.style.display = "none";
-//     var inputs = document.getElementsByTagName("input");
-// 	for (var i = 0; i < inputs.length; i++) {
-// 		if (inputs[i] == document.getElementById("Sdepartment") || inputs[i].type == "button") continue;
-
-// 		inputs[i].disabled = true;
-// 	}
-// }
