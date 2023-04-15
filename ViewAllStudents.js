@@ -8,6 +8,7 @@ window.onload = function() {
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
     let cell5 = row.insertCell(4);
+    let cell6 = row.insertCell(5);
     cell1.innerHTML =(stds[i].name);
     cell2.innerHTML =(stds[i].id);
     cell3.innerHTML =(stds[i].gpa);
@@ -17,6 +18,7 @@ window.onload = function() {
     } else {
       cell5.innerHTML = '<form> <select name="StudentStatue"  aria-label="Active/InActive" class="SelectStatue"> <option value="Active" > ACTIVE </option> <option selected value="Inactive"> INACTIVE </option></select> </form>';
     }
+    cell6.innerHTML = '<i id="deleteicon" class="fa-solid fa-xmark fa-xl" onclick="goToDelete(' + stds[i].id +')"> </i>';
 }
 
 
@@ -86,3 +88,51 @@ Array.from(selectElements).forEach((selectElement) => {
   });
 });
 };
+
+function goToDelete(id){
+  var stds = JSON.parse(localStorage.getItem("Students"));
+
+  var index ;
+  var student;
+  for(var i = 0 ; i < stds.length;i++)
+      {   
+          if(stds[i].id == id)
+            {
+          
+              index = i;
+              student = stds[i];
+            }
+          
+      }
+  Swal.fire({
+    title: 'Do you want to save the changes?',
+    text:'you trying to delete student ' + student.name ,
+    showDenyButton: false,
+    showCancelButton: true,
+    confirmButtonText: 'Save',
+    denyButtonText: `Don't save`,
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      stds.splice(index,1);
+      
+      localStorage.setItem("Students",JSON.stringify(stds));
+      Swal.fire({
+        icon: 'success',
+        title: 'Student Deleted Successfully!',
+        showConfirmButton: true,
+
+          }).then((result)=>{
+        if(result.isConfirmed){
+          location.reload();
+        }
+        });  
+    } 
+  else {
+      Swal.fire('Changes are not saved', '', 'info')
+    }
+  })
+
+}
+
+
