@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Add an event listener for the form submit
     studentForm.addEventListener('submit', function(event) {
+
     event.preventDefault(); // prevent the default form submission
 
     // Get the form values
@@ -22,6 +23,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
             ch = false;
             break;
         }
+    }
+    var nationalIDField = document.getElementById('Snational-id');
+    var nationalID = nationalIDField.value;
+
+    if (validateNationalID(nationalID)) {
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'National ID is incorrect',
+        }) 
+      ch = false;
     }
     if(ch == true)
         {
@@ -53,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 gender,
                 photosrc
             };
+            
             stds.push(formData)
             let studentsdata = JSON.stringify(stds);
             localStorage.setItem("Students" , studentsdata);
@@ -68,3 +82,13 @@ const loadFile = function(event) {
     output.src = URL.createObjectURL(event.target.files[0]);
     
 };
+
+
+function validateNationalID(nationalID) {
+    if (!/^[1-3]\d{13}$/.test(nationalID)) {
+      return false;
+    }else{
+        return true;
+    }
+  }
+  
