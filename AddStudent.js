@@ -71,6 +71,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
             let studentsdata = JSON.stringify(stds);
             localStorage.setItem("Students" , studentsdata);
             studentForm.reset();
+             Swal.fire({
+                icon: 'success',
+                title: 'Student Added Successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
         }
     });
 });
