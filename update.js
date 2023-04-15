@@ -91,14 +91,14 @@ window.onload = function() {
 			Swal.fire({
                 icon: 'success',
                 title: 'Student Added Successfully!',
-                showConfirmButton: false,
-                // timer:  600000
-            });
-			setTimeout(function() {
-				Swal.close(); 
-			}, 60000); 
-			window.location.href = "update.html?id=" + formData.id;
-			
+                showConfirmButton: true,
+                timer:  600000
+            }).then((result)=>{
+				if(result.isConfirmed){
+					window.location.href = "update.html?id=" + formData.id;
+				}
+			});
+				
 		}
 	});
 }
