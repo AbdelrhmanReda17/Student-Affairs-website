@@ -25,11 +25,7 @@ window.onload = function() {
       document.getElementById("Saddress").value = stds[i].address;
       document.getElementById("Sphone").value = stds[i].phone;
       document.getElementById("Sdate").value = stds[i].date;
-      const level = stds[i]?.level; // use optional chaining to avoid errors if stds[i] is undefined or doesn't have a level property
-      const input = document.querySelector('input[name="Slevel"][value="' + level + '"]');
-      if (input) {
-        input.checked = true;
-      }
+      document.getElementById("Slevel").value = stds[i].level;
 
       const department = stds[i]?.department; // use optional chaining to avoid errors if stds[i] is undefined or doesn't have a department property
       const select = document.getElementById("dep");
