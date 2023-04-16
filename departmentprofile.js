@@ -1,17 +1,10 @@
 
- window.onload = function() {
+ let urlParams;
+window.onload = function() {
   var text = document.getElementsByClassName("input-field");
   for (var i = 0; i < text.length; i++) {
     text[i].disabled = true;
   }
-  var textFields = document.getElementsByClassName("ssradio");
-  for (var i = 0; i < textFields.length; i++) {
-    textFields[i].disabled = true;
-  }
-};
-
-let urlParams;
-window.onload = function() {
   urlParams = new URLSearchParams(window.location.search);
   const myParam = urlParams.get('id');
   let stds = JSON.parse(localStorage.getItem("Students")) || [];
