@@ -124,10 +124,10 @@ td{
     background-color: #F6F6F6;
     padding-top: 1.5% ;
     padding-bottom: 1.5%;
+    color: #23475F;
+
 }
-i{
-    color:#23475F;
-}
+
 .icon {
     margin-left:10px ;
     padding: 10px;
@@ -139,9 +139,16 @@ i{
     padding: 2%;
     text-align: center;
 }
+
+i{
+    color: #23475F;
+    padding-right: 20px;
+}
+
 @media (max-width:751px){
     .Search-bar{
         height: 70px;
         max-width: 450px;
     }
 }
+
