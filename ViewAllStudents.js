@@ -18,7 +18,7 @@ window.onload = function() {
     } else {
       cell5.innerHTML = '<form> <select name="StudentStatue"  aria-label="Active/InActive" class="SelectStatue"> <option value="Active" > ACTIVE </option> <option selected value="Inactive"> INACTIVE </option></select> </form>';
     }
-    cell6.innerHTML = '<i id="deleteicon" class="fa-solid fa-xmark fa-xl" onclick="goToDelete(' + stds[i].id +')"> </i>';
+    cell6.innerHTML = '<i id="deleteicon" class="fa-solid fa-xmark fa-xl x" onclick="goToDelete(' + stds[i].id +')"> </i>';
 }
 
 
