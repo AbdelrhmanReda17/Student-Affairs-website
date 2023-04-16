@@ -4,8 +4,6 @@ window.onload = function() {
 	let stds = JSON.parse(localStorage.getItem("Students")) || [];  
 	for (var i = 0; i < stds.length; i++) {
 	  if (myParam == stds[i].id) {
-
-		console.log(stds[i].photosrc)
 		document.getElementById("Sname").value = stds[i].name;
 		document.getElementById("Sid").value = stds[i].id;
 		document.getElementById("Semail").value = stds[i].email;
