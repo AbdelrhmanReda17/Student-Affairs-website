@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // Get the form values
     const name = document.getElementById('Sname').value;
     const id = document.getElementById('Sid').value;
+    const Iid = document.getElementById('Sid');
     console.log(name , id);
     let stds = JSON.parse(localStorage.getItem("Students"));
     var ch = true;
