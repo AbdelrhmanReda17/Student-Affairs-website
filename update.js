@@ -1,7 +1,6 @@
 window.onload = function() {
 	const urlParams = new URLSearchParams(window.location.search);
 	const myParam = urlParams.get('id');
-	console.log(myParam);
 	let stds = JSON.parse(localStorage.getItem("Students")) || [];  
 	for (var i = 0; i < stds.length; i++) {
 	  if (myParam == stds[i].id) {
@@ -23,7 +22,7 @@ window.onload = function() {
 	  }
 	}
 };
-  function OnSaveClicked() {
+function OnSaveClicked() {
 	const urlParams = new URLSearchParams(window.location.search);
 	const myParam = urlParams.get('id');
 	// Get the studentForm element
@@ -39,8 +38,9 @@ window.onload = function() {
 		const id = document.getElementById("Sid").value;
 		let ch = true
 		for(let i = 0 ; i < stds.length ; i++){
-			if(id == stds[i].id)
+			if(id == stds[i].id &&  stds[i].name != name)
 			{
+
 				Swal.fire({
 					icon: 'error',
 					title: 'Oops...',
@@ -50,7 +50,7 @@ window.onload = function() {
 				break;
 			}
 		}
-		if(ch == true)
+		if(ch == true && InputsValidation())
 		{
 			const email = document.getElementById("Semail").value;
 			const gpa = document.getElementById("Sgpa").value;
@@ -90,7 +90,7 @@ window.onload = function() {
 			localStorage.setItem("Students", Students); 
 			Swal.fire({
                 icon: 'success',
-                title: 'Student Added Successfully!',
+                title: 'Student Updated Successfully!',
                 showConfirmButton: true,
                 timer:  600000
             }).then((result)=>{
@@ -140,3 +140,109 @@ function OnEditClicked() {
     }
 }
 
+function InputsValidation() {
+
+    const name = document.getElementById("Sname").value;
+    const id = document.getElementById("Sid").value;
+    const email = document.getElementById("Semail").value;
+    const gpa = document.getElementById("Sgpa").value;
+    const nationalId = document.getElementById("Snational-id").value;
+    const address = document.getElementById("Saddress").value;
+    const phone = document.getElementById("Sphone").value;
+  
+    // Validate the input fields
+    const nameRegex = /^[a-zA-Z ]{3,30}$/;
+    const idRegex = /^[0-9]{8}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const gpaRegex = /^([0-3]\.[0-9]{1,3}|4\.0{1,3})$/;
+    const nationalIdRegex = /^[0-9]{14}$/;
+    const addressRegex = /^[a-zA-Z0-9\s,'-]*$/;
+    const phoneRegex = /^01[0125][0-9]{8}$/;
+  
+    const isNameValid = nameRegex.test(name);
+    const isIdValid = idRegex.test(id);
+    const isEmailValid = emailRegex.test(email);
+    const isGpaValid = gpaRegex.test(gpa);
+    const isNationalIdValid = nationalIdRegex.test(nationalId);
+    const isAddressValid = addressRegex.test(address);
+    const isPhoneValid = phoneRegex.test(phone);
+  
+    const Iname = document.getElementById("Sname");
+    if (isNameValid) {
+        setSuccessFor(Iname)
+    } else {
+		setErrorFor(Iname, 'Invalid Student Username');
+    }
+
+    const Iid = document.getElementById("Sid");
+    if (isIdValid) {
+        setSuccessFor(Iid)
+    } else {
+		setErrorFor(Iid, 'Invalid Student ID');
+    }
+
+    const Iemail = document.getElementById("Semail");
+    if (isEmailValid) {
+        setSuccessFor(Iemail)
+    } else {
+		setErrorFor(Iemail, 'Invalid Student Email');
+    }
+  
+    const Igpa = document.getElementById("Sgpa");
+    if (isGpaValid) {
+        setSuccessFor(Igpa)
+    } else {
+		setErrorFor(Igpa, 'Invalid Student GPA');
+    }
+
+    const InationalId = document.getElementById("Snational-id");
+    if (isNationalIdValid) {
+        setSuccessFor(InationalId)
+    } else {
+		setErrorFor(InationalId, 'Invalid Student national Id');
+    }
+  
+    const Iaddress = document.getElementById("Saddress");
+    if (isAddressValid) {
+        setSuccessFor(Iaddress)
+    } else {
+		setErrorFor(Iaddress, 'Invalid Student Email');
+    }
+  
+    const Iphone = document.getElementById("Sphone");
+    if (isPhoneValid) {
+        setSuccessFor(Iphone)
+    } else {
+		setErrorFor(Iphone, 'Invalid Student Phone');
+    }
+  
+    // Return whether all fields are valid or not
+    return (
+      isNameValid &&
+      isIdValid &&
+      isEmailValid &&
+      isGpaValid &&
+      isNationalIdValid &&
+      isAddressValid &&
+      isPhoneValid
+    );
+  }  
+
+
+function setErrorFor(input, message) {
+	const formControl = input.parentElement;
+    console.log(formControl);
+	const small = formControl.querySelector('small');
+	formControl.className = 'ipt-container error';
+	small.innerText = message;
+}
+
+function setSuccessFor(input) {
+	const formControl = input.parentElement;
+    console.log(formControl);
+	formControl.className = 'ipt-container success';
+}
+	
+function isEmail(email) {
+	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}

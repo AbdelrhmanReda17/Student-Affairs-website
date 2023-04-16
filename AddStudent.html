@@ -40,7 +40,7 @@
 
                 <div class="calender-container">
                     <div id="date" class="ipt-container ">
-                        <input style="width: 80%;"  class="input-field" type="date" id="Sdate" min="2000-12-31" mx="2004-12-31" placeholder="0000-00-00" required="">  
+                        <input style="width: 80%;"  class="input-field" type="date" id="Sdate"  required="">  
                     </div>                               
                 </div>
                 <div class="input-container">
@@ -48,11 +48,17 @@
                     <div id="user" class="ipt-container">
                         <i class="fa fa-user fa-2xl icon" aria-hidden="true"></i>
                         <input class="input-field" type="text" id="Sname" placeholder="Student Name" required="">  
+                        <i class="fas fa-check-circle msg"></i>
+                        <i class="fas fa-exclamation-circle msg"></i>
+                        <small>Error message</small>
                     </div>                               
 
                     <div id="id" class="ipt-container">
                         <i class="fa-solid fa-id-card-clip fa-2xl icon"></i>
-                        <input class="input-field" type="number" id="Sid" min="20200000" max="20220000" placeholder="Student ID" required="">  
+                        <input class="input-field" type="number" id="Sid" placeholder="Student ID" required="">  
+                        <i class="fas fa-check-circle msg"></i>
+                        <i class="fas fa-exclamation-circle msg"></i>
+                        <small>Error message</small>
                     </div> 
                 </div>
                 <div class="input-container">
@@ -60,11 +66,17 @@
                     <div id="email" class="ipt-container">
                         <i class="fa-solid fa-envelope  fa-2xl icon"></i>
                         <input class="input-field" type="email" id="Semail" placeholder="Student Email" required="">  
+                        <i class="fas fa-check-circle msg"></i>
+                        <i class="fas fa-exclamation-circle msg"></i>
+                        <small>Error message</small>
                     </div>                               
     
                     <div id="gpa" class="ipt-container">
                         <i class="fa-solid fa-percent fa-2xl icon"></i>
-                        <input class="input-field" type="number" id="Sgpa" min="0" max="4" step="0.001" placeholder="Student GPA" required="">  
+                        <input class="input-field" type="number" id="Sgpa" step="0.001" placeholder="Student GPA" required="">  
+                        <i class="fas fa-check-circle msg"></i>
+                        <i class="fas fa-exclamation-circle msg"></i>
+                        <small>Error message</small>
                     </div> 
                 </div>
                 <div class="input-container">
@@ -72,23 +84,33 @@
                     <div id="national id" class="ipt-container">
                         <i class="fa-solid fa-id-card fa-2xl icon"></i>
                         <input class="input-field" type="text" id="Snational-id"  placeholder="Student National ID" required="">  
+                        <i class="fas fa-check-circle msg"></i>
+                        <i class="fas fa-exclamation-circle msg"></i>
+                        <small>Error message</small>
                     </div>                               
     
                     <div id="address" class="ipt-container">
                         <i class="fa-sharp fa-solid fa-location-dot fa-2xl icon"></i>
                         <input class="input-field" type="text" id="Saddress" placeholder="Student Address" required="">  
+                        <i class="fas fa-check-circle msg"></i>
+                        <i class="fas fa-exclamation-circle msg"></i>
+                        <small>Error message</small>
                      </div> 
                 </div>
                 <div class="input-container">
                     <!--Student name-->
                     <div id="phone" class="ipt-container">
                         <i class="fa-solid fa-phone fa-2xl icon"></i>
-                        <input class="input-field" type="tel" id="Sphone" minlength="11" maxlength="13"  placeholder="Student Phone Number" required="">  
+                        <input class="input-field" type="tel" id="Sphone" placeholder="Student Phone Number" required="">  
+                        <i class="fas fa-check-circle msg"></i>
+                        <i class="fas fa-exclamation-circle msg"></i>
+                        <small>Error message</small>
                     </div>                               
     
-                    <div id="department" class="ipt-container">
+                    <div id="department" class="ipt-container A">
                         <i class="fas fa-sitemap fa-2xl icon" aria-hidden="true"></i>
                         <input class="input-field" type="text" id="Sdepartment" placeholder="Department  : General" disabled="">  
+
                      </div> 
                 </div>
             </div>
