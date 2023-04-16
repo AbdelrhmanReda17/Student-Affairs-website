@@ -233,7 +233,16 @@ div.input-container .ipt-container.error {
     box-shadow: 1px 1px 4px 1px #00539F;
     letter-spacing: 0.4px;
 }
+.Radios-container .Radiobutton.success input[type="radio"] + label{
+    border:1px solid #00539F;
 
+}
+
+.Radios-container .Radiobutton.error input[type="radio"] + label{
+    border:1px solid #e74c3c;
+
+
+}
 .input-container input[type="file"]{
     justify-self: center;
     color:#00539F;

@@ -17,11 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     for(let i = 0 ; i < stds.length ; i++){
         if(id == stds[i].id )
         {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Student ID is already registered',
-            }) 
+            setErrorFor(Iid, 'Student ID is Already Registered');
             ch = false;
             break;
         }
@@ -92,7 +88,9 @@ function InputsValidation() {
     const nationalId = document.getElementById("Snational-id").value;
     const address = document.getElementById("Saddress").value;
     const phone = document.getElementById("Sphone").value;
-  
+    const level = document.querySelector('input[name="Slevel"]:checked');
+    const status = document.querySelector('input[name="Sstatus"]:checked');
+    const gender = document.querySelector('input[name="Sgender"]:checked');
     // Validate the input fields
     const nameRegex = /^[a-zA-Z ]{3,30}$/;
     const idRegex = /^[0-9]{8}$/;
@@ -158,7 +156,31 @@ function InputsValidation() {
     } else {
 		setErrorFor(Iphone, 'Invalid Student Phone');
     }
-  
+
+    const Ilevel = document.querySelector('input[name="Slevel"]');
+    if(level == null)
+    {
+        SetRadioError(Ilevel)
+    }else
+    {
+        SetRadioSucess(Ilevel)
+    }
+    const Igender =  document.querySelector('input[name="Sgender"]');
+    if(gender == null)
+    {
+        SetRadioError(Igender)
+    }else
+    {
+        SetRadioSucess(Igender)
+    }
+    const Istatus =  document.querySelector('input[name="Sstatus"]');
+    if(status == null)
+    {
+        SetRadioError(Istatus)
+    }else
+    {
+        SetRadioSucess(Istatus)
+    }
     // Return whether all fields are valid or not
     return (
       isNameValid &&
@@ -167,14 +189,16 @@ function InputsValidation() {
       isGpaValid &&
       isNationalIdValid &&
       isAddressValid &&
-      isPhoneValid
+      isPhoneValid &&
+      (level !=null) &&
+      (gender !=null) &&
+      (status !=null)
     );
   }  
 
 
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
-    console.log(formControl);
 	const small = formControl.querySelector('small');
 	formControl.className = 'ipt-container error';
 	small.innerText = message;
@@ -182,10 +206,16 @@ function setErrorFor(input, message) {
 
 function setSuccessFor(input) {
 	const formControl = input.parentElement;
-    console.log(formControl);
 	formControl.className = 'ipt-container success';
 }
-	
+function SetRadioSucess(input) {
+	const formControl = input.parentElement;
+	formControl.className = 'Radiobutton success';
+}	
+function SetRadioError(input) {
+	const formControl = input.parentElement;
+	formControl.className = 'Radiobutton error';
+}	
 function isEmail(email) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }

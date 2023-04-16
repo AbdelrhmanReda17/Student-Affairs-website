@@ -19,6 +19,47 @@ window.onload = function() {
       cell5.innerHTML = '<form> <select name="StudentStatue"  aria-label="Active/InActive" class="SelectStatue"> <option value="Active" > ACTIVE </option> <option selected value="Inactive"> INACTIVE </option></select> </form>';
     }
     cell6.innerHTML = '<i id="deleteicon" class="fa-solid fa-xmark fa-xl x" onclick="goToDelete(' + stds[i].id +')"> </i>';
+  }
+    const selectElements = document.getElementsByClassName("SelectStatue");
+  Array.from(selectElements).forEach((selectElement) => {
+    selectElement.addEventListener("change", () => {
+      const studentName = selectElement.parentNode.parentNode.parentNode.children[0].textContent;
+      const Studentid = selectElement.parentNode.parentNode.parentNode.children[1].textContent;
+        Swal.fire({
+          title: 'Do you want to save the changes?',
+          text:'you trying to change the statue of '+studentName+ ' to ' +selectElement.value,
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Save',
+          denyButtonText: `Don't save`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            var stds = JSON.parse(localStorage.getItem("Students"));
+            for(var i = 0 ; i < stds.length;i++)
+            {
+                if(stds[i].id ==  Studentid)
+                  {
+                    stds[i].status = selectElement.value;
+                  }
+            }
+            let students = JSON.stringify(stds);
+            localStorage.setItem("Students" , students);
+            Swal.fire('Saved!', '', 'success')
+          } else {
+            if(selectElement.value == "Active")
+              {
+                selectElement.value = 'Inactive';
+              }
+            else
+              {
+                selectElement.value = 'Active';
+              }
+            Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+    });
+  });
 }
 
 
@@ -47,47 +88,6 @@ function tableSearch(){
     }
 }
 
-const selectElements = document.getElementsByClassName("SelectStatue");
-Array.from(selectElements).forEach((selectElement) => {
-  selectElement.addEventListener("change", () => {
-    const studentName = selectElement.parentNode.parentNode.parentNode.children[0].textContent;
-    const Studentid = selectElement.parentNode.parentNode.parentNode.children[1].textContent;
-      Swal.fire({
-        title: 'Do you want to save the changes?',
-        text:'you trying to change the statue of '+studentName+ ' to ' +selectElement.value,
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: 'Save',
-        denyButtonText: `Don't save`,
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          var stds = JSON.parse(localStorage.getItem("Students"));
-          for(var i = 0 ; i < stds.length;i++)
-          {
-              if(stds[i].id ==  Studentid)
-                {
-                  stds[i].status = selectElement.value;
-                }
-          }
-          let students = JSON.stringify(stds);
-          localStorage.setItem("Students" , students);
-          Swal.fire('Saved!', '', 'success')
-        } else {
-          if(selectElement.value == "Active")
-            {
-              selectElement.value = 'Inactive';
-            }
-          else
-            {
-              selectElement.value = 'Active';
-            }
-          Swal.fire('Changes are not saved', '', 'info')
-        }
-      })
-  });
-});
-};
 
 function goToDelete(id){
   var stds = JSON.parse(localStorage.getItem("Students"));
@@ -132,7 +132,6 @@ function goToDelete(id){
       Swal.fire('Changes are not saved', '', 'info')
     }
   })
-
 }
 
 

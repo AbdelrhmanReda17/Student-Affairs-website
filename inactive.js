@@ -20,6 +20,7 @@ window.onload = function() {
         x++;
     }
 }
+}
 
 function tableSearch() {
     // Declare variables
@@ -45,4 +46,3 @@ function tableSearch() {
       }
     }
   }
-}
