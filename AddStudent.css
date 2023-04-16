@@ -249,6 +249,11 @@ div.input-container .ipt-container.error {
     -webkit-transition-duration: box-shadow , transform;
 
 }
+
+.butn input[class="resetButton"] {
+    margin-right: 25px;
+}
+
 ::-webkit-file-upload-button {
     -webkit-transition-duration: box-shadow , transform;
     transition-duration: 0.3s;
@@ -272,6 +277,7 @@ div.input-container .ipt-container.error {
         justify-self: center;
         grid-area: auto; 
         margin-top: 20px;
+        margin-bottom: 20px;
     }
     .container form{
         display: grid;
@@ -288,7 +294,8 @@ div.input-container .ipt-container.error {
 @media (max-width:650px){
     .butn{
         justify-self: center;
-        grid-area: auto; 
+        grid-area: auto;
+        margin-bottom: 20px;
     }
     .container form div.Inputs-container
     {
