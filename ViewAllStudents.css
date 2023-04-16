@@ -146,6 +146,7 @@ i{
 }
 i.x{
     padding-right: 20px;
+    cursor: pointer;
 }
 
 @media (max-width:751px){
