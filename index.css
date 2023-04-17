@@ -80,14 +80,14 @@ footer img{
 
 .BodyContent > div{
     display: grid;
-    grid-template-rows: 0fr 0fr;
+    grid-template-rows: repeat(2,0fr min-content);
     height: 100%;
     width: 80%;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
     border-radius: 12px;
 }
 
-.BodyContent >div>h2{
+.BodyContent >div > div > h2{
     text-align: center;
     color: #00539F;
 }
