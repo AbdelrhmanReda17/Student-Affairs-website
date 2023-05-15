@@ -32,13 +32,13 @@ window.onload = function() {
     for (var i = 0; i < sentences2.length; i++) { 
         var sentence = sentences2[i];
         var p = document.createElement("p");
-        var text = document.createTextNode("- " + sentence); // add "-" before the sentence
+        var text = document.createTextNode("- " + sentence);
         p.appendChild(text);
         p.appendChild(document.createElement("br")); 
         container2.appendChild(p); 
     }
     
-  };
+};
 function goToPage(url) {
     window.location.href = url;
 }

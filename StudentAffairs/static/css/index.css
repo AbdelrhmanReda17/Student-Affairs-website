@@ -1,105 +1,116 @@
-body {
-    margin: 0;
-    padding: 0;
-  }
-  .background {
+.container{
     display: grid;
-    grid-template-columns: 1fr 1fr; /* set the columns to equal width */
-    gap: 4px;
-    align-items: center;
-    justify-items: center;
-    height: 100vh; /* set the height to the full viewport height */
+    grid-template-rows: repeat(3,1fr,min-content);
 }
-
-.background > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.container .image img{
+    width: 25%;
+    height: 50%;
 }
-   
-
-  
-  .middle img {
-  width: 75%;
-  height:100%;
-
-    /* height: 100vh; */
-  }
-
-  .grid-container {
+.image{
+    background-image: url("trying.jpeg");
+    height: 350px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.Boxs{
     display: grid;
-    grid-template-columns: repeat(2, 2fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 19px;
-    width: 115%;
-  }
-
-  .grid-item {
-    /* border: 1px solid rgba(44, 41, 88, 0.788); */
-    border-radius: 5%;
-    box-shadow: rgba(44, 41, 88, 0.4) 0px 12px 28px 0px, rgba(44, 41, 88, 0.2) 0px 2px 4px 0px, rgba(255, 255, 255, 0.01) 0px 0px 0px 1px inset;
-    padding:50px 20px;
-    background-color: #e3e9ff8e;
+    grid-template-columns: repeat(4,1fr);
+    margin-bottom: 3%;
+}
+.box{
+    color: #00539F;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
-  .hr ,.sa,.hs,.lt{
     background-color: white;
-    color: #2C2958;
-    font-size: 20px;
-  }
-
- 
-    
-
-  #stud:hover {
-    /* box-shadow:  10px  rgba(0, 0, 0, 0.5); */
-    box-shadow: rgba(44, 41, 88, 1) 0px 12px 28px 0px, rgba(44, 41, 88, 0.5) 0px 2px 4px 0px, rgba(255, 255, 255, 0.01) 0px 0px 0px 1px inset;
-    letter-spacing: 1.1px;
-  }
-  .sa{
-    cursor: pointer;
-  }
-  
-  h1{
-  font-size: 300%;
-  }
-  h1, h2 {
-    color: #2C2958;
-    text-align: center;
-  }
-  
-  @media only screen and (max-width: 990px) {
-    .background {
-      display: grid;
-    grid-template-rows: 1fr;
+    justify-content: center;
     align-items: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: -45px;
+    height: 80px;
+}
+
+.overlay{
+    margin-left: 17%;
+    width: 70%;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 83, 159, 0.1) 0px 12px 28px 0px, rgba(0, 83, 159, 0.06) 0px 2px 4px 0px, rgba(255, 255, 255, 0.01) 0px 0px 0px 1px inset;
+}
+.box p:hover{
+    font-weight: 500;
+    scale: 1.1;
+}
+.overlay p{
+    font-weight: 400;
+    color: #00539F;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+}
+.BodyContent{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
     justify-items: center;
-    grid-template-columns: 1fr;
-    margin-top: -6%;
-    margin-bottom: 50px;
-    
-}
-.grid-container{
-  
-    margin-bottom: 31px
+    row-gap: 5%;
 }
 
-    }
-      
-  @media only screen and (max-width: 520px) {
-    .grid-container {
-      display: grid;
-      grid-template-rows: repeat(4, 1fr);
-      grid-template-columns:  1fr;
-      grid-gap: 24px;
-      width: 123%;
-      
-    }
-    
-    
+.BodyContent .div1{
+    margin-left: 10%;
+}
+.BodyContent .div2{
+    margin-right: 10%;
+}
+footer {
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-columns:  2fr 1fr min-content;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+}
+footer .content{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+footer img{
+    align-content: center;
+    height: 150px;
+    width: 350px;
 }
 
+.BodyContent > div{
+    display: grid;
+    grid-template-rows: repeat(2,0fr min-content);
+    height: 100%;
+    width: 80%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+    border-radius: 12px;
+}
+
+.BodyContent >div > div > h2{
+    text-align: center;
+    color: #00539F;
+}
+
+.BodyContent .content{
+    display: grid;
+    grid-template-rows: auto;
+}
+.BodyContent .content p{
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+
+@media (max-width: 650px) {
+    .BodyContent {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .BodyContent .div1{
+        margin-left:0 ;
+    }
+    .BodyContent .div2{
+        margin-right: 0;
+    }
+}

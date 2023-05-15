@@ -1,111 +1,83 @@
-window.onload = function() {
-	var inputs = document.getElementsByTagName("input");
-    	for (var i = 0; i < inputs.length; i++) {
-        if ( inputs[i].type == "button") continue;
-        
-       		 inputs[i].disabled = true;
-   	}
-	const urlParams = new URLSearchParams(window.location.search);
-	const myParam = urlParams.get('id');
-	let stds = JSON.parse(localStorage.getItem("Students")) || [];  
-	for (var i = 0; i < stds.length; i++) {
-	  if (myParam == stds[i].id) {
-		document.getElementById("Sname").value = stds[i].name;
-		document.getElementById("Sid").value = stds[i].id;
-		document.getElementById("Semail").value = stds[i].email;
-		document.getElementById("Sgpa").value = stds[i].gpa;
-		document.getElementById("Snational-id").value = stds[i].nationalId;
-		document.getElementById("Saddress").value = stds[i].address;
-		document.getElementById("Sphone").value = stds[i].phone;
-		document.getElementById("Sdepartment").value = stds[i].department;
-		document.getElementById("Sdate").value = stds[i].date;
-		document.querySelector('input[name="Slevel"][value="' + stds[i].level + '"]').checked = true;
-		document.querySelector('input[name="Sgender"][value="' + stds[i].gender + '"]').checked = true;
-		document.querySelector('input[name="Sstatus"][value="' + stds[i].status + '"]').checked = true;
-		break;
-	  }
-	}
-};
-function OnSaveClicked() {
-	const urlParams = new URLSearchParams(window.location.search);
-	const myParam = urlParams.get('id');
-	// Get the studentForm element
-	const studentForm = document.getElementById("form");
+// function OnSaveClicked() {
+// 	const urlParams = new URLSearchParams(window.location.search);
+// 	const myParam = urlParams.get('id');
+// 	// Get the studentForm element
+// 	const studentForm = document.getElementById("form");
   
-	// Add an event listener for the form submit
-	studentForm.addEventListener("submit", function (event) {
-		event.preventDefault(); // prevent default form submission
+// 	// Add an event listener for the form submit
+// 	studentForm.addEventListener("submit", function (event) {
+// 		event.preventDefault(); // prevent default form submission
 
-		let stds = JSON.parse(localStorage.getItem("Students")) || [];  
-		// Get the form values
-		const name = document.getElementById("Sname").value;
-		const id = document.getElementById("Sid").value;
-		let ch = true
-		for(let i = 0 ; i < stds.length ; i++){
-			if(id == stds[i].id &&  stds[i].name != name)
-			{
+// 		let stds = JSON.parse(localStorage.getItem("Students")) || [];  
+// 		// Get the form values
+// 		const name = document.getElementById("Sname").value;
+// 		const id = document.getElementById("Sid").value;
+// 		let ch = true
+// 		for(let i = 0 ; i < stds.length ; i++){
+// 			if(id == stds[i].id &&  stds[i].name != name)
+// 			{
 
-				Swal.fire({
-					icon: 'error',
-					title: 'Oops...',
-					text: 'Student ID is already registered',
-				}) 
-				ch = false;
-				break;
-			}
-		}
-		if(ch == true && InputsValidation())
-		{
-			const email = document.getElementById("Semail").value;
-			const gpa = document.getElementById("Sgpa").value;
-			const nationalId = document.getElementById("Snational-id").value;
-			const address = document.getElementById("Saddress").value;
-			const phone = document.getElementById("Sphone").value;
-			const department = document.getElementById("Sdepartment").value;
-			const date = document.getElementById("Sdate").value;
-			const level = document.querySelector('input[name="Slevel"]:checked').value;
-			const gender = document.querySelector('input[name="Sgender"]:checked').value;
-			const status = document.querySelector('input[name="Sstatus"]:checked').value;
+// 				Swal.fire({
+// 					icon: 'error',
+// 					title: 'Oops...',
+// 					text: 'Student ID is already registered',
+// 				}) 
+// 				ch = false;
+// 				break;
+// 			}
+// 		}
+// 		if(ch == true && InputsValidation())
+// 		{
+// 			const email = document.getElementById("Semail").value;
+// 			const gpa = document.getElementById("Sgpa").value;
+// 			const nationalId = document.getElementById("Snational-id").value;
+// 			const address = document.getElementById("Saddress").value;
+// 			const phone = document.getElementById("Sphone").value;
+// 			const department = document.getElementById("Sdepartment").value;
+// 			const date = document.getElementById("Sdate").value;
+// 			const level = document.querySelector('input[name="Slevel"]:checked').value;
+// 			const gender = document.querySelector('input[name="Sgender"]:checked').value;
+// 			const status = document.querySelector('input[name="Sstatus"]:checked').value;
 
-			// Create an object with the form data
-			const formData = {
-				name,
-				id,
-				email,
-				gpa,
-				nationalId,
-				address,
-				date,
-				department,
-				phone,
-				level,
-				status,
-				gender,
-			};
+// 			// Create an object with the form data
+// 			const formData = {
+// 				name,
+// 				id,
+// 				email,
+// 				gpa,
+// 				nationalId,
+// 				address,
+// 				date,
+// 				department,
+// 				phone,
+// 				level,
+// 				status,
+// 				gender,
+// 			};
 			
-			let stds = JSON.parse(localStorage.getItem("Students"));
-			for (var i = 0; i < stds.length; i++) {
-				if (myParam == stds[i].id ) {
-					stds[i] = formData; 
-					break; 
-				}
-			}
-			let Students = JSON.stringify(stds);
-			localStorage.setItem("Students", Students); 
-			Swal.fire({
-                icon: 'success',
-                title: 'Student Updated Successfully!',
-                showConfirmButton: true,
-                timer:  600000
-            }).then((result)=>{
-				if(result.isConfirmed){
-					window.location.href = "update.html?id=" + formData.id;
-				}
-			});
+// 			let stds = JSON.parse(localStorage.getItem("Students"));
+// 			for (var i = 0; i < stds.length; i++) {
+// 				if (myParam == stds[i].id ) {
+// 					stds[i] = formData; 
+// 					break; 
+// 				}
+// 			}
+// 			let Students = JSON.stringify(stds);
+// 			localStorage.setItem("Students", Students); 
+// 			Swal.fire({
+//                 icon: 'success',
+//                 title: 'Student Updated Successfully!',
+//                 showConfirmButton: true,
+//                 timer:  600000
+//             }).then((result)=>{
+// 				if(result.isConfirmed){
+// 					window.location.href = "update.html?id=" + formData.id;
+// 				}
+// 			});
 				
-		}
-	});
-}
+// 		}
+// 	});
+// }
 
 
   

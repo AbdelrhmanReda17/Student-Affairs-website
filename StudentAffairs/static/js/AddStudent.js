@@ -1,4 +1,3 @@
-console.log("ARARAR");
 document.addEventListener("DOMContentLoaded", function(event) { 
     // Get the studentForm element
     const studentForm = document.getElementById('form');
