@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="ViewAllStudents.css">
+    <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <script src="ViewAllStudents.js"></script>
+    <title>Student Affairs</title>
+    </head>
+    <body>
+        <nav>
+            <div class="img"> <img src="Logo.png" alt="XLogo"></div>
+            <div>
+                <ul>
+                    <li class = " list"> <a href="index.html"> Home</a> </li>
+                    <li class="list"> <a href="AddStudent.html " > Add a Student </a> </li>
+                    <li class="selected list"> <a href="ViewAllStudents.html " > View All Students </a> </li>
+                    <li class="list"> <a href="inactive.html" > View InActive Students </a> </li>
+                    <li class=" list"> <a href="active.html "> View Active Students </a> </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="main-body">
+                <div class="header">
+                    <h2>Currently enrolled students</h2>
+                </div>
+                <div class="conatiner">
+                    <form class="Search-bar">
+                        <input id="searchBar" onclick="tableSearch()" autocomplete="off" type="text" placeholder="Search for students"/>
+                        <button  type="button" onclick="tableSearch()" class="Button" > <i class="fa fa-search fa-2xl"></i> </button>
+                    </form>
+                </div>
+                <!-- <div class="radio-container">
+                    <form class="check-act">
+                            <div class="Radiobutton">
+                                <input type="radio" id="Default" name = "Ssearch" value="Default" checked>
+                                <label class="A" for="Default">Default</label>
+                                
+                                <input type="radio" id="inactive" name = "Ssearch" value="Inactive">
+                                <label class="B" for="inactive">InActive</label>
+
+                                <input type="radio" id="active" name = "Ssearch" value="Active">
+                                <label class="C" for="active">Active</label>
+                            </div>
+                    </form>
+                </div> -->
+        </div>
+        <div name="tab">
+            <table id="table">
+                <tr>
+                  <div name="th">
+                  <th>Name</th>
+                  <th id="ID">ID</th>
+                  <th>GPA</th>
+                  <th>Department</th>
+                  <th>Active Status</th>
+                  <th></th>
+                </div>
+                </tr>
+                <tr>
+              </table>
+        </div>      
+        </body>
+</html>
