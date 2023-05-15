@@ -7,10 +7,3 @@ def index(request):
 def home(request):
     return render(request , 'pages/home.html' ,{
     })
-def addstudent(request):
-    return render(request , 'pages/AddStudent.html' , {
-        })
-
-def department(request):
-    return render(request , 'pages/departmentprofile.html' , {
-        })

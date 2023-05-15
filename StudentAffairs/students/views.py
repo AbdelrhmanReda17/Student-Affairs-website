@@ -12,3 +12,9 @@ def inactive(request):
 
 def active(request):
     return render(request, 'pages/active.html', {'students': student.objects.all()})
+
+def addstudent(request):
+    return render(request , 'pages/AddStudent.html' , {})
+
+def department(request):
+    return render(request , 'pages/departmentprofile.html' , {})

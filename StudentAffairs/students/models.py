@@ -29,3 +29,7 @@ class student(models.Model):
     department = models.CharField(max_length=10, choices=DEPARTMENT_CHOICES , default="General")
     level = models.CharField(max_length=1,choices=LEVEL_CHOICES , default="1")
 
+    def __str__(self):
+        return self.name
+    class Meta:
+        ordering = ['id']
