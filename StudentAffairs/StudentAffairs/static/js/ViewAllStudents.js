@@ -1,27 +1,5 @@
-window.onload = function() {
-  var stds = JSON.parse(localStorage.getItem("Students"));
-  var table = document.getElementById("table");
-  for(var i = 0 ; i < stds.length ;i++) {
-    var row = table.insertRow(i+1);
-    let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
-    let cell5 = row.insertCell(4);
-    let cell6 = row.insertCell(5);
-    cell1.innerHTML =(stds[i].name);
-    cell2.innerHTML =(stds[i].id);
-    cell3.innerHTML =(stds[i].gpa);
-    cell4.innerHTML =(stds[i].department);
-    if(stds[i].status =="Active") {
-      cell5.innerHTML = '<form> <select name="StudentStatue"  aria-label="Active/InActive" class="SelectStatue"> <option value="Active" selected> ACTIVE </option> <option value="Inactive"> INACTIVE </option></select> </form>';
-    } else {
-      cell5.innerHTML = '<form> <select name="StudentStatue"  aria-label="Active/InActive" class="SelectStatue"> <option value="Active" > ACTIVE </option> <option selected value="Inactive"> INACTIVE </option></select> </form>';
-    }
-    cell6.innerHTML = '<i id="deleteicon" class="fa-solid fa-xmark fa-xl x" onclick="goToDelete(' + stds[i].id +')"> </i>';
-  }
-    const selectElements = document.getElementsByClassName("SelectStatue");
-  Array.from(selectElements).forEach((selectElement) => {
+const selectElements = document.getElementsByClassName("SelectStatue");
+Array.from(selectElements).forEach((selectElement) => {
     selectElement.addEventListener("change", () => {
       const studentName = selectElement.parentNode.parentNode.parentNode.children[0].textContent;
       const Studentid = selectElement.parentNode.parentNode.parentNode.children[1].textContent;
@@ -59,10 +37,7 @@ window.onload = function() {
           }
         })
     });
-  });
-}
-
-
+});
 function tableSearch(){
     let input, filter, table, tr, tdName,tdID, tdActive, activeCheck;
     input = document.getElementById("searchBar");

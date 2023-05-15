@@ -1,31 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="master.css">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="ViewAllStudents.css">
+{% extends 'base.html' %}
+{% load static %}
+{% block headers %}
+    <link rel="stylesheet" href="{% static 'css/inactive.css'%}">
+    <script src="{% static 'js/inactive.js' %}"></script>
     <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
-    <script src="inactive.js"></script>
-    <title>Student Affairs</title>
-    </head>
-    <body>
-        <nav> 
-            <div class="img"> <img src="Logo.png" alt="XLogo"></div>
-            <div>
-                <ul>
-                    <li class = " list"> <a href="index.html"> Home</a> </li>
-                    <li class="list"> <a href="AddStudent.html " > Add a Student </a> </li>
-                    <li class="list"> <a href="ViewAllStudents.html " > View All Students </a> </li>
-                    <li class=" selected list"> <a href="inactive.html" > View InActive Students </a> </li>
-                    <li class=" list"> <a href="active.html"> View Active Students </a> </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="main-body">
-                <div class="header">
+{% endblock headers %}
+{% block content %}
+ <div class="main-body">
+        <div class="header">
                     <h2>Currently Inactive students</h2>
                 </div>
                 <div class="conatiner">
@@ -35,18 +17,31 @@
                     </form>
                 </div>
         </div>
-        <div name="tab">
-            <table id="table">
-                <tr>
-                  <div name="th">
-                  <th>Name</th>
-                  <th id="ID">ID</th>
-                  <th>GPA</th>
-                  <th>Level</th>
-                  <th>Phone</th>
-                </div>
-                </tr>
-              </table>
-        </div>      
-        </body>
-</html>
+    <div name="tab">
+        <table id="table">
+            <tr>
+            <div name="th">
+                <th>Name</th>
+                <th id="ID">ID</th>
+                <th>GPA</th>
+                <th>Level</th>
+                <th>Phone</th>
+            </div>
+            </tr>
+            <tbody>
+            {% for student in students %}
+                {% if not student.active %}
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.gpa }}</td>
+                        <td>{{ student.level }}</td>
+                        <td>{{ student.phonenum }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>      
+{% endblock content %}
+       

@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="master.css">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="active.css">
+{% extends 'base.html' %}
+{% load static %}
+{% block headers %}
+    <link rel="stylesheet" href="{% static 'css/active.css'%}">
     <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
-    <script src="active.js"></script>
-    <title>Student Affairs</title>
-    </head>
-    <body>
-        <div class="main-body">
+    <script src="{% static 'js/active.js'%}"></script>
+{% endblock headers %}
+{% block content %}
+    <div class="main-body">
                 <div class="header">
                     <h2>Currently Active students</h2>
                 </div>
@@ -36,7 +30,21 @@
                   <th>Edit Department</th>  
                 </div>
                 </tr>
+                <tbody>
+                    {% for student in students %}
+                        {% if  student.active %}
+                            <tr>
+                                <td>{{ student.name }}</td>
+                                <td>{{ student.id }}</td>
+                                <td>{{ student.gpa }}</td>
+                                <td>{{ student.level }}</td>
+                                <td>{{ student.phonenum }}</td>
+                                <td><i id="Updateiconx" class="fa-solid fa-user-pen fa-lg"> </i></td>
+                                <td><i id="Departmenticon" class="fa-regular fa-pen-to-square"> </i></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
               </table>
-        </div>      
-        </body>
-</html>
+    </div>      
+{% endblock content %}

@@ -1,19 +1,11 @@
-{% extends 'parts/navigation.html' %}
-{% block content %}
+{% extends 'base.html' %}
 {% load static %}
-    <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
-            <link rel="stylesheet" href="{% static 'css/AddStudent.css'%}">
-            <script src="{% static 'js/AddStudent.js' %}"></script>
-            <title>Document</title>
-        </head>
-        <body>
+{% block headers %}
+    <link rel="stylesheet" href="{% static 'css/AddStudent.css'%}">
+    <script src="{% static 'js/AddStudent.js' %}"></script>
+    <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
+{% endblock headers %}
+{% block content %}
             <div class="container">
             <form id="form">
                     <div   div class="img">
@@ -21,7 +13,6 @@
                         <input type="file" placeholder="IMG" accept="image/*" name="image" id="file" onchange="loadFile(event)">
 
                     </div>
-
                     <div class="Inputs-container" >
                         <div class ="info">
                                 <p for="page info"> Register A Student into System </p>
@@ -51,7 +42,6 @@
                             </div> 
                         </div>
                         <div class="input-container">
-                            <!--Student name-->
                             <div id="email" class="ipt-container">
                                 <i class="fa-solid fa-envelope  fa-2xl icon"></i>
                                 <input class="input-field" type="email" id="Semail" placeholder="Student Email" required="">  
@@ -69,7 +59,6 @@
                             </div> 
                         </div>
                         <div class="input-container">
-                            <!--Student name-->
                             <div id="national id" class="ipt-container">
                                 <i class="fa-solid fa-id-card fa-2xl icon"></i>
                                 <input class="input-field" type="text" id="Snational-id"  placeholder="Student National ID" required="">  
@@ -87,7 +76,6 @@
                             </div> 
                         </div>
                         <div class="input-container">
-                            <!--Student name-->
                             <div id="phone" class="ipt-container">
                                 <i class="fa-solid fa-phone fa-2xl icon"></i>
                                 <input class="input-field" type="tel" id="Sphone" placeholder="Student Phone Number" required="">  
@@ -147,8 +135,5 @@
                 </div>
                     </div>
             </form>
-
             </div>
-        </body>
-        </html>
     {% endblock content %}
