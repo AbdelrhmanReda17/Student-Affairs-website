@@ -1,83 +1,99 @@
-// function OnSaveClicked() {
-// 	const urlParams = new URLSearchParams(window.location.search);
-// 	const myParam = urlParams.get('id');
-// 	// Get the studentForm element
-// 	const studentForm = document.getElementById("form");
+document.addEventListener('DOMContentLoaded', function() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/Student-Affairs/Students/getStudents/', true);  // Update the URL to '/getStudents/'
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      var students = response.students;  // Assuming the response is in JSON format with a 'students' key
+      console.log(students);
+      // You can now use the 'students' variable in your JavaScript code
+    }
+  };
+
+  xhr.send();
+});
+
+function OnSaveClicked() {
+	const urlParams = new URLSearchParams(window.location.search);
+	const myParam = urlParams.get('id');
+	// Get the studentForm element
+	const studentForm = document.getElementById("form");
   
-// 	// Add an event listener for the form submit
-// 	studentForm.addEventListener("submit", function (event) {
-// 		event.preventDefault(); // prevent default form submission
+	// Add an event listener for the form submit
+	studentForm.addEventListener("submit", function (event) {
+		event.preventDefault(); // prevent default form submission
 
-// 		let stds = JSON.parse(localStorage.getItem("Students")) || [];  
-// 		// Get the form values
-// 		const name = document.getElementById("Sname").value;
-// 		const id = document.getElementById("Sid").value;
-// 		let ch = true
-// 		for(let i = 0 ; i < stds.length ; i++){
-// 			if(id == stds[i].id &&  stds[i].name != name)
-// 			{
 
-// 				Swal.fire({
-// 					icon: 'error',
-// 					title: 'Oops...',
-// 					text: 'Student ID is already registered',
-// 				}) 
-// 				ch = false;
-// 				break;
-// 			}
-// 		}
-// 		if(ch == true && InputsValidation())
-// 		{
-// 			const email = document.getElementById("Semail").value;
-// 			const gpa = document.getElementById("Sgpa").value;
-// 			const nationalId = document.getElementById("Snational-id").value;
-// 			const address = document.getElementById("Saddress").value;
-// 			const phone = document.getElementById("Sphone").value;
-// 			const department = document.getElementById("Sdepartment").value;
-// 			const date = document.getElementById("Sdate").value;
-// 			const level = document.querySelector('input[name="Slevel"]:checked').value;
-// 			const gender = document.querySelector('input[name="Sgender"]:checked').value;
-// 			const status = document.querySelector('input[name="Sstatus"]:checked').value;
+		// Get the form values
+		const name = document.getElementById("Sname").value;
+		const id = document.getElementById("Sid").value;
+		let ch = true
+		for(let i = 0 ; i < stds.length ; i++){
+			if(id == stds[i].id &&  stds[i].name != name)
+			{
 
-// 			// Create an object with the form data
-// 			const formData = {
-// 				name,
-// 				id,
-// 				email,
-// 				gpa,
-// 				nationalId,
-// 				address,
-// 				date,
-// 				department,
-// 				phone,
-// 				level,
-// 				status,
-// 				gender,
-// 			};
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Student ID is already registered',
+				}) 
+				ch = false;
+				break;
+			}
+		}
+		if(ch == true && InputsValidation())
+		{
+			const email = document.getElementById("Semail").value;
+			const gpa = document.getElementById("Sgpa").value;
+			const nationalId = document.getElementById("Snational-id").value;
+			const address = document.getElementById("Saddress").value;
+			const phone = document.getElementById("Sphone").value;
+			const department = document.getElementById("Sdepartment").value;
+			const date = document.getElementById("Sdate").value;
+			const level = document.querySelector('input[name="Slevel"]:checked').value;
+			const gender = document.querySelector('input[name="Sgender"]:checked').value;
+			const status = document.querySelector('input[name="Sstatus"]:checked').value;
+
+			// Create an object with the form data
+			const formData = {
+				name,
+				id,
+				email,
+				gpa,
+				nationalId,
+				address,
+				date,
+				department,
+				phone,
+				level,
+				status,
+				gender,
+			};
 			
-// 			let stds = JSON.parse(localStorage.getItem("Students"));
-// 			for (var i = 0; i < stds.length; i++) {
-// 				if (myParam == stds[i].id ) {
-// 					stds[i] = formData; 
-// 					break; 
-// 				}
-// 			}
-// 			let Students = JSON.stringify(stds);
-// 			localStorage.setItem("Students", Students); 
-// 			Swal.fire({
-//                 icon: 'success',
-//                 title: 'Student Updated Successfully!',
-//                 showConfirmButton: true,
-//                 timer:  600000
-//             }).then((result)=>{
-// 				if(result.isConfirmed){
-// 					window.location.href = "update.html?id=" + formData.id;
-// 				}
-// 			});
+			let stds = JSON.parse(localStorage.getItem("Students"));
+			for (var i = 0; i < stds.length; i++) {
+				if (myParam == stds[i].id ) {
+					stds[i] = formData; 
+					break; 
+				}
+			}
+			let Students = JSON.stringify(stds);
+			localStorage.setItem("Students", Students); 
+			Swal.fire({
+                icon: 'success',
+                title: 'Student Updated Successfully!',
+                showConfirmButton: true,
+                timer:  600000
+            }).then((result)=>{
+				if(result.isConfirmed){
+					window.location.href = "update.html?id=" + formData.id;
+				}
+			});
 				
-// 		}
-// 	});
-// }
+		}
+	});
+}
 
 
   

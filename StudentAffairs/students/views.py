@@ -1,8 +1,22 @@
 from django.shortcuts import render
 from .models import student
+import logging
+from django.http import JsonResponse
+
 # Create your views here.
+logger = logging.getLogger(__name__)
+
+def getStudents(request):
+    try:
+        students = student.objects.values()  # Get all student instances and their values
+        return JsonResponse({'students': list(students)})  # Convert queryset to a list of dictionaries and return as JSON
+    except Exception as e:
+        logger.error('Error occurred in getStudents view: %s', str(e))
+        return JsonResponse({'error': 'An error occurred'}, status=500)
+    
 def updatestudent(request):
-    return render(request , 'pages/update.html' )
+    students = student.objects.all().order_by('id')
+    return render(request , 'pages/update.html', {'students': students})
 
 def viewall(request):
     students = student.objects.all().order_by('id')
