@@ -30,15 +30,13 @@
             </tr>
             <tbody>
             {% for student in students %}
-                {% if not student.active %}
-                    <tr>
-                        <td>{{ student.name }}</td>
-                        <td>{{ student.id }}</td>
-                        <td>{{ student.gpa }}</td>
-                        <td>{{ student.level }}</td>
-                        <td>{{ student.phonenum }}</td>
-                    </tr>
-                {% endif %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.student_id }}</td>
+                    <td>{{ student.gpa }}</td>
+                    <td>{{ student.level }}</td>
+                    <td>{{ student.phonenum }}</td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>

@@ -32,17 +32,15 @@
                 </tr>
                 <tbody>
                     {% for student in students %}
-                        {% if  student.active %}
-                            <tr>
-                                <td>{{ student.name }}</td>
-                                <td>{{ student.id }}</td>
-                                <td>{{ student.gpa }}</td>
-                                <td>{{ student.level }}</td>
-                                <td>{{ student.phonenum }}</td>
-                                <td><i id="Updateiconx" class="fa-solid fa-user-pen fa-lg"> </i></td>
-                                <td><i id="Departmenticon" class="fa-regular fa-pen-to-square"> </i></td>
-                            </tr>
-                        {% endif %}
+                        <tr>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.student_id }}</td>
+                            <td>{{ student.gpa }}</td>
+                            <td>{{ student.level }}</td>
+                            <td>{{ student.phonenum }}</td>
+                            <td><i id="Updateiconx" class="fa-solid fa-user-pen fa-lg"> </i></td>
+                            <td><i id="Departmenticon" class="fa-regular fa-pen-to-square"> </i></td>
+                        </tr>
                     {% endfor %}
                     </tbody>
               </table>

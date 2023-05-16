@@ -7,11 +7,11 @@
 {% endblock headers %}
 {% block content %}
             <div class="container">
-            <form id="form">
-                    <div   div class="img">
+            <form method="POST" enctype="multipart/form-data">
+                     {% csrf_token %}
+                    <div div class="img">
                     <img id="output" src="{% static 'photos/male.png'%}" alt="AR"> 
-                        <input type="file" placeholder="IMG" accept="image/*" name="image" id="file" onchange="loadFile(event)">
-
+                        <input type="file" placeholder="IMG" name="image" id="file" onchange="loadFile(event)">
                     </div>
                     <div class="Inputs-container" >
                         <div class ="info">
@@ -20,14 +20,14 @@
 
                         <div class="calender-container">
                             <div id="date" class="ipt-container ">
-                                <input style="width: 80%;"  class="input-field" type="date" id="Sdate"  required="">  
+                                <input style="width: 80%;"  class="input-field" name="date" type="date" id="Sdate"  required="">  
                             </div>                               
                         </div>
                         <div class="input-container">
 
                             <div id="user" class="ipt-container">
                                 <i class="fa fa-user fa-2xl icon" aria-hidden="true"></i>
-                                <input class="input-field" type="text" id="Sname" placeholder="Student Name" required="">  
+                                <input class="input-field" type="text" id="Sname" name="Sname" placeholder="Student Name" required="">
                                 <i class="fas fa-check-circle msg"></i>
                                 <i class="fas fa-exclamation-circle msg"></i>
                                 <small>Error message</small>
@@ -35,7 +35,7 @@
 
                             <div id="id" class="ipt-container">
                                 <i class="fa-solid fa-id-card-clip fa-2xl icon"></i>
-                                <input class="input-field" type="number" id="Sid" placeholder="Student ID" required="">  
+                                <input class="input-field" type="number" id="Sid" name="id" placeholder="Student ID" required="">  
                                 <i class="fas fa-check-circle msg"></i>
                                 <i class="fas fa-exclamation-circle msg"></i>
                                 <small>Error message</small>
@@ -44,7 +44,7 @@
                         <div class="input-container">
                             <div id="email" class="ipt-container">
                                 <i class="fa-solid fa-envelope  fa-2xl icon"></i>
-                                <input class="input-field" type="email" id="Semail" placeholder="Student Email" required="">  
+                                <input class="input-field" type="email" id="Semail" name = "email" placeholder="Student Email" required="">  
                                 <i class="fas fa-check-circle msg"></i>
                                 <i class="fas fa-exclamation-circle msg"></i>
                                 <small>Error message</small>
@@ -52,7 +52,7 @@
             
                             <div id="gpa" class="ipt-container">
                                 <i class="fa-solid fa-percent fa-2xl icon"></i>
-                                <input class="input-field" type="number" id="Sgpa" step="0.001" placeholder="Student GPA" required="">  
+                                <input class="input-field" type="number" id="Sgpa" step="0.001" name="gpa" placeholder="Student GPA" required="">  
                                 <i class="fas fa-check-circle msg"></i>
                                 <i class="fas fa-exclamation-circle msg"></i>
                                 <small>Error message</small>
@@ -61,7 +61,7 @@
                         <div class="input-container">
                             <div id="national id" class="ipt-container">
                                 <i class="fa-solid fa-id-card fa-2xl icon"></i>
-                                <input class="input-field" type="text" id="Snational-id"  placeholder="Student National ID" required="">  
+                                <input class="input-field" type="text" id="Snational-id" name="nationalid" placeholder="Student National ID" required="">  
                                 <i class="fas fa-check-circle msg"></i>
                                 <i class="fas fa-exclamation-circle msg"></i>
                                 <small>Error message</small>
@@ -69,7 +69,7 @@
             
                             <div id="address" class="ipt-container">
                                 <i class="fa-sharp fa-solid fa-location-dot fa-2xl icon"></i>
-                                <input class="input-field" type="text" id="Saddress" placeholder="Student Address" required="">  
+                                <input class="input-field" type="text" id="Saddress" placeholder="Student Address" name="address" required="">  
                                 <i class="fas fa-check-circle msg"></i>
                                 <i class="fas fa-exclamation-circle msg"></i>
                                 <small>Error message</small>
@@ -78,7 +78,7 @@
                         <div class="input-container">
                             <div id="phone" class="ipt-container">
                                 <i class="fa-solid fa-phone fa-2xl icon"></i>
-                                <input class="input-field" type="tel" id="Sphone" placeholder="Student Phone Number" required="">  
+                                <input class="input-field" type="tel" id="Sphone" name="phonenumber" placeholder="Student Phone Number" required="">  
                                 <i class="fas fa-check-circle msg"></i>
                                 <i class="fas fa-exclamation-circle msg"></i>
                                 <small>Error message</small>
@@ -86,7 +86,7 @@
             
                             <div id="department" class="ipt-container A">
                                 <i class="fas fa-sitemap fa-2xl icon" aria-hidden="true"></i>
-                                <input class="input-field" type="text" id="Sdepartment" placeholder="Department  : General" disabled="">  
+                                <input class="input-field" type="text" id="Sdepartment" name="department" placeholder="Department  : General" disabled="">  
 
                             </div> 
                         </div>
@@ -111,15 +111,15 @@
 
                             <div class="info">  Select The Status </div>
                             <div class="Radiobutton">
-                                <input type="radio" id="inactive" name="Sstatus" value="Active">
+                                <input type="radio" id="inactive" name="Sstatus" value="True">
                                 <label for="inactive" class="a">Active</label>
 
-                                <input type="radio" id="active" name="Sstatus" value="Inactive">
+                                <input type="radio" id="active" name="Sstatus" value="False">
                                 <label for="active" class="b">Inactive</label>
                             </div>
 
 
-                            <div class="info">  Select The Gender </div>
+                    <div class="info">  Select The Gender </div>
                             <div class="Radiobutton">
                                 <input type="radio" id="male" name="Sgender" value="Male">
                                 <label for="male" class="a">Male</label>
@@ -132,7 +132,6 @@
                     <div class="input-container butn">
                         <input type="reset" class="resetButton">
                         <input type="submit" class="submit" value="Submit">
-                </div>
                     </div>
             </form>
             </div>
