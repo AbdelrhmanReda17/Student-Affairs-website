@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import student
 import logging
+import json
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 logger = logging.getLogger(__name__)
@@ -14,6 +16,33 @@ def getStudents(request):
         logger.error('Error occurred in getStudents view: %s', str(e))
         return JsonResponse({'error': 'An error occurred'}, status=500)
     
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+@csrf_exempt
+def setStudents(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            old_student_id = data.get('student_id')
+            name = data.get('name')
+            try:
+                std = student.objects.get(student_id=old_student_id)
+                std.name = name
+                std.save()
+                response = {'message': 'Student updated successfully'}
+                return JsonResponse(response, status=200)
+            except student.DoesNotExist:
+                response = {'error': 'Student not found'}
+                return JsonResponse(response, status=404)
+        except Exception as e:
+            response = {'error': 'An error occurred while updating the student'}
+            return JsonResponse(response, status=500)
+    else:
+        response = {'error': 'Invalid request method'}
+        return JsonResponse(response, status=405)
+
 def updatestudent(request):
     students = student.objects.all().order_by('id')
     return render(request , 'pages/update.html', {'students': students})

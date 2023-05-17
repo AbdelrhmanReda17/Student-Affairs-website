@@ -1,3 +1,18 @@
+function getStudents(callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/Student-Affairs/Students/getStudents/', true);
+  
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      var students = response.students;  // Assuming the response is in JSON format with a 'students' key
+      callback(students);  // Invoke the callback function with the students data
+    }
+  };
+  
+  xhr.send();
+}
+
 function tableSearch() {
   // Declare variables
   var input, filter, table, tr, td, i, txtValue;
@@ -24,24 +39,27 @@ function tableSearch() {
 }
 
 function goToUpdatePage(id) {
-  var url = 'update.html?id=' + id;
+  var formattedId = id.trim();  // Remove leading/trailing spaces if any
+  var url = '/Student-Affairs/Students/updatestudent/?id=' + formattedId;
   goToPage(url);
 }
 
-let x = false;
 function goToDepartment(id) {
-  var stds = JSON.parse(localStorage.getItem("Students"));
-  for (var i = 0 ; i < stds.length ; i++) {
-    if (stds[i].id == id && stds[i].level == 3) {
-      var url = 'departmentprofile.html?id=' + id;
-      goToPage(url);
-      x = true;
-      break;
+  let x = false;
+  getStudents(function(students) {
+    for (var i = 0; i < students.length; i++) {
+      if (students[i].student_id == id && students[i].level == 3) {
+        var formattedId = id.trim();
+        var url = '/Student-Affairs/Students/departmentprofile/?id=' + formattedId;
+        goToPage(url);
+        x = true;
+        break;
+      }
     }
-  }
-  if(x === false){
-    alert("level != 3");
-  }
+    if (x == false) {
+      alert("Level is not 3");
+    }
+  });
 }
 
 function goToPage(url) {

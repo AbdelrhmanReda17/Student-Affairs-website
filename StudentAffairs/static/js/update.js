@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/getStudents/', true);  // Replace with the appropriate URL for your Django view
+  xhr.open('GET', '/Student-Affairs/Students/getStudents/', true);  // Update the URL to '/getStudents/'
 
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -10,8 +10,36 @@ document.addEventListener('DOMContentLoaded', function() {
       // You can now use the 'students' variable in your JavaScript code
     }
   };
-
   xhr.send();
+});
+document.addEventListener('DOMContentLoaded', function() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/Student-Affairs/Students/setStudents/', true);
+
+  // Set the appropriate headers for sending JSON data
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        // Handle the response after updating the student in the database
+        console.log(response);
+      } else {
+        console.error('Error: ' + xhr.status);
+      }
+    }
+  };
+
+  // Define the data to be sent in the request body
+  var data = {
+    student_id: 20210225,  // Update with the specific student ID you want to modify
+    name: 'Abdelrhman Reda17',  // Update with the new name
+  };
+
+  // Convert the data to JSON format
+  var jsonData = JSON.stringify(data);
+  xhr.send(jsonData);
 });
 
 function OnSaveClicked() {

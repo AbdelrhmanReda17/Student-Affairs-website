@@ -1,18 +1,42 @@
-document.addEventListener('DOMContentLoaded', function() {
+function getStudents(callback) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/Student-Affairs/Students/getStudents/', true);  // Update the URL to '/getStudents/'
-
+  xhr.open('GET', '/Student-Affairs/Students/getStudents/', true);
+  
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
       var students = response.students;  // Assuming the response is in JSON format with a 'students' key
-      console.log(students);
-      // You can now use the 'students' variable in your JavaScript code
+      callback(students);  // Invoke the callback function with the students data
     }
   };
-
+  
   xhr.send();
-});
+}
+// document.addEventListener('DOMContentLoaded', function() {
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('POST', '/Student-Affairs/Students/setStudents/', true);
+
+//   // Set the appropriate headers for sending JSON data
+//   xhr.setRequestHeader('Content-Type', 'application/json');
+
+//   xhr.onreadystatechange = function() {
+//     if (xhr.readyState === XMLHttpRequest.DONE) {
+//       if (xhr.status === 200) {
+//         var response = JSON.parse(xhr.responseText);
+//         // Handle the response after updating the student in the database
+//         console.log(response);
+//       } else {
+//         console.error('Error: ' + xhr.status);
+//       }
+//     }
+//   };
+//   var data = {
+//     student_id: 20210225,
+//     name: 'Abdelrhman Reda17',
+//   };
+//   var jsonData = JSON.stringify(data);
+//   xhr.send(jsonData);
+// });
 
 function OnSaveClicked() {
 	const urlParams = new URLSearchParams(window.location.search);
@@ -23,8 +47,6 @@ function OnSaveClicked() {
 	// Add an event listener for the form submit
 	studentForm.addEventListener("submit", function (event) {
 		event.preventDefault(); // prevent default form submission
-
-
 		// Get the form values
 		const name = document.getElementById("Sname").value;
 		const id = document.getElementById("Sid").value;

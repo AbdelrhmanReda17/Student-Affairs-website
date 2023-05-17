@@ -38,11 +38,11 @@
                             <td>{{ student.gpa }}</td>
                             <td>{{ student.level }}</td>
                             <td>{{ student.phonenum }}</td>
-                            <td><i id="Updateiconx" class="fa-solid fa-user-pen fa-lg"> </i></td>
-                            <td><i id="Departmenticon" class="fa-regular fa-pen-to-square"> </i></td>
+                            <td><i id="Updateiconx" class="fa-solid fa-user-pen fa-lg" onclick="goToUpdatePage(' {{student.student_id}} ')"></i></td>
+                            <td><i id="Departmenticon" class="fa-regular fa-pen-to-square" onclick="goToDepartment(' {{student.student_id}}  ')">  </i></td>
                         </tr>
                     {% endfor %}
                     </tbody>
               </table>
-    </div>      
+    </div>
 {% endblock content %}
