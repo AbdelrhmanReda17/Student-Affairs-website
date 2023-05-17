@@ -12,6 +12,41 @@ function getStudents(callback) {
   
   xhr.send();
 }
+window.onload = function() {
+
+	var inputs = document.getElementsByTagName("input");
+    	for (var i = 0; i < inputs.length; i++) {
+        if ( inputs[i].type == "button") continue;
+        
+       		 inputs[i].disabled = true;
+   	}
+	const urlParams = new URLSearchParams(window.location.search);
+	const myParam = urlParams.get('id');
+  console.log(myParam)
+  getStudents(function(students) {
+    for (var i = 0; i < students.length; i++) {
+      if (students[i].student_id == myParam) {
+        document.getElementById("Sname").value = students[i].name;
+        document.getElementById("Sid").value = students[i].student_id;
+        document.getElementById("Semail").value = students[i].email;
+        document.getElementById("Sgpa").value = students[i].gpa;
+        document.getElementById("Snational-id").value = students[i].NationalID;
+        document.getElementById("Saddress").value = students[i].address;
+        document.getElementById("Sphone").value = students[i].phonenum;
+        document.getElementById("Sdepartment").value = students[i].department;
+        document.getElementById("Sdate").value = students[i].date;
+        document.querySelector('input[name="Slevel"][value="' + students[i].level + '"]').checked = true;
+        document.querySelector('input[name="Sgender"][value="' + students[i].gender + '"]').checked = true;
+        document.querySelector('input[name="Sstatus"][value="' + (students[i].active ==true ? 'Active' : 'Inactive' ) + '"]').checked = true;
+        if(students[i].img == "")
+        document.getElementById('output').src = '/media/photos/male.png';
+        else
+        document.getElementById('output').src = '/media/'+ students[i].img;
+        break;
+      }
+    }
+  });
+};
 // document.addEventListener('DOMContentLoaded', function() {
 //   var xhr = new XMLHttpRequest();
 //   xhr.open('POST', '/Student-Affairs/Students/setStudents/', true);

@@ -1,41 +1,59 @@
+console.log("12313123")
 
-//  let urlParams;
-// window.onload = function() {
-//   var text = document.getElementsByClassName("input-field");
-//   for (var i = 0; i < text.length; i++) {
-//     text[i].disabled = true;
-//   }
-//   urlParams = new URLSearchParams(window.location.search);
-//   const myParam = urlParams.get('id');
-//   let stds = JSON.parse(localStorage.getItem("Students")) || [];
-//   for (var i = 0; i < stds.length; i++) {
-//     if (myParam == stds[i].id) {
-//       document.getElementById("Sname").innerText = stds[i].name;
-//       document.getElementById("Sid").value = stds[i].id;
-//       document.getElementById("Semail").value = stds[i].email;
-//       document.getElementById("Sgpa").value = stds[i].gpa;
-//       document.getElementById("Snational-id").value = stds[i].nationalId;
-//       document.getElementById("Saddress").value = stds[i].address;
-//       document.getElementById("Sphone").value = stds[i].phone;
-//       document.getElementById("Sdate").value = stds[i].date;
-//       document.getElementById("Slevel").value = stds[i].level;
-
-//       const department = stds[i]?.department; // use optional chaining to avoid errors if stds[i] is undefined or doesn't have a department property
-//       const select = document.getElementById("dep");
-//       if (department) {
-//           const options = select.options;
-//           for (let j = 0; j < options.length; j++) {
-//             if (options[j].value === department) {
-//               select.value = department;
-//               break;
-//             }
-//             }
-//           }       
-                
-//     }
-//   }
-// };
-
+function getStudents(callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/Student-Affairs/Students/getStudents/', true);
+    
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        var students = response.students;  // Assuming the response is in JSON format with a 'students' key
+        callback(students);  // Invoke the callback function with the students data
+      }
+    };
+    
+    xhr.send();
+}
+window.onload = function() {
+    console.log("ARARAr")
+var inputs = document.getElementsByTagName("input-field");
+   for (var i = 0; i < inputs.length; i++) {
+    inputs[i].disabled = true;
+   }
+const urlParams = new URLSearchParams(window.location.search);
+const myParam = urlParams.get('id');
+  console.log(myParam)
+  getStudents(function(students) {
+    for (var i = 0; i < students.length; i++) {
+      if (students[i].student_id == myParam) {
+        document.getElementById("Sname").innerText = students[i].name;
+        document.getElementById("Sid").value = students[i].student_id;
+        document.getElementById("Semail").value = students[i].email;
+        document.getElementById("Sgpa").value = students[i].gpa;
+        document.getElementById("Snational-id").value = students[i].NationalID;
+        document.getElementById("Saddress").value = students[i].address;
+        document.getElementById("Sphone").value = students[i].phonenum;
+        document.getElementById("Sdate").value = students[i].date;
+        document.getElementById("Slevel").value = students[i].level;
+        if(students[i].img == "")
+        document.getElementById('output').src = '/media/photos/male.png';
+        else
+        document.getElementById('output').src = '/media/'+ students[i].img;
+        const department = students[i].department; // use optional chaining to avoid errors if stds[i] is undefined or doesn't have a department property
+        if (department) {
+            const options = select.options;
+            for (let j = 0; j < options.length; j++) {
+                if (options[j].value === department) {
+                select.value = department;
+                break;
+                }
+            }
+        } 
+        break;
+      }
+    }
+  });
+};
 // document.addEventListener("DOMContentLoaded", () => {
 //   const saveButton = document.querySelector(".submit");
 //   const selectElement = document.getElementById("dep");

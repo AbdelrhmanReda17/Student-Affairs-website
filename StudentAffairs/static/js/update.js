@@ -1,46 +1,77 @@
-document.addEventListener('DOMContentLoaded', function() {
+function getStudents(callback) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/Student-Affairs/Students/getStudents/', true);  // Update the URL to '/getStudents/'
-
+  xhr.open('GET', '/Student-Affairs/Students/getStudents/', true);
+  
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
       var students = response.students;  // Assuming the response is in JSON format with a 'students' key
-      console.log(students);
-      // You can now use the 'students' variable in your JavaScript code
+      callback(students);  // Invoke the callback function with the students data
     }
   };
+  
   xhr.send();
-});
-document.addEventListener('DOMContentLoaded', function() {
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/Student-Affairs/Students/setStudents/', true);
+}
+window.onload = function() {
 
-  // Set the appropriate headers for sending JSON data
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        // Handle the response after updating the student in the database
-        console.log(response);
-      } else {
-        console.error('Error: ' + xhr.status);
+	var inputs = document.getElementsByTagName("input");
+    	for (var i = 0; i < inputs.length; i++) {
+        if ( inputs[i].type == "button") continue;
+        
+       		 inputs[i].disabled = true;
+   	}
+	const urlParams = new URLSearchParams(window.location.search);
+	const myParam = urlParams.get('id');
+  console.log(myParam)
+  getStudents(function(students) {
+    for (var i = 0; i < students.length; i++) {
+      if (students[i].student_id == myParam) {
+        document.getElementById("Sname").value = students[i].name;
+        document.getElementById("Sid").value = students[i].student_id;
+        document.getElementById("Semail").value = students[i].email;
+        document.getElementById("Sgpa").value = students[i].gpa;
+        document.getElementById("Snational-id").value = students[i].NationalID;
+        document.getElementById("Saddress").value = students[i].address;
+        document.getElementById("Sphone").value = students[i].phonenum;
+        document.getElementById("Sdepartment").value = students[i].department;
+        document.getElementById("Sdate").value = students[i].date;
+        document.querySelector('input[name="Slevel"][value="' + students[i].level + '"]').checked = true;
+        document.querySelector('input[name="Sgender"][value="' + students[i].gender + '"]').checked = true;
+        document.querySelector('input[name="Sstatus"][value="' + (students[i].active ==true ? 'Active' : 'Inactive' ) + '"]').checked = true;
+        if(students[i].img == "")
+        document.getElementById('output').src = '/media/photos/male.png';
+        else
+        document.getElementById('output').src = '/media/'+ students[i].img;
+        break;
       }
     }
-  };
+  });
+};
+// document.addEventListener('DOMContentLoaded', function() {
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('POST', '/Student-Affairs/Students/setStudents/', true);
 
-  // Define the data to be sent in the request body
-  var data = {
-    student_id: 20210225,  // Update with the specific student ID you want to modify
-    name: 'Abdelrhman Reda17',  // Update with the new name
-  };
+//   // Set the appropriate headers for sending JSON data
+//   xhr.setRequestHeader('Content-Type', 'application/json');
 
-  // Convert the data to JSON format
-  var jsonData = JSON.stringify(data);
-  xhr.send(jsonData);
-});
+//   xhr.onreadystatechange = function() {
+//     if (xhr.readyState === XMLHttpRequest.DONE) {
+//       if (xhr.status === 200) {
+//         var response = JSON.parse(xhr.responseText);
+//         // Handle the response after updating the student in the database
+//         console.log(response);
+//       } else {
+//         console.error('Error: ' + xhr.status);
+//       }
+//     }
+//   };
+//   var data = {
+//     student_id: 20210225,
+//     name: 'Abdelrhman Reda17',
+//   };
+//   var jsonData = JSON.stringify(data);
+//   xhr.send(jsonData);
+// });
 
 function OnSaveClicked() {
 	const urlParams = new URLSearchParams(window.location.search);
@@ -51,8 +82,6 @@ function OnSaveClicked() {
 	// Add an event listener for the form submit
 	studentForm.addEventListener("submit", function (event) {
 		event.preventDefault(); // prevent default form submission
-
-
 		// Get the form values
 		const name = document.getElementById("Sname").value;
 		const id = document.getElementById("Sid").value;
