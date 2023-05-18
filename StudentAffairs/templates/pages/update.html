@@ -8,12 +8,12 @@
 {% endblock headers %}
 {% block content %}    
 <div class="container">
-    <form id="form" >
+    <form id="form"  onsubmit="OnSaveClicked(); return false;" >
             <div class="img" > 
-                <img id="output" src="{% static 'photos/male.png' %}" alt="AR"> 
-                <input type="file" class="btn" id="changephoto" placeholder="IMG" accept="image/*" name="image" id="file" onchange="loadFile(event)" disabled="">
+                    <img id="output" src="{% static 'photos/male.png' %}" alt="AR"> 
+                    <input type="file" class="btn" id="changephoto" placeholder="IMG" accept="image/*" name="image" id="file" onchange="loadImage()" disabled="">
+                    <input type="hidden" id="img" name="img">
             </div>
-
             <div class="Inputs-container" >
                 <div class ="info">
                         <p for="page info"> Update Student into Student </p>
@@ -132,7 +132,7 @@
                     </div> 
             </div>
 			<div class="input-container butn">
-				<input class="a b" id="savebutton" type="submit" value="Save Changes" onclick=OnSaveClicked() />
+                <input class="a b" id="savebutton" type="submit" value="Save Changes" />
 				<input type="button" id="Edit" value="Edit Student" onclick=OnEditClicked() />
 				<input class="a" id="backbutton" type="button" value="Go back" onclick=OnCancelClicked() />
 			</div>

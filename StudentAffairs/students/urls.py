@@ -12,5 +12,6 @@ urlpatterns = [
    path('departmentprofile/', views.department , name='department'),
    path('getStudents/', views.getStudents , name='getStudents'),
    path('setStudents/', views.setStudents, name='setStudents'),
+   # path('uploadImage/', views.uploadImage, name='uploadImage'),
 ]
 
