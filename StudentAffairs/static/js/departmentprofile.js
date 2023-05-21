@@ -1,5 +1,3 @@
-console.log("12313123")
-
 function getStudents(callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/Student-Affairs/Students/getStudents/', true);
@@ -15,8 +13,7 @@ function getStudents(callback) {
     xhr.send();
 }
 window.onload = function() {
-    console.log("ARARAr")
-var inputs = document.getElementsByTagName("input-field");
+var inputs = document.getElementsByClassName("input-field");
    for (var i = 0; i < inputs.length; i++) {
     inputs[i].disabled = true;
    }

@@ -99,7 +99,7 @@
 .ipt-container i{
   margin-left: 13%;
   color: #D3D3D3;
-  margin-top: 60%;
+  margin-top: 80%;
 
 }
 .ipt-container{
@@ -233,7 +233,7 @@ select option :hover {
       padding:0%
   }
   .buttons{
-      padding-right :30%;
+      padding-right :10%;
       padding-bottom:30%;
       margin-bottom:50%
   }
@@ -244,6 +244,12 @@ select option :hover {
       .ipt-container i{
         margin-top: 60%;
       }
+
+    #department.checked-inputs{
+      width: 70%;
+      margin-top: 70%;
+      padding-right: 4%;
+    }  
 }
 
 /* For screens between 576px and 768px */
@@ -282,13 +288,40 @@ select option :hover {
   .buttons{
       padding-right :30%;
       padding-bottom:30%;
-      margin-bottom:50%
+      margin-bottom:50%;
+      padding-left: 78%;
   }
 
   
   .ipt-container i{
     margin-top: 65%;
   }
+
+  #department.checked-inputs{
+    width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 15%;
+  }
+
+  .Select Select{
+    width: 80%;
+    margin-right: 8%;
+  }
+  h3{
+    margin-left:0%;
+  }
+  .Select{
+    padding: 0%;
+    padding-left: 10%;
+  }
+  #department h3 {
+    border: none;
+    margin-top: 7%;
+  }
+
+
+ 
 }
 
 /* For screens greater than 1000px */
@@ -304,6 +337,13 @@ select option :hover {
       white-space: pre-wrap;
       line-height: 0.8;
   }
-
 }
 
+@media (min-width: 1000px) and (max-width: 1120px) {
+  .profile-image p{
+    line-height: 0.8;
+  }
+  .ipt-container i{
+    padding-top: 18%;
+  }
+}
