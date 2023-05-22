@@ -18,9 +18,9 @@
   border-top: none;
   border-bottom: none;
 }
-/* image */
+
 .profile-para{
-  font-size: 22px;   /* new */
+  font-size: 22px;  
   text-align: center;
   color:#23475F;
   font-style: normal;
@@ -37,8 +37,8 @@
 
 #output {
   border-radius: 70%;
-  width: 300px; /* new - 150px*/
-  height: 300px; /* ew -150px*/
+  width: 300px; 
+  height: 300px; 
   border: 1px solid #e2e7e94b;
   display: block;
   margin: 0 auto;
@@ -64,7 +64,7 @@
 } 
 
 
-/* input fields & Icons */
+
 .inputs-big-div {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -99,7 +99,7 @@
 .ipt-container i{
   margin-left: 7%;
   color: #D3D3D3;
-  margin-top: 65%;
+  margin-top: 80%;
 
 }
 .ipt-container{
@@ -109,7 +109,6 @@
 }
 
 
-/* Save Button*/
 .Act{
   padding-left: 25px;
   margin-top: 10%;
@@ -129,8 +128,6 @@ input[type="submit"] , input[type="reset"] {
 input[type="submit"]:hover, input[type="reset"]:hover{
   box-shadow: 0 0 15px rgb(0, 0, 0);
 }
-
-/* DropDown list*/
 
 .Select select {
   width: 80%;
@@ -194,9 +191,6 @@ select option :hover {
 }
 
 
-/* Media queries for responsive design */
-
-/* For screens up to 576px */
 @media (max-width: 576px) {
   #profile-div {
     grid-template-columns: 1fr;
@@ -252,7 +246,7 @@ select option :hover {
     }  
 }
 
-/* For screens between 576px and 768px */
+
 @media (min-width: 576px) and (max-width: 997px) {
   #profile-div {
     grid-template-columns: 1fr;
@@ -324,7 +318,7 @@ select option :hover {
  
 }
 
-/* For screens greater than 1000px */
+
 @media (min-width: 1000px) {
   #profile-div {
     grid-template-columns: 1fr 2fr 1fr;

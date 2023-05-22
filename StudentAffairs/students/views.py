@@ -9,13 +9,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 
-# Create your views here.
 logger = logging.getLogger(__name__)
 
 def getStudents(request):
     try:
-        students = student.objects.values()  # Get all student instances and their values
-        return JsonResponse({'students': list(students)})  # Convert queryset to a list of dictionaries and return as JSON
+        students = student.objects.values()  
+        return JsonResponse({'students': list(students)})  
     except Exception as e:
         logger.error('Error occurred in getStudents view: %s', str(e))
         return JsonResponse({'error': 'An error occurred'}, status=500)
@@ -156,6 +155,6 @@ def delete_student(request):
         if(student_id is not None):
             student_obj = student.objects.get(id=student_id)
             student_obj.delete()
-            return JsonResponse({'message': 'Student added successfully'})
-    return JsonResponse({'error': 'Invalid form data'})
+            return JsonResponse({'message': 'Student Deleted'})
+    return JsonResponse({'error': 'Error while deleted'})
    

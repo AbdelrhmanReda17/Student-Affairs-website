@@ -1,5 +1,5 @@
 window.onload = function() {
-    var container = document.getElementById("Announcement-content"); // get a reference to the container where you want to display the sentences
+    var container = document.getElementById("Announcement-content"); 
     var sentences = [
       "The Office of Student Affairs is hosting a workshop on study skills and time management on [insert date]. All students are welcome to attend and learn valuable tips for staying organized and focused during the semester.",
       "The university's Counseling Center is offering a free stress management workshop for students on [insert date]. Attendees will learn effective techniques for managing stress and anxiety.",

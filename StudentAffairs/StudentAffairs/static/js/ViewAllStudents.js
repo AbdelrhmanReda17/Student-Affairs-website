@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 const selectElements = document.getElementsByClassName("SelectStatue");
 Array.from(selectElements).forEach((selectElement) => {
-    console.log(selectElement)
+
     selectElement.addEventListener("change", () => {
       const studentName = selectElement.parentNode.parentNode.parentNode.children[0].textContent;
       const Studentid = selectElement.parentNode.parentNode.parentNode.children[1].textContent;
-      console.log(studentName , Studentid)
+ 
         Swal.fire({
           title: 'Do you want to save the changes?',
           text:'you trying to change the statue of '+ studentName+ ' to ' + selectElement.value,
@@ -67,7 +67,7 @@ function deleteStudent(id, callback) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
-      callback(response);  // Invoke the callback function with the response
+      callback(response);  
     }
   };
   
@@ -85,8 +85,8 @@ function updatastudent(id) {
       'X-CSRFToken': csrfToken
     },
     data: formData1,
-    processData: false, // Prevent jQuery from processing the data
-    contentType: false, // Let the server handle the content type
+    processData: false, 
+    contentType: false, 
     success: function(response) {
       Swal.fire('Saved!', '', 'success')
     },
@@ -108,7 +108,7 @@ function getStudents(callback) {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
       var students = response.students; 
-      callback(students);  // Invoke the callback function with the students data
+      callback(students);  
     }
   };
   
@@ -144,7 +144,6 @@ function goToDelete(id) {
                 showConfirmButton: true
               }).then((result) => {
                 if (result.isConfirmed) {
-                  //  location.reload();
                    var url = '/Student-Affairs/Students/viewall/';
                    window.location.href = url;
                 }

@@ -5,8 +5,8 @@ function getStudents(callback) {
     xhr.onreadystatechange = function() {
       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
         var response = JSON.parse(xhr.responseText);
-        var students = response.students;  // Assuming the response is in JSON format with a 'students' key
-        callback(students);  // Invoke the callback function with the students data
+        var students = response.students;  
+        callback(students);  
       }
     };
     
@@ -35,7 +35,7 @@ var inputs = document.getElementsByClassName("input-field");
         document.getElementById('output').src = '/media/photos/male.png';
         else
         document.getElementById('output').src = '/media/'+ students[i].img;
-        const department = students[i].department; // use optional chaining to avoid errors if stds[i] is undefined or doesn't have a department property
+        const department = students[i].department; 
         const select = document.getElementById("dep");
         if (department) {
             const options = select.options;
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const myParam = urlParams.get('id');
   const saveButton = document.querySelector(".submit");
   const selectElement = document.getElementById("dep");
-  if (selectElement) { // check if the element exists
+  if (selectElement) { 
     saveButton.addEventListener("click", () => {
       const selectedOption = selectElement.value;
       Swal.fire({
@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function updatastudent(id , department) {
-  console.log(id , department)
   const formData1 = new FormData();
   formData1.append('id' , id);
   formData1.append('department' , department);
@@ -99,8 +98,8 @@ function updatastudent(id , department) {
       'X-CSRFToken': csrfToken
     },
     data: formData1,
-    processData: false, // Prevent jQuery from processing the data
-    contentType: false, // Let the server handle the content type
+    processData: false, 
+    contentType: false, 
     success: function(response) {
       Swal.fire('Student Saved!', '', 'success')
     },

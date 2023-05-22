@@ -5,8 +5,8 @@ function getStudents(callback) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
-      var students = response.students;  // Assuming the response is in JSON format with a 'students' key
-      callback(students);  // Invoke the callback function with the students data
+      var students = response.students;  
+      callback(students);  
     }
   };
   
@@ -14,14 +14,14 @@ function getStudents(callback) {
 }
 
 function tableSearch() {
-  // Declare variables
+  
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("searchBar");
   filter = input.value.toUpperCase();
   table = document.getElementById("table");
   tr = table.getElementsByTagName("tr");
 
-  // Loop through all table rows and hide those that don't match the search query
+ 
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td");
     for (var j = 0; j < td.length; j++) {
@@ -39,7 +39,7 @@ function tableSearch() {
 }
 
 function goToUpdatePage(id) {
-  var formattedId = id.trim();  // Remove leading/trailing spaces if any
+  var formattedId = id.trim(); 
   var url = '/Student-Affairs/Students/updatestudent/?id=' + formattedId;
   goToPage(url);
 }

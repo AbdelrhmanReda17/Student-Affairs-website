@@ -5,8 +5,8 @@ function getStudents(callback) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
-      var students = response.students;  // Assuming the response is in JSON format with a 'students' key
-      callback(students);  // Invoke the callback function with the students data
+      var students = response.students;  
+      callback(students);  
     }
   };
   xhr.send();
@@ -19,12 +19,11 @@ window.onload = function() {
    	}
 	const urlParams = new URLSearchParams(window.location.search);
 	const myParam = urlParams.get('id');
-  console.log(myParam)
+  
   getStudents(function(students) {
     for (var i = 0; i < students.length; i++) {
       if (students[i].student_id == myParam) {
-        document.getElementById('changephoto').files[0] = students[i].img.src;   
-        console.log(students[i].img.src);   
+        document.getElementById('changephoto').files[0] = students[i].img.src;    
         document.getElementById("Sname").value = students[i].name;
         document.getElementById("Sid").value = students[i].student_id;
         document.getElementById("Semail").value = students[i].email;
@@ -99,8 +98,8 @@ function ED(){
         'X-CSRFToken': csrfToken
       },
       data: formData1,
-      processData: false, // Prevent jQuery from processing the data
-      contentType: false, // Let the server handle the content type
+      processData: false, 
+      contentType: false, 
       success: function(response) {
         form.reset();
         Swal.fire({
@@ -115,7 +114,7 @@ function ED(){
         });
       },
       error: function() {
-        // Handle form submission error
+        
         Swal.fire({
           icon: 'error',
           title: 'Error submitting the form',
@@ -174,7 +173,7 @@ function InputsValidation() {
     const address = document.getElementById("Saddress").value;
     const phone = document.getElementById("Sphone").value;
   
-    // Validate the input fields
+    
     const nameRegex = /^[a-zA-Z ]{3,30}$/;
     const idRegex = /^[0-9]{8}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -240,7 +239,7 @@ function InputsValidation() {
 		setErrorFor(Iphone, 'Invalid Student Phone');
     }
   
-    // Return whether all fields are valid or not
+    
     return (
       isNameValid &&
       isIdValid &&
@@ -253,7 +252,7 @@ function InputsValidation() {
   }  
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
-    console.log(formControl);
+  
 	const small = formControl.querySelector('small');
 	formControl.className = 'ipt-container error';
 	small.innerText = message;
@@ -261,7 +260,7 @@ function setErrorFor(input, message) {
 
 function setSuccessFor(input) {
 	const formControl = input.parentElement;
-    console.log(formControl);
+   
 	formControl.className = 'ipt-container success';
 }
 	

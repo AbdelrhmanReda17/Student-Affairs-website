@@ -1,9 +1,11 @@
+document.addEventListener("DOMContentLoaded", () => {
 const selectElements = document.getElementsByClassName("SelectStatue");
 Array.from(selectElements).forEach((selectElement) => {
+
     selectElement.addEventListener("change", () => {
       const studentName = selectElement.parentNode.parentNode.parentNode.children[0].textContent;
       const Studentid = selectElement.parentNode.parentNode.parentNode.children[1].textContent;
-      console.log(studentName , Studentid)
+ 
         Swal.fire({
           title: 'Do you want to save the changes?',
           text:'you trying to change the statue of '+ studentName+ ' to ' + selectElement.value,
@@ -13,17 +15,23 @@ Array.from(selectElements).forEach((selectElement) => {
           denyButtonText: `Don't save`,
         }).then((result) => {
           if (result.isConfirmed) {
-            updatastudent(Studentid, function(response) {
-              var url = '/Student-Affairs/Students/viewall/';
-               window.location.href = url;
-            });
-            Swal.fire('Saved!', '', 'success')
+            updatastudent(Studentid)
+            var url = '/Student-Affairs/Students/viewall/';
+            indow.location.href = url;
           } else {
-
+            if(selectElement.value == "Active")
+              {
+                selectElement.value = 'Inactive';
+              }
+            else
+              {
+                selectElement.value = 'Active';
+              }
             Swal.fire('Changes are not saved', '', 'info')
           }
         })
     });
+});
 });
 function tableSearch(){
     let input, filter, table, tr, tdName,tdID, tdActive, activeCheck;
@@ -50,8 +58,6 @@ function tableSearch(){
     }
 }
 
-
-
 function deleteStudent(id, callback) {
   var xhr = new XMLHttpRequest();
   var url = '/Student-Affairs/Students/deletestudent/';
@@ -61,24 +67,37 @@ function deleteStudent(id, callback) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
-      callback(response);  // Invoke the callback function with the response
+      callback(response);  
     }
   };
   
   xhr.send();
 }
 
-function updatastudent(id, callback) {
-  var xhr = new XMLHttpRequest();
-  var url = '/Student-Affairs/Students/updatestudent/';
-  xhr.open('GET', url + '?id=' + id, true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      var response = JSON.parse(xhr.responseText);
-      callback(response);
+function updatastudent(id) {
+  const formData1 = new FormData();
+  formData1.append('id' , id);
+  const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+  $.ajax({
+    url: '/Student-Affairs/Students/Changestate/',
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': csrfToken
+    },
+    data: formData1,
+    processData: false, 
+    contentType: false, 
+    success: function(response) {
+      Swal.fire('Saved!', '', 'success')
+    },
+    error: function() {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error submitting the form',
+        showConfirmButton: true
+      });
     }
-  };
-  xhr.send();
+  });
 }
 
 function getStudents(callback) {
@@ -89,7 +108,7 @@ function getStudents(callback) {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
       var students = response.students; 
-      callback(students);  // Invoke the callback function with the students data
+      callback(students);  
     }
   };
   
@@ -125,7 +144,6 @@ function goToDelete(id) {
                 showConfirmButton: true
               }).then((result) => {
                 if (result.isConfirmed) {
-                  //  location.reload();
                    var url = '/Student-Affairs/Students/viewall/';
                    window.location.href = url;
                 }

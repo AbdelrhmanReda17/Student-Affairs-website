@@ -1,75 +1,81 @@
-const photosrc = document.getElementById('output').src;
-console.log(photosrc);
 document.addEventListener('DOMContentLoaded', function() {
   const studentForm = document.querySelector('form');
   studentForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    if (InputsValidation()) {
+    if (InputsValidation() ) {
       const name = document.getElementById('Sname').value;
       const id = document.getElementById('Sid').value;
-      const email = document.getElementById('Semail').value;
-      const gpa = document.getElementById('Sgpa').value;
-      const nationalId = document.getElementById('Snational-id').value;
-      const address = document.getElementById('Saddress').value;
-      const phone = document.getElementById('Sphone').value;
-      const department = "General";
-      const date = document.getElementById('Sdate').value;
-      const level = document.querySelector('input[name="Slevel"]:checked').value;
-      const gender = document.querySelector('input[name="Sgender"]:checked').value;
-      const status = document.querySelector('input[name="Sstatus"]:checked').value;
-      const photoInput = document.getElementById('file-input');
-      const photoFile = photoInput.files[0];
-      const formData1 = new FormData();
-      formData1.append('name', name);
-      formData1.append('id', id);
-      formData1.append('email', email);
-      formData1.append('gpa', gpa);
-      formData1.append('nationalId', nationalId);
-      formData1.append('address', address);
-      formData1.append('phone', phone);
-      formData1.append('department', 'General');
-      formData1.append('date', date);
-      formData1.append('level', level);
-      formData1.append('gender', gender);
-      formData1.append('status', status);
-      formData1.append('photo', photoFile);
-      const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
-      $.ajax({
-        url: '/Student-Affairs/Students/uploadstudent/',
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': csrfToken
-        },
-        data: formData1,
-        success: function(response) {
-          // Form submission successful
-          studentForm.reset();
-          Swal.fire({
-            icon: 'success',
-            title: 'Student Added Successfully!',
-            showConfirmButton: true
-          }).then((result) => {
-            if (result.isConfirmed) {
-              location.reload();
-            }
-          });
-        },
-        error: function() {
-          // Handle form submission error
-          Swal.fire({
-            icon: 'error',
-            title: 'Error submitting the form',
-            showConfirmButton: true
-          });
-        }
-      });
-    }
-  });
+      checkid(id, function(result) {
+      if(result){
+        const email = document.getElementById('Semail').value;
+        const gpa = document.getElementById('Sgpa').value;
+        const nationalId = document.getElementById('Snational-id').value;
+        const address = document.getElementById('Saddress').value;
+        const phone = document.getElementById('Sphone').value;
+        const department = "General";
+        const date = document.getElementById('Sdate').value;
+        const level = document.querySelector('input[name="Slevel"]:checked').value;
+        const gender = document.querySelector('input[name="Sgender"]:checked').value;
+        const status = document.querySelector('input[name="Sstatus"]:checked').value;
+        const photoInput = document.getElementById('file-input');
+        const photoFile = photoInput.files[0];      
+        const formData1 = new FormData();
+        formData1.append('name', name);
+        formData1.append('id', id);
+        formData1.append('email', email);
+        formData1.append('gpa', gpa);
+        formData1.append('nationalId', nationalId);
+        formData1.append('address', address);
+        formData1.append('phone', phone);
+        formData1.append('department', 'General');
+        formData1.append('date', date);
+        formData1.append('level', level);
+        formData1.append('gender', gender);
+        formData1.append('status', status);
+        formData1.append('photo', photoFile);
+        const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+        $.ajax({
+          url: '/Student-Affairs/Students/uploadstudent/',
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': csrfToken
+          },
+          data: formData1,
+          processData: false, 
+          contentType: false, 
+          success: function(response) {
+            
+            studentForm.reset();
+            Swal.fire({
+              icon: 'success',
+              title: 'Student Added Successfully!',
+              showConfirmButton: true
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload();
+              }
+            });
+          },
+          error: function() {
+            
+            Swal.fire({
+              icon: 'error',
+              title: 'Error submitting the form',
+              showConfirmButton: true
+            });
+          }
+        });
+      }
+    });
+  }});   
 });
+
 function loadFile(event) {
   var output = document.getElementById('output');
   output.src = URL.createObjectURL(event.target.files[0]);
 };
+
+
 function InputsValidation() {
 
     const name = document.getElementById("Sname").value;
@@ -82,7 +88,7 @@ function InputsValidation() {
     const level = document.querySelector('input[name="Slevel"]:checked');
     const status = document.querySelector('input[name="Sstatus"]:checked');
     const gender = document.querySelector('input[name="Sgender"]:checked');
-    // Validate the input fields
+    
     const nameRegex = /^[a-zA-Z ]{3,30}$/;
     const idRegex = /^[0-9]{8}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -172,7 +178,7 @@ function InputsValidation() {
     {
         SetRadioSucess(Istatus)
     }
-    // Return whether all fields are valid or not
+    
     return (
       isNameValid &&
       isIdValid &&
@@ -186,12 +192,15 @@ function InputsValidation() {
       (status !=null)
     );
   }  
+
+
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
 	const small = formControl.querySelector('small');
 	formControl.className = 'ipt-container error';
 	small.innerText = message;
 }
+
 function setSuccessFor(input) {
 	const formControl = input.parentElement;
 	formControl.className = 'ipt-container success';
@@ -219,4 +228,17 @@ function checkid(id, callback) {
     }
     callback(true);
   });
+}
+function getStudents(callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/Student-Affairs/Students/getStudents/', true);
+  
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      var students = response.students;  
+      callback(students);  
+    }
+  };
+  xhr.send();
 }

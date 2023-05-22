@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
             'X-CSRFToken': csrfToken
           },
           data: formData1,
-          processData: false, // Prevent jQuery from processing the data
-          contentType: false, // Let the server handle the content type
+          processData: false, 
+          contentType: false, 
           success: function(response) {
-            // Form submission successful
+            
             studentForm.reset();
             Swal.fire({
               icon: 'success',
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
           },
           error: function() {
-            // Handle form submission error
+            
             Swal.fire({
               icon: 'error',
               title: 'Error submitting the form',
@@ -88,7 +88,7 @@ function InputsValidation() {
     const level = document.querySelector('input[name="Slevel"]:checked');
     const status = document.querySelector('input[name="Sstatus"]:checked');
     const gender = document.querySelector('input[name="Sgender"]:checked');
-    // Validate the input fields
+    
     const nameRegex = /^[a-zA-Z ]{3,30}$/;
     const idRegex = /^[0-9]{8}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -178,7 +178,7 @@ function InputsValidation() {
     {
         SetRadioSucess(Istatus)
     }
-    // Return whether all fields are valid or not
+    
     return (
       isNameValid &&
       isIdValid &&
@@ -236,8 +236,8 @@ function getStudents(callback) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
-      var students = response.students;  // Assuming the response is in JSON format with a 'students' key
-      callback(students);  // Invoke the callback function with the students data
+      var students = response.students;  
+      callback(students);  
     }
   };
   xhr.send();
