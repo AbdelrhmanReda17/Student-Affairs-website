@@ -23,13 +23,15 @@ window.onload = function() {
   getStudents(function(students) {
     for (var i = 0; i < students.length; i++) {
       if (students[i].student_id == myParam) {
+        document.getElementById('changephoto').files[0] = students[i].img.src;   
+        console.log(students[i].img.src);   
         document.getElementById("Sname").value = students[i].name;
         document.getElementById("Sid").value = students[i].student_id;
         document.getElementById("Semail").value = students[i].email;
         document.getElementById("Sgpa").value = students[i].gpa;
         document.getElementById("Snational-id").value = students[i].NationalID;
         document.getElementById("Saddress").value = students[i].address;
-        document.getElementById("Sphone").value = students[i].phonenum;
+        document.getElementById("Sphone").value = '0' + students[i].phonenum;
         document.getElementById("Sdepartment").value = students[i].department;
         document.getElementById("Sdate").value = students[i].date;
         document.querySelector('input[name="Slevel"][value="' + students[i].level + '"]').checked = true;
@@ -47,65 +49,68 @@ window.onload = function() {
     }
   });
 };
-
-function OnSaveClicked(event) {
-  var newID = document.getElementById("Sid").value;
-  const urlParams = new URLSearchParams(window.location.search);
-  const myParam = urlParams.get('id');
-  id = document.getElementById("Sid").value;
-  if(id == myParam){
-    ED();
-  }else{
-    checkid(id, function(result) {
-      if(result){
-        ED();
-      }
-    })
-  }
-}
+document.addEventListener('DOMContentLoaded', function() {
+  const studentForm = document.querySelector('form');
+  studentForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('id');
+    id = document.getElementById("Sid").value;
+    if(id == myParam){
+      ED();
+    }else{
+      checkid(id, function(result) {
+        if(result){
+          ED();
+        }
+      })
+    }
+  })
+});
 
 function ED(){
   if (InputsValidation()) {
     var form = document.getElementById('form');
     const photoInput = document.getElementById('changephoto');
     const photoFile = photoInput.files[0];      
-    id= document.getElementById("Sid").value;
-    var studentData = {
-      myParam: myParam,
-      id: document.getElementById("Sid").value,
-      img: photoFile,
-      name: document.getElementById("Sname").value,
-      email: document.getElementById("Semail").value,
-      gpa: document.getElementById("Sgpa").value,
-      national_id: document.getElementById("Snational-id").value,
-      address: document.getElementById("Saddress").value,
-      phone: document.getElementById("Sphone").value,
-      department: document.getElementById("Sdepartment").value,
-      date: document.getElementById("Sdate").value,
-      level: document.querySelector('input[name="Slevel"]:checked').value,
-      Sgender: document.querySelector('input[name="Sgender"]:checked').value,
-      status: document.querySelector('input[name="Sstatus"]:checked').value,
-    };
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('id');
+    const NewId = document.getElementById("Sid").value;
+    const formData1 = new FormData();
+    formData1.append('myParam', myParam);
+    formData1.append('name', document.getElementById("Sname").value);
+    formData1.append('id', document.getElementById("Sid").value);
+    formData1.append('email', document.getElementById("Semail").value);
+    formData1.append('gpa', document.getElementById("Sgpa").value);
+    formData1.append('nationalId', document.getElementById("Snational-id").value);
+    formData1.append('address', document.getElementById("Saddress").value);
+    formData1.append('phone', document.getElementById("Sphone").value);
+    formData1.append('department', document.getElementById("Sdepartment").value);
+    formData1.append('date', document.getElementById("Sdate").value);
+    formData1.append('level', document.querySelector('input[name="Slevel"]:checked').value);
+    formData1.append('gender', document.querySelector('input[name="Sgender"]:checked').value);
+    formData1.append('status', document.querySelector('input[name="Sstatus"]:checked').value);
+    formData1.append('photo', photoFile);
     const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
     $.ajax({
-      url: '/Student-Affairs/Students/setStudent/',
+      url: '/Student-Affairs/Students/setStudents/',
       method: 'POST',
       headers: {
         'X-CSRFToken': csrfToken
       },
-      data: studentData,
+      data: formData1,
       processData: false, // Prevent jQuery from processing the data
       contentType: false, // Let the server handle the content type
       success: function(response) {
-        // Form submission successful
-        studentForm.reset();
+        form.reset();
         Swal.fire({
           icon: 'success',
           title: 'Student Added Successfully!',
           showConfirmButton: true
         }).then((result) => {
           if (result.isConfirmed) {
-            //location.reload();
+            var url = '/Student-Affairs/Students/updatestudent/?id=' + NewId;
+             window.location.href = url;
           }
         });
       },
@@ -137,12 +142,16 @@ function OnCancelClicked() {
         }
     });
 };
+function loadFile(event) {
+  var output = document.getElementById('output');
+  output.src = URL.createObjectURL(event.target.files[0]);
+};
 
 function OnEditClicked() {
     const editButton = document.getElementById("Edit");
     const saveButton = document.getElementById("savebutton");
     const goBackButton = document.getElementById("backbutton");
-	  const Changephotobtn = document.getElementById("file-input");
+	  const Changephotobtn = document.getElementById("changephoto");
     editButton.style.display = "none";
     saveButton.style.display = "initial";
 	  goBackButton.style.display = "initial";
@@ -150,6 +159,7 @@ function OnEditClicked() {
     var inputs = document.getElementsByTagName("input");
     for (var i = 0; i < inputs.length; i++) {
         if (inputs[i] == document.getElementById("Sdepartment") || inputs[i].type == "button") continue;
+        
         inputs[i].disabled = false;
     }
 }
