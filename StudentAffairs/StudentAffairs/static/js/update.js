@@ -23,16 +23,17 @@ window.onload = function() {
   getStudents(function(students) {
     for (var i = 0; i < students.length; i++) {
       if (students[i].student_id == myParam) {
+        document.getElementById('changephoto').files[0] = students[i].img.src;   
+        console.log(students[i].img.src);   
         document.getElementById("Sname").value = students[i].name;
         document.getElementById("Sid").value = students[i].student_id;
         document.getElementById("Semail").value = students[i].email;
         document.getElementById("Sgpa").value = students[i].gpa;
         document.getElementById("Snational-id").value = students[i].NationalID;
         document.getElementById("Saddress").value = students[i].address;
-        document.getElementById("Sphone").value = students[i].phonenum;
+        document.getElementById("Sphone").value = '0' + students[i].phonenum;
         document.getElementById("Sdepartment").value = students[i].department;
         document.getElementById("Sdate").value = students[i].date;
-        console.log(students[i].level);
         document.querySelector('input[name="Slevel"][value="' + students[i].level + '"]').checked = true;
         document.querySelector('input[name="Sgender"][value="' + students[i].gender + '"]').checked = true;
         document.querySelector('input[name="Sstatus"][value="' + (students[i].active ==true ? 'Active' : 'Inactive' ) + '"]').checked = true;
@@ -48,93 +49,82 @@ window.onload = function() {
     }
   });
 };
-function setStudent(data, callback) {
-  var xhr = new XMLHttpRequest();
-  var url = '/Student-Affairs/Students/setStudents/';
-
-  xhr.open('POST', url, true);
-
-  // Set the appropriate headers for sending JSON data
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        callback(response);
-      } else {
-        console.error('Error: ' + xhr.status);
-      }
+document.addEventListener('DOMContentLoaded', function() {
+  const studentForm = document.querySelector('form');
+  studentForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('id');
+    id = document.getElementById("Sid").value;
+    if(id == myParam){
+      ED();
+    }else{
+      checkid(id, function(result) {
+        if(result){
+          ED();
+        }
+      })
     }
-  };
+  })
+});
 
-  var jsonData = JSON.stringify(data);
-  xhr.send(jsonData);
-}
-
-// function loadImage(event) {
-//   var fileInput = event.target;
-//   var file = fileInput.files[0];
-//   var formData = new FormData();
-//   formData.append('file', file);
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('POST', '/Student-Affairs/Students/uploadImage/', true);
-//   xhr.onreadystatechange = function() {
-//     if (xhr.readyState === XMLHttpRequest.DONE) {
-//       if (xhr.status === 200) {
-//         var response = JSON.parse(xhr.responseText);
-//         var imagePath = response.image_path;
-//         var output = document.getElementById('output');
-//         output.src = 'http://127.0.0.1:8000' + imagePath;
-//       } else {
-//         console.error('Error: ' + xhr.status);
-//       }
-//     }
-//   };
-//   xhr.onerror = function() {
-//     console.error('Request failed');
-//   };
-//   xhr.send(formData);
-// }
-
-
-
-function OnSaveClicked(event) {
-  var newID = document.getElementById("Sid").value;
-  const urlParams = new URLSearchParams(window.location.search);
-  const myParam = urlParams.get('id');
-  var form = document.getElementById('form');
-  var studentData = {
-    myParam: myParam,
-    img: document.getElementById("output").src,
-    name: document.getElementById("Sname").value,
-    id: document.getElementById("Sid").value,
-    email: document.getElementById("Semail").value,
-    gpa: document.getElementById("Sgpa").value,
-    national_id: document.getElementById("Snational-id").value,
-    address: document.getElementById("Saddress").value,
-    phone: document.getElementById("Sphone").value,
-    department: document.getElementById("Sdepartment").value,
-    date: document.getElementById("Sdate").value,
-    level: document.querySelector('input[name="Slevel"]:checked').value,
-    Sgender: document.querySelector('input[name="Sgender"]:checked').value,
-    status: document.querySelector('input[name="Sstatus"]:checked').value,
-  };
-  setStudent(studentData, function(response) {
-    Swal.fire({
-      icon: 'success',
-      title: 'Student Updated Successfully!',
-      showConfirmButton: true,
-      timer: 600000
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // var url = '/Student-Affairs/Students/updatestudent/?id=' + newID;
-        // window.location.href = url;
+function ED(){
+  if (InputsValidation()) {
+    var form = document.getElementById('form');
+    const photoInput = document.getElementById('changephoto');
+    const photoFile = photoInput.files[0];      
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('id');
+    const NewId = document.getElementById("Sid").value;
+    const formData1 = new FormData();
+    formData1.append('myParam', myParam);
+    formData1.append('name', document.getElementById("Sname").value);
+    formData1.append('id', document.getElementById("Sid").value);
+    formData1.append('email', document.getElementById("Semail").value);
+    formData1.append('gpa', document.getElementById("Sgpa").value);
+    formData1.append('nationalId', document.getElementById("Snational-id").value);
+    formData1.append('address', document.getElementById("Saddress").value);
+    formData1.append('phone', document.getElementById("Sphone").value);
+    formData1.append('department', document.getElementById("Sdepartment").value);
+    formData1.append('date', document.getElementById("Sdate").value);
+    formData1.append('level', document.querySelector('input[name="Slevel"]:checked').value);
+    formData1.append('gender', document.querySelector('input[name="Sgender"]:checked').value);
+    formData1.append('status', document.querySelector('input[name="Sstatus"]:checked').value);
+    formData1.append('photo', photoFile);
+    const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+    $.ajax({
+      url: '/Student-Affairs/Students/setStudents/',
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': csrfToken
+      },
+      data: formData1,
+      processData: false, // Prevent jQuery from processing the data
+      contentType: false, // Let the server handle the content type
+      success: function(response) {
+        form.reset();
+        Swal.fire({
+          icon: 'success',
+          title: 'Student Added Successfully!',
+          showConfirmButton: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            var url = '/Student-Affairs/Students/updatestudent/?id=' + NewId;
+             window.location.href = url;
+          }
+        });
+      },
+      error: function() {
+        // Handle form submission error
+        Swal.fire({
+          icon: 'error',
+          title: 'Error submitting the form',
+          showConfirmButton: true
+        });
       }
     });
-  });
+  }
 }
-
   
 function OnCancelClicked() {
 	Swal.fire({
@@ -152,17 +142,20 @@ function OnCancelClicked() {
         }
     });
 };
-
+function loadFile(event) {
+  var output = document.getElementById('output');
+  output.src = URL.createObjectURL(event.target.files[0]);
+};
 
 function OnEditClicked() {
     const editButton = document.getElementById("Edit");
     const saveButton = document.getElementById("savebutton");
     const goBackButton = document.getElementById("backbutton");
-	const Changephotobtn = document.getElementById("changephoto");
+	  const Changephotobtn = document.getElementById("changephoto");
     editButton.style.display = "none";
     saveButton.style.display = "initial";
-	goBackButton.style.display = "initial";
-	Changephotobtn.style.display ="initial";
+	  goBackButton.style.display = "initial";
+	  Changephotobtn.style.display ="initial";
     var inputs = document.getElementsByTagName("input");
     for (var i = 0; i < inputs.length; i++) {
         if (inputs[i] == document.getElementById("Sdepartment") || inputs[i].type == "button") continue;
@@ -258,8 +251,6 @@ function InputsValidation() {
       isPhoneValid
     );
   }  
-
-
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
     console.log(formControl);
@@ -276,4 +267,17 @@ function setSuccessFor(input) {
 	
 function isEmail(email) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
+function checkid(id, callback) {
+  getStudents(function(students) {
+    const Iid = document.getElementById('Sid');
+    for (let i = 0; i < students.length; i++) {
+      if (students[i].student_id == id) {
+        setErrorFor(Iid, 'Student ID is Already Registered');
+        callback(false);
+        return;
+      }
+    }
+    callback(true);
+  });
 }

@@ -4,15 +4,16 @@
     <link rel="stylesheet" href="{% static 'css/update.css' %}">
     <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/update.js' %}"></script>
 {% endblock headers %}
 {% block content %}    
 <div class="container">
-    <form id="form"  onsubmit="OnSaveClicked(); return false;" >
+    <form id="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
             <div class="img" > 
                     <img id="output" src="{% static 'photos/male.png' %}" alt="AR"> 
-                    <input type="file" class="btn" id="changephoto" placeholder="IMG" accept="image/*" name="image" id="file" onchange="loadImage()" disabled="">
-                    <input type="hidden" id="img" name="img">
+                    <input type="file" class="btn" id="changephoto" placeholder="IMG" accept="image/*" name="image" id="file" onchange="loadFile(event)" disabled="">
             </div>
             <div class="Inputs-container" >
                 <div class ="info">

@@ -20,7 +20,7 @@
 }
 /* image */
 .profile-para{
-  font-size: 30px;   /* new */
+  font-size: 22px;   /* new */
   text-align: center;
   color:#23475F;
   font-style: normal;
@@ -37,8 +37,8 @@
 
 #output {
   border-radius: 70%;
-  width: 70%; /* new - 150px*/
-  height: 70%; /* ew -150px*/
+  width: 300px; /* new - 150px*/
+  height: 300px; /* ew -150px*/
   border: 1px solid #e2e7e94b;
   display: block;
   margin: 0 auto;
@@ -47,8 +47,8 @@
 #output:hover{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
     border-radius: 90%;
-    width: 70%;
-    height: 70%;
+    width: 310px;
+    height: 310px;
 }
 
 .profile-image {
@@ -97,9 +97,9 @@
 }
 
 .ipt-container i{
-  margin-left: 13%;
+  margin-left: 7%;
   color: #D3D3D3;
-  margin-top: 80%;
+  margin-top: 65%;
 
 }
 .ipt-container{

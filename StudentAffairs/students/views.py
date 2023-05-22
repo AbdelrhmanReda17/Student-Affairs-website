@@ -12,30 +12,6 @@ from django.conf import settings
 # Create your views here.
 logger = logging.getLogger(__name__)
 
-# @csrf_exempt
-# def uploadImage(request):
-#     if request.method == 'POST' and request.FILES.get('file'):
-#         image_file = request.FILES['file']
-#         current_date = datetime.now().strftime('%y/%m/%d')  # Use uppercase Y for a 4-digit year
-#         image_filename = image_file.name.replace(' ', '_')  # Replace backslashes with forward slashes
-#         image_directory = os.path.join('\media\photos', current_date)  # Use 'photo' instead of 'photos'
-#         image_directory = image_directory.replace('\\', '/')
-#         # Create the directory if it doesn't exist
-#         os.makedirs(image_directory, exist_ok=True)
-#         print(image_directory)
-
-#         fs = FileSystemStorage(location=image_directory)
-#         image_path = fs.save(image_filename, image_file)
-#         # Provide the image path relative to the root URL
-#         media_url = settings.MEDIA_URL
-#         image_url = os.path.join(image_directory,image_path)
-#         response = {'image_path': image_url}
-#         print(response)
-#         return JsonResponse(response, status=200)
-#     else:
-#         response = {'error': 'Invalid request method or file not found'}
-#         return JsonResponse(response, status=400)
-        
 def getStudents(request):
     try:
         students = student.objects.values()  # Get all student instances and their values
@@ -48,26 +24,28 @@ def getStudents(request):
 def setStudents(request):
     if request.method == 'POST':
         try:
-            data = json.loads(request.body)
+            data = request.POST
             old_student_id = data.get('myParam')
-            img = data.get('img')
+            img = request.FILES.get('photo')
+            print(img)
             updated_data = {
                 'name': data.get('name'),
                 'student_id': data.get('id'),
                 'gpa': data.get('gpa'),
                 'email': data.get('email'),
-                'NationalID': data.get('national_id'),
+                'NationalID': data.get('nationalId'),
                 'address': data.get('address'),
                 'phonenum': data.get('phone'),
                 'date': data.get('date'),
                 'department': data.get('department'),
                 'level': data.get('level'),
-                'gender': data.get('Sgender'),
+                'gender': data.get('gender'),
                 'status': data.get('status') == 'Active',
             }
             try:
                 student_obj = student.objects.get(student_id=old_student_id)
-                student_obj.img = img
+                if(img is not None):
+                    student_obj.img = img
                 for key, value in updated_data.items():
                     setattr(student_obj, key, value)
                 student_obj.save()
@@ -106,7 +84,6 @@ def uploadstudent(request):
     if request.method == 'POST':
         image22 = request.FILES.get('photo')
         data = request.POST
-        print(data)
         name = data.get('name')
         date = data.get('date')
         student_id = data.get('id')

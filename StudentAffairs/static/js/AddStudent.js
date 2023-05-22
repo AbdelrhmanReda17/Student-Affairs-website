@@ -66,13 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-
 function loadFile(event) {
   var output = document.getElementById('output');
   output.src = URL.createObjectURL(event.target.files[0]);
 };
-
-
 function InputsValidation() {
 
     const name = document.getElementById("Sname").value;
@@ -189,15 +186,12 @@ function InputsValidation() {
       (status !=null)
     );
   }  
-
-
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
 	const small = formControl.querySelector('small');
 	formControl.className = 'ipt-container error';
 	small.innerText = message;
 }
-
 function setSuccessFor(input) {
 	const formControl = input.parentElement;
 	formControl.className = 'ipt-container success';
@@ -212,4 +206,17 @@ function SetRadioError(input) {
 }	
 function isEmail(email) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
+function checkid(id, callback) {
+  getStudents(function(students) {
+    const Iid = document.getElementById('Sid');
+    for (let i = 0; i < students.length; i++) {
+      if (students[i].student_id == id) {
+        setErrorFor(Iid, 'Student ID is Already Registered');
+        callback(false);
+        return;
+      }
+    }
+    callback(true);
+  });
 }
