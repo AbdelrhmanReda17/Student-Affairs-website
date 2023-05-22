@@ -100,24 +100,31 @@ def active(request):
     return render(request, 'pages/active.html', {'students': active_students})
 
 def addstudent(request):
+    return render(request , 'pages/AddStudent.html');
+
+def uploadstudent(request):
     if request.method == 'POST':
+        image22 = request.FILES.get('photo')
         data = request.POST
-        name = data.get('Sname')
+        print(data)
+        name = data.get('name')
         date = data.get('date')
         student_id = data.get('id')
         email = data.get('email')
         gpa = data.get('gpa')
-        national_id = data.get('nationalid')
+        national_id = data.get('nationalId')
         address = data.get('address')
-        phone_number = data.get('phonenumber')
-        image = request.FILES.get('image')
-        level = data.get('Slevel')
-        status = data.get('Sstatus')
-        gender = data.get('Sgender')
+        phone_number = data.get('phone')
+        print(image22)
+        level = data.get('level')
+        status = data.get('status')
+        gender = data.get('gender')
         if (name is not None and date is not None and student_id is not None and email is not None and gpa is not None and national_id is not None and address is not None and phone_number is not None and level is not None and status is not None and gender is not None):
-            new_student = student(name=name,date=date,student_id=student_id,email=email,gpa=gpa,NationalID=national_id,address=address,phonenum=phone_number,img=image,level=level,active=status,gender=gender)
+            new_student = student(name=name,date=date,student_id=student_id,email=email,gpa=gpa,NationalID=national_id,address=address,phonenum=phone_number,img=image22,level=level,active=status,gender=gender)
             new_student.save()
-    return render(request , 'pages/AddStudent.html')
+
+            return JsonResponse({'message': 'Student added successfully'})
+        return JsonResponse({'error': 'Invalid form data'})
 
 def department(request):
     return render(request , 'pages/departmentprofile.html' , {})

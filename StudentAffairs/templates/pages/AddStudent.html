@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{% static 'css/AddStudent.css'%}">
     <script src="{% static 'js/AddStudent.js' %}"></script>
     <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock headers %}
 {% block content %}
             <div class="container">
@@ -11,8 +13,8 @@
                      {% csrf_token %}
                     <div div class="img">
                     <img id="output" src="{% static 'photos/male.png'%}" alt="AR"> 
-                        <input type="file" placeholder="IMG" name="image" id="file" onchange="loadFile(event)">
-                    </div>
+                    <input type="file" placeholder="IMG" name="photo" id="file-input" onchange="loadFile(event)">
+                </div>
                     <div class="Inputs-container" >
                         <div class ="info">
                                 <p for="page info"> Register A Student into System </p>
