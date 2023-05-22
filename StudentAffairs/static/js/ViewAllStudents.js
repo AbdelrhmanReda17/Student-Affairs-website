@@ -1,43 +1,30 @@
-// const selectElements = document.getElementsByClassName("SelectStatue");
-// Array.from(selectElements).forEach((selectElement) => {
-//     selectElement.addEventListener("change", () => {
-//       const studentName = selectElement.parentNode.parentNode.parentNode.children[0].textContent;
-//       const Studentid = selectElement.parentNode.parentNode.parentNode.children[1].textContent;
-//         Swal.fire({
-//           title: 'Do you want to save the changes?',
-//           text:'you trying to change the statue of '+studentName+ ' to ' +selectElement.value,
-//           showDenyButton: true,
-//           showCancelButton: true,
-//           confirmButtonText: 'Save',
-//           denyButtonText: `Don't save`,
-//         }).then((result) => {
-//           /* Read more about isConfirmed, isDenied below */
-//           if (result.isConfirmed) {
-//             var stds = JSON.parse(localStorage.getItem("Students"));
-//             for(var i = 0 ; i < stds.length;i++)
-//             {
-//                 if(stds[i].id ==  Studentid)
-//                   {
-//                     stds[i].status = selectElement.value;
-//                   }
-//             }
-//             let students = JSON.stringify(stds);
-//             localStorage.setItem("Students" , students);
-//             Swal.fire('Saved!', '', 'success')
-//           } else {
-//             if(selectElement.value == "Active")
-//               {
-//                 selectElement.value = 'Inactive';
-//               }
-//             else
-//               {
-//                 selectElement.value = 'Active';
-//               }
-//             Swal.fire('Changes are not saved', '', 'info')
-//           }
-//         })
-//     });
-// });
+const selectElements = document.getElementsByClassName("SelectStatue");
+Array.from(selectElements).forEach((selectElement) => {
+    selectElement.addEventListener("change", () => {
+      const studentName = selectElement.parentNode.parentNode.parentNode.children[0].textContent;
+      const Studentid = selectElement.parentNode.parentNode.parentNode.children[1].textContent;
+      console.log(studentName , Studentid)
+        Swal.fire({
+          title: 'Do you want to save the changes?',
+          text:'you trying to change the statue of '+ studentName+ ' to ' + selectElement.value,
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Save',
+          denyButtonText: `Don't save`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            updatastudent(Studentid, function(response) {
+              var url = '/Student-Affairs/Students/viewall/';
+               window.location.href = url;
+            });
+            Swal.fire('Saved!', '', 'success')
+          } else {
+
+            Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+    });
+});
 function tableSearch(){
     let input, filter, table, tr, tdName,tdID, tdActive, activeCheck;
     input = document.getElementById("searchBar");
@@ -81,6 +68,19 @@ function deleteStudent(id, callback) {
   xhr.send();
 }
 
+function updatastudent(id, callback) {
+  var xhr = new XMLHttpRequest();
+  var url = '/Student-Affairs/Students/updatestudent/';
+  xhr.open('GET', url + '?id=' + id, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      callback(response);
+    }
+  };
+  xhr.send();
+}
+
 function getStudents(callback) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/Student-Affairs/Students/getStudents/', true);
@@ -116,6 +116,8 @@ function goToDelete(id) {
       }).then((result) => {
         if (result.isConfirmed) {
           deleteStudent(studentToDelete.id, function(response) {
+            var url = '/Student-Affairs/Students/viewall/';
+             window.location.href = url;
             if (response.message) {
               Swal.fire({
                 icon: 'success',
@@ -123,7 +125,9 @@ function goToDelete(id) {
                 showConfirmButton: true
               }).then((result) => {
                 if (result.isConfirmed) {
-                  location.reload();
+                  //  location.reload();
+                   var url = '/Student-Affairs/Students/viewall/';
+                   window.location.href = url;
                 }
               });
             } else {
@@ -146,20 +150,4 @@ function goToDelete(id) {
       });
     }
   });
-}
-
-function getCookie(name) {
-  var cookieValue = null;
-  if (document.cookie) {
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-      var cookie = cookies[i].trim();
-      // Check if the cookie name matches the parameter
-      if (cookie.substring(0, name.length + 1) === (name + '=')) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
 }

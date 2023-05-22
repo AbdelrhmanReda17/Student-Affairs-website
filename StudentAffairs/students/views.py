@@ -27,7 +27,6 @@ def setStudents(request):
             data = request.POST
             old_student_id = data.get('myParam')
             img = request.FILES.get('photo')
-            print(img)
             updated_data = {
                 'name': data.get('name'),
                 'student_id': data.get('id'),
@@ -57,6 +56,51 @@ def setStudents(request):
         except Exception as e:
             response = {'error': 'An error occurred while updating the student'}
             return JsonResponse(response, status=500)
+    else:
+        response = {'error': 'Invalid request method'}
+        return JsonResponse(response, status=405)
+
+def changestate(request):
+    if request.method=='POST':
+        stdsid = request.POST.get('id')
+        print(stdsid)
+        if stdsid is not None:
+            try:
+                student_obj = student.objects.get(student_id=stdsid)
+                print(student_obj.active)
+                student_obj.active = not student_obj.active
+                print(student_obj.active)
+                student_obj.save()
+                return JsonResponse({'message': 'Student updated successfully'})
+            except student.DoesNotExist:
+                response = {'error': 'Student not found'}
+                return JsonResponse(response, status=404)
+        else:
+            response = {'error': 'Invalid student ID'}
+            return JsonResponse(response, status=400)
+    else:
+        response = {'error': 'Invalid request method'}
+        return JsonResponse(response, status=405)
+
+def updatedepartment(request):
+    if request.method=='POST':
+        stdsid = request.POST.get('id')
+        department = request.POST.get('department')
+        print(stdsid , department)
+        if stdsid is not None:
+            try:
+                student_obj = student.objects.get(student_id=stdsid)
+                print(student_obj.department)
+                student_obj.department = department
+                print(student_obj.department)
+                student_obj.save()
+                return JsonResponse({'message': 'Student updated successfully'})
+            except student.DoesNotExist:
+                response = {'error': 'Student not found'}
+                return JsonResponse(response, status=404)
+        else:
+            response = {'error': 'Invalid student ID'}
+            return JsonResponse(response, status=400)
     else:
         response = {'error': 'Invalid request method'}
         return JsonResponse(response, status=405)
@@ -99,9 +143,9 @@ def uploadstudent(request):
         if (name is not None and date is not None and student_id is not None and email is not None and gpa is not None and national_id is not None and address is not None and phone_number is not None and level is not None and status is not None and gender is not None):
             new_student = student(name=name,date=date,student_id=student_id,email=email,gpa=gpa,NationalID=national_id,address=address,phonenum=phone_number,img=image22,level=level,active=status,gender=gender)
             new_student.save()
-
             return JsonResponse({'message': 'Student added successfully'})
         return JsonResponse({'error': 'Invalid form data'})
+    return JsonResponse({'error': 'Invalid method'})
 
 def department(request):
     return render(request , 'pages/departmentprofile.html' , {})

@@ -1,43 +1,38 @@
-// const selectElements = document.getElementsByClassName("SelectStatue");
-// Array.from(selectElements).forEach((selectElement) => {
-//     selectElement.addEventListener("change", () => {
-//       const studentName = selectElement.parentNode.parentNode.parentNode.children[0].textContent;
-//       const Studentid = selectElement.parentNode.parentNode.parentNode.children[1].textContent;
-//         Swal.fire({
-//           title: 'Do you want to save the changes?',
-//           text:'you trying to change the statue of '+studentName+ ' to ' +selectElement.value,
-//           showDenyButton: true,
-//           showCancelButton: true,
-//           confirmButtonText: 'Save',
-//           denyButtonText: `Don't save`,
-//         }).then((result) => {
-//           /* Read more about isConfirmed, isDenied below */
-//           if (result.isConfirmed) {
-//             var stds = JSON.parse(localStorage.getItem("Students"));
-//             for(var i = 0 ; i < stds.length;i++)
-//             {
-//                 if(stds[i].id ==  Studentid)
-//                   {
-//                     stds[i].status = selectElement.value;
-//                   }
-//             }
-//             let students = JSON.stringify(stds);
-//             localStorage.setItem("Students" , students);
-//             Swal.fire('Saved!', '', 'success')
-//           } else {
-//             if(selectElement.value == "Active")
-//               {
-//                 selectElement.value = 'Inactive';
-//               }
-//             else
-//               {
-//                 selectElement.value = 'Active';
-//               }
-//             Swal.fire('Changes are not saved', '', 'info')
-//           }
-//         })
-//     });
-// });
+document.addEventListener("DOMContentLoaded", () => {
+const selectElements = document.getElementsByClassName("SelectStatue");
+Array.from(selectElements).forEach((selectElement) => {
+    console.log(selectElement)
+    selectElement.addEventListener("change", () => {
+      const studentName = selectElement.parentNode.parentNode.parentNode.children[0].textContent;
+      const Studentid = selectElement.parentNode.parentNode.parentNode.children[1].textContent;
+      console.log(studentName , Studentid)
+        Swal.fire({
+          title: 'Do you want to save the changes?',
+          text:'you trying to change the statue of '+ studentName+ ' to ' + selectElement.value,
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Save',
+          denyButtonText: `Don't save`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            updatastudent(Studentid)
+            var url = '/Student-Affairs/Students/viewall/';
+            indow.location.href = url;
+          } else {
+            if(selectElement.value == "Active")
+              {
+                selectElement.value = 'Inactive';
+              }
+            else
+              {
+                selectElement.value = 'Active';
+              }
+            Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+    });
+});
+});
 function tableSearch(){
     let input, filter, table, tr, tdName,tdID, tdActive, activeCheck;
     input = document.getElementById("searchBar");
@@ -63,8 +58,6 @@ function tableSearch(){
     }
 }
 
-
-
 function deleteStudent(id, callback) {
   var xhr = new XMLHttpRequest();
   var url = '/Student-Affairs/Students/deletestudent/';
@@ -79,6 +72,32 @@ function deleteStudent(id, callback) {
   };
   
   xhr.send();
+}
+
+function updatastudent(id) {
+  const formData1 = new FormData();
+  formData1.append('id' , id);
+  const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+  $.ajax({
+    url: '/Student-Affairs/Students/Changestate/',
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': csrfToken
+    },
+    data: formData1,
+    processData: false, // Prevent jQuery from processing the data
+    contentType: false, // Let the server handle the content type
+    success: function(response) {
+      Swal.fire('Saved!', '', 'success')
+    },
+    error: function() {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error submitting the form',
+        showConfirmButton: true
+      });
+    }
+  });
 }
 
 function getStudents(callback) {
@@ -150,20 +169,4 @@ function goToDelete(id) {
       });
     }
   });
-}
-
-function getCookie(name) {
-  var cookieValue = null;
-  if (document.cookie) {
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-      var cookie = cookies[i].trim();
-      // Check if the cookie name matches the parameter
-      if (cookie.substring(0, name.length + 1) === (name + '=')) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
 }
