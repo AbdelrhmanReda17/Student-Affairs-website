@@ -105,3 +105,13 @@ def uploadstudent(request):
 
 def department(request):
     return render(request , 'pages/departmentprofile.html' , {})
+
+def delete_student(request):
+    if request.method == 'GET':
+        student_id = request.GET.get('id')
+        if(student_id is not None):
+            student_obj = student.objects.get(id=student_id)
+            student_obj.delete()
+            return JsonResponse({'message': 'Student added successfully'})
+    return JsonResponse({'error': 'Invalid form data'})
+   

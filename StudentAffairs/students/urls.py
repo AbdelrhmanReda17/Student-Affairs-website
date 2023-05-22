@@ -13,5 +13,6 @@ urlpatterns = [
    path('getStudents/', views.getStudents , name='getStudents'),
    path('setStudents/', views.setStudents, name='setStudents'),
    path('uploadstudent/', views.uploadstudent, name='uploadstudent'),
+   path('deletestudent/', views.delete_student, name='deletestudent'),
 ]
 
