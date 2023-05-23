@@ -1,3 +1,10 @@
+function handleKeyPress(event) {
+  if (event.keyCode === 13) {
+      event.preventDefault();
+      tableSearch();
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 const selectElements = document.getElementsByClassName("SelectStatue");
 Array.from(selectElements).forEach((selectElement) => {

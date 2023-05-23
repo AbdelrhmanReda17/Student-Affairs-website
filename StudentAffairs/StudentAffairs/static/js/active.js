@@ -12,9 +12,14 @@ function getStudents(callback) {
   
   xhr.send();
 }
+function handleKeyPress(event) {
+  if (event.keyCode === 13) {
+      event.preventDefault();
+      tableSearch();
+  }
+}
 
 function tableSearch() {
-  
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("searchBar");
   filter = input.value.toUpperCase();

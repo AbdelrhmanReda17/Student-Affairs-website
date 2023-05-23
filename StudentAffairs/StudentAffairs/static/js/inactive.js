@@ -1,3 +1,10 @@
+function handleKeyPress(event) {
+  if (event.keyCode === 13) {
+      event.preventDefault();
+      tableSearch();
+  }
+}
+
 function tableSearch() {
    
     var input, filter, table, tr, td, i, txtValue;
