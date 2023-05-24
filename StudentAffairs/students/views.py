@@ -66,9 +66,7 @@ def changestate(request):
         if stdsid is not None:
             try:
                 student_obj = student.objects.get(student_id=stdsid)
-                print(student_obj.active)
                 student_obj.active = not student_obj.active
-                print(student_obj.active)
                 student_obj.save()
                 return JsonResponse({'message': 'Student updated successfully'})
             except student.DoesNotExist:
@@ -85,13 +83,10 @@ def updatedepartment(request):
     if request.method=='POST':
         stdsid = request.POST.get('id')
         department = request.POST.get('department')
-        print(stdsid , department)
         if stdsid is not None:
             try:
                 student_obj = student.objects.get(student_id=stdsid)
-                print(student_obj.department)
                 student_obj.department = department
-                print(student_obj.department)
                 student_obj.save()
                 return JsonResponse({'message': 'Student updated successfully'})
             except student.DoesNotExist:
@@ -135,7 +130,6 @@ def uploadstudent(request):
         national_id = data.get('nationalId')
         address = data.get('address')
         phone_number = data.get('phone')
-        print(image22)
         level = data.get('level')
         status = data.get('status')
         gender = data.get('gender')
@@ -152,9 +146,6 @@ def department(request):
 def delete_student(request):
     if request.method == 'GET':
         student_id = request.GET.get('id')
-        if(student_id is not None):
-            student_obj = student.objects.get(id=student_id)
-            student_obj.delete()
-            return JsonResponse({'message': 'Student Deleted'})
-    return JsonResponse({'error': 'Error while deleted'})
-   
+        student_obj = student.objects.get(id=student_id)
+        student_obj.delete()
+        return JsonResponse({'message': 'Student Deleted'})

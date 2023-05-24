@@ -122,7 +122,9 @@ function getStudents(callback) {
   xhr.send();
 }
 
-function goToDelete(id) {
+function goToDelete(id , stds) {
+  var table = document.getElementById("table");
+  var row = document.querySelectorAll("#id");
   getStudents(function(students) {
     var studentToDelete = null;
     for (var i = 0; i < students.length; i++) {
@@ -131,7 +133,6 @@ function goToDelete(id) {
         break;
       }
     }
-
     if (studentToDelete) {
       Swal.fire({
         title: 'Do you want to delete the student?',
@@ -142,36 +143,20 @@ function goToDelete(id) {
       }).then((result) => {
         if (result.isConfirmed) {
           deleteStudent(studentToDelete.id, function(response) {
-            var url = '/Student-Affairs/Students/viewall/';
-             window.location.href = url;
             if (response.message) {
+              for(var i = 0 ; i < row.length ; i++){
+                if(row[i].innerHTML == stds){
+                    table.deleteRow(i+1);
+                }
+              }
               Swal.fire({
                 icon: 'success',
                 title: 'Student Deleted Successfully!',
                 showConfirmButton: true
-              }).then((result) => {
-                if (result.isConfirmed) {
-                   var url = '/Student-Affairs/Students/viewall/';
-                   window.location.href = url;
-                }
-              });
-            } else {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Failed to delete student!'
-              });
+              })
             }
           });
-        } else if (result.isDenied) {
-          Swal.fire('Student not deleted', '', 'info');
         }
-      });
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Student not found!'
       });
     }
   });

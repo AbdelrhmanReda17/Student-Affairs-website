@@ -101,7 +101,6 @@ function ED(){
       processData: false, 
       contentType: false, 
       success: function(response) {
-        form.reset();
         Swal.fire({
           icon: 'success',
           title: 'Student Added Successfully!',
@@ -109,12 +108,11 @@ function ED(){
         }).then((result) => {
           if (result.isConfirmed) {
             var url = '/Student-Affairs/Students/updatestudent/?id=' + NewId;
-             window.location.href = url;
+            window.location.href = url;
           }
         });
       },
       error: function() {
-        
         Swal.fire({
           icon: 'error',
           title: 'Error submitting the form',
@@ -238,8 +236,6 @@ function InputsValidation() {
     } else {
 		setErrorFor(Iphone, 'Invalid Student Phone');
     }
-  
-    
     return (
       isNameValid &&
       isIdValid &&
