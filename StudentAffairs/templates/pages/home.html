@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="{% static 'js/home.js' %}"></script>
+    <title>Home Page</title>
+    </head>
+<body>
+<div class="background">
+  <div class="middle">
+    <img src="{% static 'photos/home.jpg' %}" alt="ww">
+  </div>
+  <div>
+  <div class="grid-container">
+      <div class="grid-item hr" > <p>Human Resources</p></div>
+      <div class="grid-item sa" id="stud"  onclick="gotoPage('{% url 'Index' %}')"> <p>Student Affairs</p></div>
+      <div class="grid-item hs"><p>Higher Studies</p></div>
+      <div class="grid-item lt"><p>Laboratory Tracking</p></div>
+  </div>
+</div>
+</div>
+</body>
+
+
+

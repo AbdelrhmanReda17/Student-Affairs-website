@@ -1,0 +1,116 @@
+.container{
+    display: grid;
+    grid-template-rows: repeat(3,1fr,min-content);
+}
+.container .image img{
+    width: 25%;
+    height: 50%;
+}
+.image{
+    background-image: url("trying.jpeg");
+    height: 350px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.Boxs{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    margin-bottom: 3%;
+}
+.box{
+    color: #00539F;
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: -45px;
+    height: 80px;
+}
+
+.overlay{
+    margin-left: 17%;
+    width: 70%;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 83, 159, 0.1) 0px 12px 28px 0px, rgba(0, 83, 159, 0.06) 0px 2px 4px 0px, rgba(255, 255, 255, 0.01) 0px 0px 0px 1px inset;
+}
+.box p:hover{
+    font-weight: 500;
+    scale: 1.1;
+}
+.overlay p{
+    font-weight: 400;
+    color: #00539F;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+}
+.BodyContent{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    justify-items: center;
+    row-gap: 5%;
+}
+
+.BodyContent .div1{
+    margin-left: 10%;
+}
+.BodyContent .div2{
+    margin-right: 10%;
+}
+footer {
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-columns:  2fr 1fr min-content;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+}
+footer .content{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+footer img{
+    align-content: center;
+    height: 150px;
+    width: 350px;
+}
+
+.BodyContent > div{
+    display: grid;
+    grid-template-rows: repeat(2,0fr min-content);
+    height: 100%;
+    width: 80%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+    border-radius: 12px;
+}
+
+.BodyContent >div > div > h2{
+    text-align: center;
+    color: #00539F;
+}
+
+.BodyContent .content{
+    display: grid;
+    grid-template-rows: auto;
+}
+.BodyContent .content p{
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+
+@media (max-width: 650px) {
+    .BodyContent {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .BodyContent .div1{
+        margin-left:0 ;
+    }
+    .BodyContent .div2{
+        margin-right: 0;
+    }
+}

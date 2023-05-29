@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block headers %}
+    <link rel="stylesheet" href="{% static 'css/ViewAllStudents.css'%}">
+    <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/ViewAllStudents.js'%}"></script>
+{% endblock headers %}
+{% block content %}
+<div class="main-body">
+                <div class="header">
+                    <h2>Currently enrolled students</h2>
+                </div>
+                <div class="conatiner">
+                    <form class="Search-bar">
+                        <input id="searchBar" onkeydown="return handleKeyPress(event)" onclick="tableSearch()" autocomplete="off" type="text" placeholder="Search for students"/>
+                        <button  type="button" onclick="tableSearch()" class="Button" > <i class="fa fa-search fa-2xl"></i> </button>
+                    </form>
+                </div>
+        </div>
+        <div name="tab">
+            <table id="table">
+                <tr>
+                  <div name="th">
+                  <th>Name</th>
+                  <th id="ID">ID</th>
+                  <th>GPA</th>
+                  <th>Department</th>
+                  <th>Active Status</th>
+                  <th></th>
+                </div>
+                </tr>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td id="id">{{ student.student_id }}</td>
+                        <td>{{ student.gpa }}</td>
+                        <td>{{ student.department }}</td>
+                            {% if student.active == True %}
+                            <td> <form>{% csrf_token %}<select name="StudentStatue"  aria-label="Active/InActive" class="SelectStatue"> <option value="Active" selected> ACTIVE </option> <option value="Inactive"> INACTIVE </option></select> </form> </td>
+                            {% else %}
+                            <td><form>{% csrf_token %}<select name="StudentStatue"  aria-label="Active/InActive" class="SelectStatue"> <option value="Active" > ACTIVE </option> <option selected value="Inactive"> INACTIVE </option></select> </form></td> 
+                            {% endif %}
+                            <td><i id="deleteicon" class="fa-solid fa-xmark fa-xl x" onclick="goToDelete('{{ student.id }}', '{{ student.student_id }}')"> </i></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>      
+
+{% endblock content %}

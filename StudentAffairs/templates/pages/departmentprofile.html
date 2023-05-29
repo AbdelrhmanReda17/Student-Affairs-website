@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block headers %}
+    <link rel="stylesheet" href="{% static 'css/departmentprofile.css'%}">
+    <script src="https://kit.fontawesome.com/69879bfcd5.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/departmentprofile.js'%}"></script>
+{% endblock headers %}
+{% block content %}
+        <div class ="cont">
+            <div id="profile-div">
+                <div class="profile-image" >
+                    <div id="Pimg">
+                    <img id="output"src="{% static 'photos/profile.png'%}"alt="Student profile photo" class="profile" />
+                     </div>
+                    <p class="profile-para" id="Sname">Mohammed Mahmoud Hassan</p>
+            </div>    
+            <div id = "form-div" class="form-box">
+                <form  id = "form">
+                    {% csrf_token %}
+                 <div class="inputs-big-div">
+                    <div class = "input-container">
+                        <div id="id" class="ipt-container">
+                            <i class="fa-solid fa-id-card-clip fa-2xl icon"></i>
+                            <input class="input-field"  id="Sid" placeholder="Student ID" >  
+                        </div> 
+                    </div>
+                    <div class = "input-container">
+                         <div id ="level" class="ipt-container">
+                            <i class="fa-solid fa-l fa-2xl"></i>
+                            <input class="input-field" type="text" id="Slevel" placeholder="level"> 
+                        </div> 
+                    </div> 
+
+                   
+                    <div class = "input-container">
+                        <!-- gpa -->
+                        <div id ="gpa" class="ipt-container">
+                            <i class="fa-solid fa-percent fa-2xl icon"></i>
+                            <input class="input-field" type="text" id="Sgpa" placeholder="gpa" >  
+                        </div> 
+                    </div>
+                    <div class = "input-container">
+                        <!--e-mail-->
+                        <div id ="email" class="ipt-container">
+                            <i class="fa-solid fa-envelope  fa-2xl icon"></i>
+                            <input class="input-field" type="text" id="Semail" placeholder=" Email" >  
+                        </div> 
+                        </div>                              
+                        
+                    <div class = "input-container">
+                       <!-- national id -->
+                        <div id ="national-id" class="ipt-container">
+                            <i class="fa-solid fa-id-card fa-2xl icon"></i>
+                            <input class="input-field" type="text" id="Snational-id" placeholder="National ID" >  
+                        </div>  
+                    </div>                             
+                    <div class = "input-container">
+                        <!-- address -->
+                        <div id ="address" class="ipt-container">
+                            <i class="fa-sharp fa-solid fa-location-dot fa-2xl icon"></i>
+                            <input class="input-field" type="text" id="Saddress"  placeholder="Address"  >  
+                            
+                         </div> 
+                    </div>
+        
+                    <div class = "input-container">
+                        <!--phone-->
+                        <div id ="phone" class="ipt-container">
+                            <i class="fa-solid fa-phone fa-2xl icon"></i>
+                            <input class="input-field" type="text" id="Sphone"  placeholder="Phone Number" >  
+                        </div>                               
+                    </div>
+                    <div class = "input-container">
+                        <!--date-->
+                        <div id ="date" class="ipt-container">
+                            <i class="fa-regular fa-calendar-days fa-2xl"></i>
+                            <input class="input-field" type="text" id="Sdate"  placeholder="mm/dd/yyyy" >  
+                            
+                        </div>                               
+                    </div>
+                </div>
+                </form> 
+            </div>
+        
+            <div class =" checked-inputs" id="department">
+                <h3 id="deptext">Assign Department</h3> 
+                <div class="Select">
+                        <select name="Sdep" id="dep"> 
+                            <option class="opt" value="General"> General </option>
+                                <option class="opt" value="CS"> CS </option>
+                                <option class="opt" value="IS" > IS </option>
+                                <option class="opt" value="AI"> AI </option>
+                                <option class="opt" value="IT"> IT </option>
+                                <option class="opt" value="DS"> DS </option>
+                        </select>                    
+                </div>
+                <div class="Act">
+                    <div class="buttons">
+                        <input type="submit"  class="submit" value="Save">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+{% endblock content %}
