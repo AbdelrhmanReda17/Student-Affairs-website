@@ -192,8 +192,10 @@ function validateEmail() {
 function validateGpa() {
   const gpaInput = document.getElementById('Sgpa');
   const gpa = gpaInput.value.trim();
-  
- if (gpa < 0 || gpa > 4) {
+  if(gpaInput && gpaInput.value.trim() === ''){
+    setErrorFor(gpaInput, 'GPA cannot be blank');
+  }
+ else if (gpa < 0 || gpa > 4) {
     setErrorFor(gpaInput, 'GPA must be between 0 and 4');
   } else {
     setSuccessFor(gpaInput);
