@@ -26,7 +26,6 @@ function tableSearch() {
   table = document.getElementById("table");
   tr = table.getElementsByTagName("tr");
 
- 
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td");
     for (var j = 0; j < td.length; j++) {
@@ -62,7 +61,11 @@ function goToDepartment(id) {
       }
     }
     if (x == false) {
-      alert("Level is not 3");
+      Alert.open({
+        title:'Alert Message',
+        message:'Level is not 3',
+        onok:()=>{}
+      })
     }
   });
 }

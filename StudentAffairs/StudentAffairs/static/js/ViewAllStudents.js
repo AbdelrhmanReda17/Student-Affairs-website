@@ -135,7 +135,7 @@ function goToDelete(id , stds) {
     }
     if (studentToDelete) {
       Confirm.open({
-        title: 'Confrim Message',
+        title: 'Confirm Message',
         message: 'Do you want to delete the student?',
         okText: 'Yes, delete',
         cancelText: 'Cancel',

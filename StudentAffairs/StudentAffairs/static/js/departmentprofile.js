@@ -64,7 +64,7 @@ function Submit(){
           oncancel:()=>{
             Alert.open({
               title:'Alert Message',
-              message:'Changes does not saved',
+              message:'Changes are not saved',
               onok:()=>{selectElement.value = Olddepartment}
             })
           }

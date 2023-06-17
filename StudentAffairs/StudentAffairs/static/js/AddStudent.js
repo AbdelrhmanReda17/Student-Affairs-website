@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
           formData1.append('status', status);
           formData1.append('photo', photoFile);
             Confirm.open({
-            title:"Confrim Message",
+            title:"Confirm Message",
             message:'Do you want to confirm add the Student',
             okText:'Add',
             cancelText:"Cancel",
