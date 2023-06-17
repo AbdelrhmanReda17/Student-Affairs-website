@@ -1,3 +1,10 @@
+function handleKeyPress(event) {
+  if (event.keyCode === 13) {
+      event.preventDefault();
+      tableSearch();
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 const selectElements = document.getElementsByClassName("SelectStatue");
 Array.from(selectElements).forEach((selectElement) => {
@@ -6,33 +13,32 @@ Array.from(selectElements).forEach((selectElement) => {
       const studentName = selectElement.parentNode.parentNode.parentNode.children[0].textContent;
       const Studentid = selectElement.parentNode.parentNode.parentNode.children[1].textContent;
  
-        Swal.fire({
-          title: 'Do you want to save the changes?',
-          text:'you trying to change the statue of '+ studentName+ ' to ' + selectElement.value,
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: 'Save',
-          denyButtonText: `Don't save`,
-        }).then((result) => {
-          if (result.isConfirmed) {
+        Confirm.open({
+          title: 'Confirm Message',
+          message: 'Do you want to save the changes?',
+          okText: 'Save',
+          cancelText: `Don't save`,
+          onok: () => {
             updatastudent(Studentid)
-            var url = '/Student-Affairs/Students/viewall/';
-            indow.location.href = url;
-          } else {
-            if(selectElement.value == "Active")
-              {
-                selectElement.value = 'Inactive';
-              }
-            else
-              {
-                selectElement.value = 'Active';
-              }
-            Swal.fire('Changes are not saved', '', 'info')
+          },
+          oncancel: () => {
+            if(selectElement.value == "Active"){
+              selectElement.value = 'Inactive';
+            }
+            else{
+              selectElement.value = 'Active';
+            }
+            Alert.open({
+              title:'Alert Message',
+              message: 'Changes are not saved',
+              onok: ()=>{}
+            })
           }
         })
     });
 });
 });
+
 function tableSearch(){
     let input, filter, table, tr, tdName,tdID, tdActive, activeCheck;
     input = document.getElementById("searchBar");
@@ -61,16 +67,13 @@ function tableSearch(){
 function deleteStudent(id, callback) {
   var xhr = new XMLHttpRequest();
   var url = '/Student-Affairs/Students/deletestudent/';
-
   xhr.open('GET', url + '?id=' + id, true);
-
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
       callback(response);  
     }
   };
-  
   xhr.send();
 }
 
@@ -88,14 +91,18 @@ function updatastudent(id) {
     processData: false, 
     contentType: false, 
     success: function(response) {
-      Swal.fire('Saved!', '', 'success')
+      Alert.open({
+        title:'Alert Message',
+        message: 'Changes are saved successfully',
+        onok: ()=>{}
+      })
     },
     error: function() {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error submitting the form',
-        showConfirmButton: true
-      });
+      Alert.open({
+        title:'Alert Message',
+        message: 'Error submitting the form',
+        onok: ()=>{}
+      })
     }
   });
 }
@@ -115,7 +122,9 @@ function getStudents(callback) {
   xhr.send();
 }
 
-function goToDelete(id) {
+function goToDelete(id , stds) {
+  var table = document.getElementById("table");
+  var row = document.querySelectorAll("#id");
   getStudents(function(students) {
     var studentToDelete = null;
     for (var i = 0; i < students.length; i++) {
@@ -124,48 +133,36 @@ function goToDelete(id) {
         break;
       }
     }
-
     if (studentToDelete) {
-      Swal.fire({
-        title: 'Do you want to delete the student?',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete',
-        cancelButtonText: 'Cancel',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
+      Confirm.open({
+        title: 'Confrim Message',
+        message: 'Do you want to delete the student?',
+        okText: 'Yes, delete',
+        cancelText: 'Cancel',
+        onok: ()=>{
           deleteStudent(studentToDelete.id, function(response) {
-            var url = '/Student-Affairs/Students/viewall/';
-             window.location.href = url;
-            if (response.message) {
-              Swal.fire({
-                icon: 'success',
-                title: 'Student Deleted Successfully!',
-                showConfirmButton: true
-              }).then((result) => {
-                if (result.isConfirmed) {
-                   var url = '/Student-Affairs/Students/viewall/';
-                   window.location.href = url;
+            if (response.message){
+              for(var i = 0 ; i < row.length ; i++){
+                if(row[i].innerHTML == stds){
+                  table.deleteRow(i+1);
                 }
-              });
-            } else {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Failed to delete student!'
-              });
+              }
+              Alert.open({
+                title:'Alert Message',
+                message:'Student Deleted Successfully!',
+                onok:()=>{}
+              })
             }
-          });
-        } else if (result.isDenied) {
-          Swal.fire('Student not deleted', '', 'info');
+          })
+        },
+        oncancel: ()=>{
+          Alert.open({
+            title:'Alert Message',
+            message:'Changes are not saved',
+            onok:()=>{}
+          })
         }
-      });
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Student not found!'
-      });
+      })
     }
   });
 }

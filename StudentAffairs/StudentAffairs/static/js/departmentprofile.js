@@ -12,8 +12,9 @@ function getStudents(callback) {
     
     xhr.send();
 }
-window.onload = function() {
-var inputs = document.getElementsByClassName("input-field");
+let Olddepartment;
+document.addEventListener("DOMContentLoaded", () => {
+  var inputs = document.getElementsByClassName("input-field");
    for (var i = 0; i < inputs.length; i++) {
     inputs[i].disabled = true;
    }
@@ -37,55 +38,40 @@ var inputs = document.getElementsByClassName("input-field");
         document.getElementById('output').src = '/media/'+ students[i].img;
         const department = students[i].department; 
         const select = document.getElementById("dep");
-        if (department) {
-            const options = select.options;
-            for (let j = 0; j < options.length; j++) {
-                if (options[j].value === department) {
-                select.value = department;
-                break;
-                }
-            }
-        } 
+        select.value = department;
+        Olddepartment = department;
         break;
       }
     }
   });
-};
-document.addEventListener("DOMContentLoaded", () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const myParam = urlParams.get('id');
-  const saveButton = document.querySelector(".submit");
-  const selectElement = document.getElementById("dep");
-  if (selectElement) { 
-    saveButton.addEventListener("click", () => {
-      const selectedOption = selectElement.value;
-      Swal.fire({
-        title: 'Selected department is (' + selectedOption + ")",
-        text: "Are you sure you want to save?",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#00539F',
-        cancelButtonColor: '#00539F',
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            updatastudent(myParam , selectedOption);
-        }else{
-          Swal.fire({
-            icon: 'error',
-            title: 'Student not saved',
-            showConfirmButton: true
-          }).then(result =>{
-            location.reload();
-          });
-        }
-      })
-    });
-  }
 });
-
-
+function Submit(){
+  const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('id');
+    const saveButton = document.querySelector(".submit");
+    const selectElement = document.getElementById("dep");
+    if (selectElement) { 
+        const selectedOption = selectElement.value;
+        Confirm.open({
+          title: 'Confirm Message',
+          message: "Selected department is (" + selectedOption + ")\n Are you sure you want to save?",
+          okText: 'Yes',
+          cancelText: 'No',
+          onok: ()=>{
+              updatastudent(myParam , selectedOption);
+              Olddepartment = selectElement.value;
+          },
+          oncancel:()=>{
+            Alert.open({
+              title:'Alert Message',
+              message:'Changes does not saved',
+              onok:()=>{selectElement.value = Olddepartment}
+            })
+          }
+        })
+    }
+}
+  
 function updatastudent(id , department) {
   const formData1 = new FormData();
   formData1.append('id' , id);
@@ -101,14 +87,18 @@ function updatastudent(id , department) {
     processData: false, 
     contentType: false, 
     success: function(response) {
-      Swal.fire('Student Saved!', '', 'success')
+      Alert.open({
+        title:'Alert Message',
+        message:'Student updated successfully',
+        onok:()=>{}
+      })
     },
     error: function() {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error submitting the form',
-        showConfirmButton: true
-      });
+      Alert.open({
+        title:'Alert Message',
+        message:'Something went wrong while update student',
+        onok:()=>{}
+      })
     }
   });
 }

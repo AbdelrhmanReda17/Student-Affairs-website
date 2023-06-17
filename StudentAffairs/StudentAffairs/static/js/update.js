@@ -50,6 +50,7 @@ window.onload = function() {
 };
 document.addEventListener('DOMContentLoaded', function() {
   const studentForm = document.querySelector('form');
+  Events();
   studentForm.addEventListener('submit', function(event) {
     event.preventDefault();
     const urlParams = new URLSearchParams(window.location.search);
@@ -66,7 +67,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })
 });
-
+function Events(){
+  const studentForm = document.querySelector('form');
+  const nameInput = document.getElementById('Sname');
+  const idInput = document.getElementById('Sid');
+  const emailInput = document.getElementById('Semail');
+  const gpaInput = document.getElementById('Sgpa');
+  const nationalIdInput = document.getElementById('Snational-id');
+  const addressInput = document.getElementById('Saddress');
+  const phoneInput = document.getElementById('Sphone');
+  const levelInputs = document.querySelectorAll('input[name="Slevel"]');
+  const genderInputs = document.querySelectorAll('input[name="Sgender"]');
+  const statusInputs = document.querySelectorAll('input[name="Sstatus"]');
+  
+  nameInput.addEventListener('input', validateName);
+  idInput.addEventListener('input', validateId);
+  emailInput.addEventListener('input', validateEmail);
+  gpaInput.addEventListener('input', validateGpa);
+  nationalIdInput.addEventListener('input', validateNationalId);
+  addressInput.addEventListener('input', validateAddress);
+  phoneInput.addEventListener('input', validatePhone);
+  
+  levelInputs.forEach(function(input) {
+    input.addEventListener('change', validateLevel);
+  });
+  
+  genderInputs.forEach(function(input) {
+    input.addEventListener('change', validateGender);
+  });
+  
+  statusInputs.forEach(function(input) {
+    input.addEventListener('change', validateStatus);
+  });
+}
 function ED(){
   if (InputsValidation()) {
     var form = document.getElementById('form');
@@ -101,43 +134,38 @@ function ED(){
       processData: false, 
       contentType: false, 
       success: function(response) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Student Added Successfully!',
-          showConfirmButton: true
-        }).then((result) => {
-          if (result.isConfirmed) {
+        Alert.open({
+          title:"Alert Message",
+          message: 'Student Added Successfully!',
+          onok:()=>{
             var url = '/Student-Affairs/Students/updatestudent/?id=' + NewId;
             window.location.href = url;
           }
-        });
+        })
       },
       error: function() {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error submitting the form',
-          showConfirmButton: true
-        });
+        Alert.open({
+          title:"Alert Message",
+          message: 'Something went wrong while update Student!',
+          onok:()=>{
+            var url = '/Student-Affairs/Students/updatestudent/?id=' + NewId;
+            window.location.href = url;
+          }
+        })
       }
     });
   }
 }
   
 function OnCancelClicked() {
-	Swal.fire({
-        title: 'Changes Will Discard !!',
-        text: "Are you sure you want to Go Back",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#00539F',
-        cancelButtonColor: '#00539F',
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            location.reload();
-        }
-    });
+	Confirm.open({
+        title:'Confirm Message',
+        message: 'Changes Will Discard !! <strong>Are you sure you want to Cancel ?</strong>',
+        onok:()=>{
+          location.reload();
+        },
+        oncancel:()=>{}
+      })
 };
 function loadFile(event) {
   var output = document.getElementById('output');
@@ -162,93 +190,178 @@ function OnEditClicked() {
 }
 
 function InputsValidation() {
+  validateName();
+  validateId();
+  validateEmail();
+  validateGpa();
+  validatePhone();
+  validateNationalId();
+  validateAddress();
+  validateLevel();
+  validateGender();
+  validateStatus();
+  const errorInputs = document.querySelectorAll('.error');
+  return errorInputs.length === 0;
+}
 
-    const name = document.getElementById("Sname").value;
-    const id = document.getElementById("Sid").value;
-    const email = document.getElementById("Semail").value;
-    const gpa = document.getElementById("Sgpa").value;
-    const nationalId = document.getElementById("Snational-id").value;
-    const address = document.getElementById("Saddress").value;
-    const phone = document.getElementById("Sphone").value;
-  
-    
-    const nameRegex = /^[a-zA-Z ]{3,30}$/;
-    const idRegex = /^[0-9]{8}$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const gpaRegex = /^([0-3]\.[0-9]{1,3}|4\.0{1,3})$/;
-    const nationalIdRegex = /^[0-9]{14}$/;
-    const addressRegex = /^[a-zA-Z0-9\s,'-]*$/;
-    const phoneRegex = /^01[0125][0-9]{8}$/;
-  
-    const isNameValid = nameRegex.test(name);
-    const isIdValid = idRegex.test(id);
-    const isEmailValid = emailRegex.test(email);
-    const isGpaValid = gpaRegex.test(gpa);
-    const isNationalIdValid = nationalIdRegex.test(nationalId);
-    const isAddressValid = addressRegex.test(address);
-    const isPhoneValid = phoneRegex.test(phone);
-  
-    const Iname = document.getElementById("Sname");
-    if (isNameValid) {
-        setSuccessFor(Iname)
-    } else {
-		setErrorFor(Iname, 'Invalid Student Username');
-    }
+function validateName() {
+  const nameInput = document.getElementById('Sname');
+  const name = nameInput.value.trim();
+  const nameRegex = /^[A-Za-z\s]+$/;
 
-    const Iid = document.getElementById("Sid");
-    if (isIdValid) {
-        setSuccessFor(Iid)
-    } else {
-		setErrorFor(Iid, 'Invalid Student ID');
-    }
+  if (name === '') {
+    setErrorFor(nameInput, 'Name cannot be blank');
+  } else if (!nameRegex.test(name)) {
+    setErrorFor(nameInput, 'Name can only contain letters');
+  } else {
+    setSuccessFor(nameInput);
+  }
+}
 
-    const Iemail = document.getElementById("Semail");
-    if (isEmailValid) {
-        setSuccessFor(Iemail)
-    } else {
-		setErrorFor(Iemail, 'Invalid Student Email');
-    }
-  
-    const Igpa = document.getElementById("Sgpa");
-    if (isGpaValid) {
-        setSuccessFor(Igpa)
-    } else {
-		setErrorFor(Igpa, 'Invalid Student GPA');
-    }
+function validateId() {
+  const idInput = document.getElementById('Sid');
+  const id = idInput.value.trim();
 
-    const InationalId = document.getElementById("Snational-id");
-    if (isNationalIdValid) {
-        setSuccessFor(InationalId)
-    } else {
-		setErrorFor(InationalId, 'Invalid Student national Id');
-    }
+  if (id === '') {
+    setErrorFor(idInput, 'ID cannot be blank');
+  } else if (id.length !== 8) {
+    setErrorFor(idInput, 'ID must be 8 digits');
+  } else {
+    setSuccessFor(idInput);
+  }
+}
+
+
+function validateEmail() {
+  const emailInput = document.getElementById('Semail');
+  const email = emailInput.value.trim();
+  const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  if (email === '') {
+    setErrorFor(emailInput, 'Email cannot be blank');
+  } else if (!emailRegex.test(email)) {
+    setErrorFor(emailInput, 'Email is not valid');
+  } else {
+    setSuccessFor(emailInput);
+  }
+}
+
+function validateGpa() {
+  const gpaInput = document.getElementById('Sgpa');
+  const gpa = gpaInput.value.trim();
   
-    const Iaddress = document.getElementById("Saddress");
-    if (isAddressValid) {
-        setSuccessFor(Iaddress)
-    } else {
-		setErrorFor(Iaddress, 'Invalid Student Email');
+ if (gpa < 0 || gpa > 4) {
+    setErrorFor(gpaInput, 'GPA must be between 0 and 4');
+  } else {
+    setSuccessFor(gpaInput);
+  }
+}
+
+
+function validatePhone() {
+  const phoneInput = document.getElementById('Sphone');
+  const phone = phoneInput.value.trim();
+  const phoneRegex = /^(010|011|012)\d{8}$/;
+
+  if (phone === '') {
+    setErrorFor(phoneInput, 'Phone number cannot be blank');
+  } else if (!phoneRegex.test(phone)) {
+    setErrorFor(phoneInput, 'Phone number is not valid');
+  } else {
+    setSuccessFor(phoneInput);
+  }
+}
+
+function validateNationalId() {
+  const nationalIdInput = document.getElementById('Snational-id');
+  const nationalId = nationalIdInput.value.trim();
+
+  if (nationalId === '') {
+    setErrorFor(nationalIdInput, 'National ID cannot be blank');
+  } else if (nationalId.length !== 14) {
+    setErrorFor(nationalIdInput, 'National ID must be 14 digits');
+  } else {
+    setSuccessFor(nationalIdInput);
+  }
+}
+
+function validateAddress() {
+  const addressInput = document.getElementById('Saddress');
+  const address = addressInput.value.trim();
+
+  if (address === '') {
+    setErrorFor(addressInput, 'Address cannot be blank');
+  } else {
+    setSuccessFor(addressInput);
+  }
+}
+
+
+
+function validateLevel() {
+  const levelInputs = document.querySelectorAll('input[name="Slevel"]');
+  let isValid = false;
+
+  levelInputs.forEach(function(input) {
+    if (input.checked) {
+      isValid = true;
     }
-  
-    const Iphone = document.getElementById("Sphone");
-    if (isPhoneValid) {
-        setSuccessFor(Iphone)
-    } else {
-		setErrorFor(Iphone, 'Invalid Student Phone');
+  });
+
+  if (!isValid) {
+    levelInputs.forEach(function(input) {
+      SetRadioError(input);
+    });
+  } else {
+    levelInputs.forEach(function(input) {
+      SetRadioSucess(input);
+    });
+  }
+}
+
+function validateGender() {
+  const genderInputs = document.querySelectorAll('input[name="Sgender"]');
+  let isValid = false;
+
+  genderInputs.forEach(function(input) {
+    if (input.checked) {
+      isValid = true;
     }
-    return (
-      isNameValid &&
-      isIdValid &&
-      isEmailValid &&
-      isGpaValid &&
-      isNationalIdValid &&
-      isAddressValid &&
-      isPhoneValid
-    );
-  }  
+  });
+
+  if (!isValid) {
+    genderInputs.forEach(function(input) {
+      SetRadioError(input);
+    });
+  } else {
+    genderInputs.forEach(function(input) {
+      SetRadioSucess(input);
+    });
+  }
+}
+
+function validateStatus() {
+  const statusInputs = document.querySelectorAll('input[name="Sstatus"]');
+  let isValid = false;
+
+  statusInputs.forEach(function(input) {
+    if (input.checked) {
+      isValid = true;
+    }
+  });
+
+  if (!isValid) {
+    statusInputs.forEach(function(input) {
+      SetRadioError(input);
+    });
+  } else {
+    statusInputs.forEach(function(input) {
+      SetRadioSucess(input);
+    });
+  }
+}
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
-  
 	const small = formControl.querySelector('small');
 	formControl.className = 'ipt-container error';
 	small.innerText = message;
@@ -256,9 +369,17 @@ function setErrorFor(input, message) {
 
 function setSuccessFor(input) {
 	const formControl = input.parentElement;
-   
 	formControl.className = 'ipt-container success';
 }
+function SetRadioSucess(input) {
+	const formControl = input.parentElement;
+	formControl.className = 'Radiobutton success';
+}	
+function SetRadioError(input) {
+	const formControl = input.parentElement;
+	formControl.className = 'Radiobutton error';
+}	
+
 	
 function isEmail(email) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);

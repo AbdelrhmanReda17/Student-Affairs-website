@@ -73,58 +73,53 @@ document.addEventListener('DOMContentLoaded', function() {
           formData1.append('gender', gender);
           formData1.append('status', status);
           formData1.append('photo', photoFile);
-      
-          const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
-      
-          $.ajax({
-            url: '/Student-Affairs/Students/uploadstudent/',
-            method: 'POST',
-            headers: {
-              'X-CSRFToken': csrfToken
-            },
-            data: formData1,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-              studentForm.reset();
-              Swal.fire({
-                icon: 'success',
-                title: 'Student Added Successfully!',
-                showConfirmButton: true
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  location.reload();
-                }
-              });
-            },
-            error: function() {
-              Swal.fire({
-                icon: 'error',
-                title: 'Error submitting the form',
-                showConfirmButton: true
-              });
-            }
-          });
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error submitting the form',
-            text: 'Invalid ID',
-            showConfirmButton: true
-          });
+            Confirm.open({
+            title:"Confrim Message",
+            message:'Do you want to confirm add the Student',
+            okText:'Add',
+            cancelText:"Cancel",
+            onok: () => { sendAjax(formData1);},
+            oncancel: () => reload(),
+          })
         }
-      });
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error submitting the form',
-        text: 'Invalid input',
-        showConfirmButton: true
       });
     }
   });
 });
 
+const sendAjax = (formData1) => {
+  const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+  $.ajax({
+    url: '/Student-Affairs/Students/uploadstudent/',
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': csrfToken
+    },
+    data: formData1,
+    processData: false,
+    contentType: false,
+    success: function(response) {
+      Alert.open({
+        title:"Alert Message",
+        message:'Student Added Successfully',
+        okText:'Ok',
+        onok:() => reload(),
+
+      })
+    },
+    error: function() {
+      Alert.open({
+        title:"Alert Message",
+        message:'Something went wrong while add student',
+        okText:'Ok',
+        onok:() => reload(),
+      })
+    }
+  });
+}
+const reload = () => {
+  location.reload();
+}
 
 function loadFile(event) {
   var output = document.getElementById('output');
